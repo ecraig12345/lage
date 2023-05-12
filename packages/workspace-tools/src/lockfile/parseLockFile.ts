@@ -2,7 +2,7 @@
 import fs from "fs";
 import path from "path";
 import { type ParsedLock, type PnpmLockFile, type NpmLockFile, type BerryLockFile } from "./types.js";
-import { searchUp } from "../paths.js";
+import { searchUp } from "@ws-tools/paths";
 import { parsePnpmLock } from "./parsePnpmLock.js";
 import { parseNpmLock } from "./parseNpmLock.js";
 import { readYaml } from "./readYaml.js";

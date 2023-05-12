@@ -22,7 +22,7 @@ export type {
   ParsedLock,
   PnpmLockFile,
 } from "./lockfile/types.js";
-export { findGitRoot, findPackageRoot, findProjectRoot, isChildOf, searchUp } from "./paths.js";
+export { findProjectRoot, isChildOf } from "./paths.js";
 export { getScopedPackages } from "./scope.js";
 export type { Catalog, Catalogs, NamedCatalogs } from "./types/Catalogs.js";
 export type { PackageDependency, PackageGraph } from "./types/PackageGraph.js";
@@ -42,3 +42,5 @@ export { getAllPackageJsonFiles, getAllPackageJsonFilesAsync } from "./workspace
 export { catalogsToYaml } from "./workspaces/catalogsToYaml.js";
 export { getCatalogVersion, isCatalogVersion } from "./workspaces/getCatalogVersion.js";
 export { getCatalogs } from "./workspaces/getCatalogs.js";
+
+export { searchUp, findGitRoot, findPackageRoot } from "@ws-tools/paths";

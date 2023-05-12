@@ -79,11 +79,9 @@ export function fetchRemote(remote: string, cwd: string): void;
 // @public @deprecated
 export function fetchRemoteBranch(remote: string, remoteBranch: string, cwd: string): void;
 
-// @public
-export function findGitRoot(cwd: string): string;
+export { findGitRoot }
 
-// @public
-export function findPackageRoot(cwd: string): string | undefined;
+export { findPackageRoot }
 
 // @public
 export function findProjectRoot(cwd: string, manager?: WorkspaceManager): string;
@@ -644,8 +642,7 @@ export function revertLocalChanges(options: GitCommonOptions): boolean;
 // @public @deprecated (undocumented)
 export function revertLocalChanges(cwd: string): boolean;
 
-// @public
-export function searchUp(filePath: string | string[], cwd: string): string | undefined;
+export { searchUp }
 
 // @public
 export function setCachingEnabled(enabled: boolean): void;

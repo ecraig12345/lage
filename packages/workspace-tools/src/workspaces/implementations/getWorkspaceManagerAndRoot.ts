@@ -1,6 +1,6 @@
 import path from "path";
 import { isCachingEnabled } from "../../isCachingEnabled.js";
-import { searchUp } from "../../paths.js";
+import { searchUp } from "@ws-tools/paths";
 import { type WorkspaceManager } from "../../types/WorkspaceManager.js";
 
 export interface WorkspaceManagerAndRoot {

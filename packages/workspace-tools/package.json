@@ -22,6 +22,7 @@
     "lint": "monorepo-scripts lint"
   },
   "dependencies": {
+    "@ws-tools/paths": "workspace:^",
     "@yarnpkg/lockfile": "1.1.0",
     "fast-glob": "3.3.3",
     "git-url-parse": "16.1.0",
