@@ -18,6 +18,7 @@
     "build:docs": "typedoc",
     "change": "beachball change",
     "checkchange": "beachball check",
+    "check-basic-package-deps": "node ./scripts/check-basic-package-deps.js",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lage": "cross-env NODE_OPTIONS=\"--experimental-abortcontroller --no-warnings\" lage",

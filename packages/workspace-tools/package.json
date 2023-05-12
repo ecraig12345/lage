@@ -19,13 +19,14 @@
     "test": "jest"
   },
   "dependencies": {
+    "@ws-tools/paths": "^0.1.0",
+    "@ws-tools/types": "^0.1.0",
     "@yarnpkg/lockfile": "^1.1.0",
     "git-url-parse": "^13.0.0",
     "globby": "^11.0.0",
     "jju": "^1.4.0",
     "js-yaml": "^4.1.0",
-    "micromatch": "^4.0.0",
-    "@ws-tools/paths": "^0.1.0"
+    "micromatch": "^4.0.0"
   },
   "devDependencies": {
     "lodash": "4.17.21",

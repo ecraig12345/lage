@@ -1,5 +1,5 @@
-import { WorkspaceManager } from "./WorkspaceManager";
-import { getWorkspaceManagerAndRoot } from "./implementations";
+import { WorkspaceManager } from "../../../types/src/WorkspaceManager";
+import { getWorkspaceManagerAndRoot } from "./implementations/getWorkspaceManagerAndRoot";
 
 /**
  * Get the root directory of a workspace/monorepo, defined as the directory where the workspace
@@ -7,6 +7,6 @@ import { getWorkspaceManagerAndRoot } from "./implementations";
  * @param cwd Start searching from here
  * @param preferredManager Search for only this manager's config file
  */
-export function getWorkspaceRoot(cwd: string, preferredManager?: WorkspaceManager): string | undefined {
+export function findWorkspaceRoot(cwd: string, preferredManager?: WorkspaceManager): string | undefined {
   return getWorkspaceManagerAndRoot(cwd, undefined, preferredManager)?.root;
 }

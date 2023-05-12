@@ -12,7 +12,7 @@ export * from "./types/WorkspaceInfo";
 export * from "./workspaces/findWorkspacePath";
 export * from "./workspaces/getWorkspaces";
 export * from "./workspaces/getWorkspacePackagePaths";
-export * from "./workspaces/getWorkspaceRoot";
+export { findWorkspaceRoot as getWorkspaceRoot } from "@ws-tools/paths";
 export { getPnpmWorkspaceRoot, getPnpmWorkspaces } from "./workspaces/implementations/pnpm";
 export { getRushWorkspaceRoot, getRushWorkspaces } from "./workspaces/implementations/rush";
 export { getYarnWorkspaceRoot, getYarnWorkspaces } from "./workspaces/implementations/yarn";

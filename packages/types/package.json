@@ -1,8 +1,8 @@
 {
-  "name": "@ws-tools/paths",
+  "name": "@ws-tools/types",
   "version": "0.1.0",
   "license": "MIT",
-  "description": "Helper methods related to paths in a repo or monorepo",
+  "description": "Basic types used by the workspace-tools family of packages",
   "repository": {
     "type": "git",
     "url": "https://github.com/microsoft/workspace-tools"
@@ -22,11 +22,7 @@
   "scripts": {
     "api": "workspace-tools-scripts api",
     "build": "tsc",
-    "start": "tsc -w --preserveWatchOutput",
-    "test": "jest"
-  },
-  "dependencies": {
-    "@ws-tools/types": "^0.1.0"
+    "start": "tsc -w --preserveWatchOutput"
   },
   "devDependencies": {
     "workspace-tools-scripts": "*"

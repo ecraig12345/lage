@@ -1,6 +1,6 @@
 import path from "path";
 import { searchUp } from "@ws-tools/paths";
-import { WorkspaceManager } from "../WorkspaceManager";
+import { WorkspaceManager } from "@ws-tools/types";
 import { isCachingEnabled } from "../../isCachingEnabled";
 
 export interface WorkspaceManagerAndRoot {
