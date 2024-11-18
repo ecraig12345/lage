@@ -5,14 +5,7 @@
 // a bundle rather than installing dependencies, it's also necessary to bundle the types in case
 // consumers want to use them in their own lage configs.
 //
-// Ideally we would only have a single dts bundle, but there are a couple problems:
-// - `lage` types extend from `backfill-config` types, and there are some naming conflicts.
-// - `lage` types sometimes reference or re-export `backfill-config` types under different names,
-//   which isn't handled well by `dts-bundle-generator`.
-//
-// As a workaround, the `backfill-config` types are bundled in a separate file, and the imports
-// in bundled `lage` types will be rewritten later (by scripts/update-dts-bundle.js) to point to
-// the local `backfill-config` bundle file rather than the npm package.
+// TODO
 //
 // The update script also does some basic validation: mainly detecting if a new dep is used which
 // needs to be added to one of the `inlinedLibraries` lists below.
@@ -21,41 +14,54 @@
 const path = require("path");
 const { getPackageInfos } = require("workspace-tools");
 
-/** @type {import('dts-bundle-generator/config-schema').OutputOptions} */
-const commonOutputOptions = {
-  // Only export the types which are explicitly exported in the original files
-  // (rather than all types referenced by exported types)
-  exportReferencedTypes: false,
-  noBanner: true,
-};
+const azurePackagePath = path.dirname(require.resolve("@azure/core-http/package.json"));
+const azurePackageJson = require("@azure/core-http/package.json");
+const azureTypesPath = path.join(azurePackagePath, azurePackageJson.types);
 
 /** @type {import('dts-bundle-generator/config-schema').BundlerConfig} */
-module.exports = {
+const config = {
   compilationOptions: {
     preferredConfigPath: path.join(__dirname, "tsconfig.json"),
   },
+
   entries: [
     {
       filePath: path.join(path.dirname(require.resolve("@lage-run/cli/package.json")), "lib/index.d.ts"),
       outFile: "./dist/index.d.ts",
       libraries: {
-        // Inline any types from workspace packages into the dts bundle
-        inlinedLibraries: Object.values(getPackageInfos(process.cwd()))
-          .filter((p) => p.name !== "lage" && !p.private)
-          .map((p) => p.name),
+        // Inline any types from workspace packages into the dts bundle,
+        // as well as backfill and @azure/core-http (which are bundled).
+        inlinedLibraries: [
+          ...Object.values(getPackageInfos(process.cwd()))
+            .filter((p) => p.name !== "lage" && !p.private)
+            .map((p) => p.name),
+          "@azure/core-http",
+          "backfill-config",
+          "backfill-logger",
+        ],
       },
-      output: commonOutputOptions,
+      output: {
+        // Only export the types which are explicitly exported in the original files
+        // (rather than all types referenced by exported types)
+        exportReferencedTypes: false,
+        inlineDeclareExternals: true,
+      },
     },
-    // See file comment for explanation of why this a second bundle is needed
     {
-      filePath: path.join(path.dirname(require.resolve("backfill-config/package.json")), "lib/index.d.ts"),
-      outFile: "./dist/backfill-config.d.ts",
+      // filePath: path.join(__dirname, "azure.d.ts"),
+      filePath: azureTypesPath,
+      outFile: "./dist/azure.d.ts",
       libraries: {
-        // Note that backfill-config itself must be in this list, or references to files within the
-        // package will be treated as external and preserved as imports.
-        inlinedLibraries: ["backfill-config", "backfill-logger"],
+        inlinedLibraries: ["@azure/core-http", "@azure/abort-controller"],
       },
-      output: commonOutputOptions,
+      output: {
+        // Only export the types which are explicitly exported in the original files
+        // (rather than all types referenced by exported types)
+        // exportReferencedTypes: false,
+        inlineDeclareExternals: true,
+      },
     },
   ],
 };
+
+module.exports = config;

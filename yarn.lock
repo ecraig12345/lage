@@ -2030,12 +2030,12 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
-dts-bundle-generator@^7.2.0:
-  version "7.2.0"
-  resolved "https://registry.yarnpkg.com/dts-bundle-generator/-/dts-bundle-generator-7.2.0.tgz#1a06f621e33399e38c8968bbd71d65ab577e5327"
-  integrity sha512-pHjRo52hvvLDRijzIYRTS9eJR7vAOs3gd/7jx+7YVnLU8ay3yPUWGtHXPtuMBSlJYk/s4nq1SvXObDCZVguYMg==
+dts-bundle-generator@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/dts-bundle-generator/-/dts-bundle-generator-9.0.0.tgz#b26a4d52409a4f30c8f9fdfa3f59f6522c749acd"
+  integrity sha512-4XPDOb+F1fkPrvqFL4hnNW2Edc3uiFxQDsK8gUMP8/45+QkA+dSOH0ZWZCKXEjA3ITVbPGV1li8oP8JE4Z/Y0g==
   dependencies:
-    typescript ">=4.5.2"
+    typescript ">=5.0.2"
     yargs "^17.6.0"
 
 eastasianwidth@^0.2.0:
@@ -4573,12 +4573,7 @@ type-fest@^1.0.2:
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-1.4.0.tgz#e9fb813fe3bf1744ec359d55d1affefa76f14be1"
   integrity sha512-yGSza74xk0UG8k+pLh5oeoYirvIiWo5t0/o3zHHAO2tRDiZcxWP7fywNlXhqb6/r6sWvwi+RsyQMWhVLe4BVuA==
 
-typescript@>=4.5.2:
-  version "5.3.3"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.3.3.tgz#b3ce6ba258e72e6305ba66f5c9b452aaee3ffe37"
-  integrity sha512-pXWcraxM0uxAS+tN0AG/BF2TyqmHO014Z070UsJ+pFvYuRSq8KH8DmWpnbXe0pEPDHXZV3FcAbJkijJ5oNEnWw==
-
-typescript@~5.0.3:
+typescript@>=5.0.2, typescript@~5.0.3:
   version "5.0.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.0.4.tgz#b217fd20119bd61a94d4011274e0ab369058da3b"
   integrity sha512-cW9T5W9xY37cc+jfEnaUvX91foxtHkza3Nw3wkoF4sSlKn0MONdkdEndig/qPBWXNkmplh3NzayQzCiHM4/hqw==
