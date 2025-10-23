@@ -1,8 +1,8 @@
 import { Command } from "commander";
 import { initAction } from "./action.js";
 
-const initCommand = new Command("init");
-
-initCommand.description("Install lage in a workspace and create a config file").action(initAction);
-
-export { initCommand };
+export function initCommand() {
+  const command = new Command("init");
+  command.description("Install lage in a workspace and create a config file").action(initAction);
+  return command;
+}

@@ -1,33 +1,34 @@
+import type { ConfigOptions } from "@lage-run/config";
 import { Command } from "commander";
 import { action } from "./action.js";
 import { addOptions } from "../addOptions.js";
 
-const command = new Command("run");
+export function runCommand(config: ConfigOptions) {
+  const command = new Command("run");
+  addOptions("filter", command);
+  addOptions("logger", command, config);
+  addOptions("pool", command);
+  addOptions("runner", command);
+  addOptions("run", command);
 
-addOptions("filter", command);
-addOptions("logger", command);
-addOptions("pool", command);
-addOptions("runner", command);
-addOptions("run", command);
-
-command
-  .action(action)
-  .allowUnknownOption(true)
-  .addHelpCommand("[run] command1 [command2...commandN] [options]", "run commands")
-  .addHelpText(
-    "after",
-    `
+  command
+    .action(action)
+    .allowUnknownOption(true)
+    .addHelpCommand("[run] command1 [command2...commandN] [options]", "run commands")
+    .addHelpText(
+      "after",
+      `
 Runs a set of commands in a target graph. The targets are defined by packages and their scripts as defined the package.json files.
 
 Examples
 ========
- 
+
 ### Basic case, running "build", "test", and "lint" against all packages
 
     $ lage build test lint
 
 ### Concurrency
-  
+
     $ lage build test lint --concurrency=4
 
 ### Filtering by certain packages
@@ -68,17 +69,18 @@ Show logs as grouped by each target:
 
 Choosing a different reporter while logging (e.g. nice outputs for Azure DevOps):
 
-    $ lage build test lint --reporter=azureDevOps
+    $ lage build test lint --reporter=azureDevops
 
 Or combine multiple reporters (e.g. Azure DepOps with VerboseFileLog)
 
-    $ lage build test lint --reporter azureDevOps --reporter vfl --log-file /my/verbose/log.file
+    $ lage build test lint --reporter azureDevops --reporter vfl --log-file /my/verbose/log.file
 
 Ignoring files when calculating the scope with --since in addition to files specified in lage.config:
 
     $ lage build test lint --since origin/master --ignore "package.json" "yarn.lock" "**/.azure-pipelines/**"
 
 `
-  );
+    );
 
-export { command as runCommand };
+  return command;
+}

@@ -1,11 +1,14 @@
+import type { ConfigOptions } from "@lage-run/config";
 import { Command } from "commander";
 import { cacheAction } from "./action.js";
 import { addOptions } from "../addOptions.js";
 
-const command = new Command("cache");
+export function cacheCommand(config: ConfigOptions) {
+  const command = new Command("cache");
 
-addOptions("cache", command);
-addOptions("logger", command);
-command.action(cacheAction);
+  addOptions("cache", command);
+  addOptions("logger", command, config);
+  command.action(cacheAction);
 
-export { command as cacheCommand };
+  return command;
+}

@@ -2,7 +2,9 @@ import { Command } from "commander";
 import { affectedAction } from "./action.js";
 import { addOptions } from "../addOptions.js";
 
-const affectedCommand = new Command("affected");
-addOptions("filter", affectedCommand).action(affectedAction);
-
-export { affectedCommand };
+export function affectedCommand() {
+  const command = new Command("affected");
+  addOptions("filter", command);
+  command.action(affectedAction);
+  return command;
+}
