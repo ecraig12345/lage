@@ -1,9 +1,11 @@
+//
+// NOTE: This file is an entry point and should NOT import from other files in the package!
+// It's supposed to be as lightweight as possible
+//
+
 import path from "path";
 import fs from "fs";
-import { getWorkspaceManagerRoot } from "./workspaces/getWorkspaceManagerRoot.js";
-import { git } from "./git";
-import { logVerboseWarning } from "./logging.js";
-import type { WorkspaceManager } from "./types/WorkspaceManager.js";
+import { spawnSync } from "child_process";
 
 /**
  * Starting from `cwd`, searches up the directory hierarchy for `filePath`.
@@ -34,13 +36,15 @@ export function searchUp(filePath: string | string[], cwd: string): string | und
  * Starting from `cwd`, uses `git rev-parse --show-toplevel` to find the root of the git repo.
  * Throws if `cwd` is not in a Git repository.
  */
-export function findGitRoot(cwd: string): string {
-  const output = git(["rev-parse", "--show-toplevel"], { cwd });
-  if (!output.success) {
+export function findGitRoot(cwd: string) {
+  // This uses spawnSync instead of the git helper to avoid the extra dependency
+  const result = spawnSync("git", ["rev-parse", "--show-toplevel"], { cwd });
+
+  if (result.status !== 0) {
     throw new Error(`Directory "${cwd}" is not in a git repository`);
   }
 
-  return path.normalize(output.stdout);
+  return path.normalize(result.stdout.toString().trim());
 }
 
 /**
@@ -51,35 +55,7 @@ export function findPackageRoot(cwd: string): string | undefined {
   return jsonPath && path.dirname(jsonPath);
 }
 
-/**
- * Starting from `cwd`, searches up the directory hierarchy for the project root (workspace/monorepo
- * manager root), falling back to the git root if no manager root is detected. Results are cached by
- * `cwd`, and an error is thrown if no project root is found and it's not a git repo.
- *
- * To skip the git root fallback, use `getWorkspaceManagerRoot`. Usually the monorepo manager root
- * is the same as the git root, but this may not be the case with multiple "monorepos" in a single
- * git repo, or in project structures with multiple languages where the JS is not at the root.
- *
- * @param manager Optional workspace/monorepo manager to look for specifically
- */
-export function findProjectRoot(cwd: string, manager?: WorkspaceManager): string {
-  let workspaceRoot: string | undefined;
-  try {
-    workspaceRoot = getWorkspaceManagerRoot(cwd, manager);
-    if (!workspaceRoot) {
-      logVerboseWarning(`Could not find workspace manager root for ${cwd}. Falling back to git root.`);
-    }
-  } catch (err) {
-    logVerboseWarning(`Error getting workspace manager root for ${cwd} (will fall back to git root)`, err);
-  }
-
-  return workspaceRoot || findGitRoot(cwd);
-}
-
-/**
- * Determines if `child` path is a subdirectory of `parent` path.
- */
-export function isChildOf(child: string, parent: string): boolean {
+export function isChildOf(child: string, parent: string) {
   const relativePath = path.relative(child, parent);
   return /^[./\\]+$/.test(relativePath);
 }
