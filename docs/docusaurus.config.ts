@@ -4,11 +4,21 @@ import type {
   ThemeConfig as ClassicThemeConfig,
 } from "@docusaurus/preset-classic";
 import type { Config } from "@docusaurus/types";
-import { createRequire } from "module";
-import { themes as prismThemes } from "prism-react-renderer";
+// import { themes as prismThemes } from "prism-react-renderer";
 import tailwindcss from "@tailwindcss/postcss";
+import path from "path";
 
-const require = createRequire(import.meta.url);
+import rehypeShiki, { type RehypeShikiOptions } from "@shikijs/rehype";
+import { transformerTwoslash } from "@shikijs/twoslash";
+// import twoslash, {
+//   type Options as ShikiTwoslashOptions,
+// } from "remark-shiki-twoslash";
+
+/*
+"<div class=\"shiki-twoslash-fragment\"><pre class=\"shiki light-plus\" style=\"background-color: #FFFFFF; color: #000000\">
+<div class='code-container'>
+<code><div class='line'><span style=\"color: undefined\">code</span></div></code></div></pre>\n<pre class=\"shiki nord\" style=\"background-color: #2e3440ff; color: #d8dee9ff\"><div class='code-container'><code><div class='line'><span style=\"color: undefined\">code</span></div></code></div></pre></div>"
+*/
 
 const config: Config = {
   title: "Lage",
@@ -34,12 +44,45 @@ const config: Config = {
       {
         docs: {
           editUrl: "https://github.com/microsoft/lage/edit/master/docs",
+          rehypePlugins: [
+            [
+              rehypeShiki,
+              {
+                // or `theme` for a single theme
+                themes: {
+                  light: "light-plus",
+                  dark: "nord",
+                },
+                transformers: [
+                  transformerTwoslash({
+                    langs: ["ts", "js", "md"],
+                    rendererRich: {},
+                  }),
+                ],
+              } satisfies RehypeShikiOptions,
+            ],
+          ],
+          // beforeDefaultRemarkPlugins: [
+          //   [
+          //     twoslash,
+          //     {
+          //       themes: ["light-plus", "nord"],
+          //     } satisfies ShikiTwoslashOptions,
+          //   ],
+          // ],
         },
         theme: {
-          customCss: [require.resolve("./src/css/custom.css")],
+          customCss: [path.join(__dirname, "src/css/custom.css")],
         },
       } satisfies ClassicPresetOptions,
     ],
+    // [
+    //   "docusaurus-preset-shiki-twoslash",
+    //   path.join(__dirname, "src/docusaurus-preset-shiki-twoslash/index.js"),
+    //   {
+    //     themes: ["light-plus", "nord"],
+    //   } satisfies ShikiTwoslashOptions,
+    // ],
   ],
 
   themeConfig: {
@@ -65,16 +108,16 @@ const config: Config = {
     colorMode: {
       respectPrefersColorScheme: true,
     },
-    prism: {
-      theme: {
-        ...prismThemes.vsLight,
-        plain: {
-          color: prismThemes.vsLight.plain.color,
-          backgroundColor: prismThemes.oneLight.plain.backgroundColor,
-        },
-      },
-      darkTheme: prismThemes.vsDark,
-    },
+    // prism: {
+    //   theme: {
+    //     ...prismThemes.vsLight,
+    //     plain: {
+    //       color: prismThemes.vsLight.plain.color,
+    //       backgroundColor: prismThemes.oneLight.plain.backgroundColor,
+    //     },
+    //   },
+    //   darkTheme: prismThemes.vsDark,
+    // },
   } satisfies ClassicThemeConfig,
 
   plugins: [

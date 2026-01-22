@@ -1,3 +1,5 @@
+@import "@shikijs/twoslash/style-rich.css";
+
 :root {
   /* code fonts are overly large */
   --ifm-code-font-size: 95%;
@@ -5,9 +7,33 @@
   --navbar-background: rgb(28 88 106);
 }
 
-pre.prism-code code {
-  font-size: var(--ifm-code-font-size);
+pre.shiki {
+  /* for some reason this is getting extra height from nowhere at the bottom */
+  overflow-y: hidden;
+  border: 1px solid #aaa;
 }
+pre.shiki code {
+  --twoslash-code-font: var(--ifm-font-family-monospace);
+  --twoslash-code-font-size: var(--ifm-code-font-size);
+}
+pre.twoslash .twoslash-popup-container {
+  transform: translateY(1.2rem);
+}
+[data-theme="dark"] pre.shiki {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+}
+[data-theme="dark"] pre.shiki span {
+  color: var(--shiki-dark) !important;
+}
+
+/* display as flex-column to remove gap from line-breaks */
+/* .shiki code {
+  display: flex;
+  flex-direction: column;
+  width: min-content;
+  min-width: 100%;
+} */
 
 /* top navbar */
 .navbar {

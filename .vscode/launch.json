@@ -35,6 +35,17 @@
       "sourceMaps": true,
       "outputCapture": "std",
       "console": "integratedTerminal"
+    },
+    {
+      "name": "Debug docsite - start",
+      "request": "launch",
+      "type": "node",
+      "runtimeExecutable": "yarn",
+      "runtimeArgs": ["run", "docusaurus", "start"],
+      "cwd": "${workspaceFolder}/docs",
+      "console": "integratedTerminal",
+      "outputCapture": "std",
+      "sourceMaps": true
     }
   ]
 }
