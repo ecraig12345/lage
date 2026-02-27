@@ -9,23 +9,22 @@
     "url": "https://github.com/microsoft/backfill"
   },
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
-    "build": "tsc --pretty",
-    "test": "jest",
-    "watch": "tsc -w"
+    "build": "yarn types && yarn transpile",
+    "transpile": "monorepo-scripts transpile",
+    "types": "yarn run -T tsc",
+    "lint": "monorepo-scripts lint",
+    "test": "yarn run -T jest"
   },
   "dependencies": {
-    "backfill-logger": "^5.4.0",
-    "find-up": "^5.0.0",
-    "pkg-dir": "^4.2.0"
+    "backfill-logger": "workspace:^",
+    "find-up": "5.0.0",
+    "pkg-dir": "4.2.0"
   },
   "devDependencies": {
-    "@types/jest": "^30.0.0",
-    "backfill-utils-test": "*",
-    "backfill-utils-tsconfig": "*",
-    "jest": "^30.0.0",
-    "ts-jest": "^29.0.0",
-    "typescript": "~4.7.0"
+    "@lage-run/monorepo-scripts": "workspace:^",
+    "backfill-utils-test": "workspace:^"
   },
   "engines": {
     "node": ">=14"

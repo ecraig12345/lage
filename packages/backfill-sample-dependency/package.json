@@ -4,13 +4,12 @@
   "version": "5.1.1",
   "license": "MIT",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "build": "backfill -- yarn compile",
-    "compile": "tsc"
+    "compile": "yarn run -T tsc"
   },
   "devDependencies": {
-    "backfill": "*",
-    "backfill-utils-tsconfig": "*",
-    "typescript": "~4.7.0"
+    "backfill": "workspace:^"
   }
 }

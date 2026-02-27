@@ -9,18 +9,19 @@
     "url": "https://github.com/microsoft/backfill"
   },
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
-    "build": "tsc --pretty",
-    "watch": "tsc -w"
+    "build": "yarn types && yarn transpile",
+    "transpile": "monorepo-scripts transpile",
+    "types": "yarn run -T tsc",
+    "lint": "monorepo-scripts lint"
   },
   "dependencies": {
-    "dotenv": "^8.1.0",
-    "find-up": "^5.0.0"
+    "dotenv": "8.6.0",
+    "find-up": "5.0.0"
   },
   "devDependencies": {
-    "@types/node": "^14.18.36",
-    "backfill-utils-tsconfig": "*",
-    "typescript": "~4.7.0"
+    "@lage-run/monorepo-scripts": "workspace:^"
   },
   "engines": {
     "node": ">=14"
