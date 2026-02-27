@@ -36,7 +36,7 @@ type ExtendedCacheStorageConfig =
 export type CacheOptions = Omit<BackfillCacheOptions, "cacheStorageConfig"> & {
   /**
    * Use this to specify a remote cache provider such as `'azure-blob'`.
-   * @see https://github.com/microsoft/backfill#configuration
+   * @see https://www.npmjs.com/package/backfill#configuration
    */
   cacheStorageConfig?: ExtendedCacheStorageConfig;
 

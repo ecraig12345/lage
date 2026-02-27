@@ -11,7 +11,13 @@ const config = {
         // roll up all changes to the lage changelog (packages still have individual changelogs too)
         mainPackageName: "lage",
         include: ["packages/*"],
+        exclude: ["!packages/backfill", "!packages/backfill-*"],
         changelogPath: "packages/lage",
+      },
+      {
+        mainPackageName: "backfill",
+        changelogPath: "packages/backfill",
+        include: ["packages/backfill", "packages/backfill-*"],
       },
     ],
   },
@@ -31,7 +37,7 @@ const config = {
       fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2) + "\n");
     },
   },
-  ignorePatterns: [".*ignore", "jest.config.js", "**/__*/**/*", "**/tests/**/*"],
+  ignorePatterns: [".*ignore", "jest.config.js", "**/__*/**/*"],
   disallowedChangeTypes: ["major"],
 };
 module.exports = config;

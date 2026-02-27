@@ -26,4 +26,4 @@ lage build --reset-cache
 
 ## Cache Options
 
-Caching capability is provided by `backfill`. All of the configuration under the `cacheOptions` key is passed to `backfill`. For the complete documentation of `cacheOptions`, see the [`backfill` configuration documentation](https://github.com/microsoft/backfill#configuration).
+Caching capability is provided by `backfill`. All of the configuration under the `cacheOptions` key is passed to `backfill`. For the complete documentation of `cacheOptions`, see the [`backfill` configuration documentation](https://www.npmjs.com/package/backfill#configuration).
