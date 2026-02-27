@@ -10,6 +10,7 @@
     "compile": "yarn run -T tsc"
   },
   "devDependencies": {
+    "@lage-run/monorepo-scripts": "workspace:^",
     "backfill": "workspace:^"
   }
 }

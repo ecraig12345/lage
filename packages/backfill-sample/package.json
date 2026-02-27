@@ -14,6 +14,7 @@
     "backfill-sample-dependency": "workspace:^"
   },
   "devDependencies": {
+    "@lage-run/monorepo-scripts": "workspace:^",
     "backfill": "workspace:^"
   }
 }

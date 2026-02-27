@@ -36,8 +36,7 @@
     "@lage-run/monorepo-scripts": "workspace:^",
     "@types/fs-extra": "^8.0.0",
     "@types/yargs": "^15.0.15",
-    "backfill-utils-test": "workspace:^",
-    "ts-mockito": "^2.6.1"
+    "backfill-utils-test": "workspace:^"
   },
   "engines": {
     "node": ">=14"

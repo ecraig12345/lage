@@ -1,1 +1,1 @@
-module.exports = require("backfill-utils-test").jestConfig;
+module.exports = require("@lage-run/monorepo-scripts/config/jest.config.js");
