@@ -11,8 +11,8 @@
   },
   "main": "lib/index.js",
   "scripts": {
-    "build": "tsc -b --pretty",
-    "watch": "tsc -b -w"
+    "build": "tsc --pretty",
+    "watch": "tsc -w"
   },
   "dependencies": {
     "execa": "^5.0.0",

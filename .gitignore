@@ -14,3 +14,4 @@ profile*.json
 !.yarn/releases/
 temp
 *.tgz
+*.tsbuildinfo

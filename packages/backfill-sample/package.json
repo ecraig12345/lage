@@ -6,7 +6,7 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "backfill -- yarn compile",
-    "compile": "tsc -b",
+    "compile": "tsc",
     "generate-report": "backfill --generate-performance-report"
   },
   "dependencies": {

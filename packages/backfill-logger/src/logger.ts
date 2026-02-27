@@ -100,9 +100,7 @@ export function makeLogger(
         stop: () => {
           const time = tracer.stop();
           consoleLogger.verbose(
-            `Profiling ${chalk.underline(type)} took ${chalk.cyanBright(
-              `${time} ms`
-            )}`
+            `Profiling ${chalk.underline(type)} took ${chalk.cyanBright(`${time} ms`)}`
           );
           performanceReportData[type] = time;
         },

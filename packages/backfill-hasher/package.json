@@ -10,9 +10,9 @@
   },
   "main": "lib/index.js",
   "scripts": {
-    "build": "tsc -b --pretty",
+    "build": "tsc --pretty",
     "test": "jest",
-    "watch": "tsc -b -w"
+    "watch": "tsc -w"
   },
   "dependencies": {
     "backfill-logger": "^5.4.0",

@@ -10,8 +10,8 @@
   },
   "main": "lib/index.js",
   "scripts": {
-    "build": "tsc -b --pretty",
-    "watch": "tsc -b -w"
+    "build": "tsc --pretty",
+    "watch": "tsc -w"
   },
   "dependencies": {
     "chalk": "^4.1.1",
