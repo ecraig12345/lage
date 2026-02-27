@@ -6,7 +6,7 @@
   "author": "Benjamin Weggersen <bewegger@microsoft.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/microsoft/backfill"
+    "url": "https://github.com/microsoft/lage"
   },
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -41,5 +41,9 @@
   },
   "engines": {
     "node": ">=14"
-  }
+  },
+  "files": [
+    "lib/!(__*)",
+    "lib/!(__*)/**"
+  ]
 }
