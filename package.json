@@ -3,26 +3,6 @@
   "name": "@microsoft/backfill-repo",
   "version": "2.0.0",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/microsoft/backfill"
-  },
-  "scripts": {
-    "build": "yarn lage build",
-    "change": "beachball change",
-    "checkchange": "beachball check",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "postinstall": "yarn update-project-references",
-    "lint": "eslint --fix . --ext .ts",
-    "prepare": "husky install",
-    "release": "beachball publish",
-    "syncpack:check": "syncpack list-mismatches",
-    "syncpack:fix": "syncpack fix-mismatches",
-    "test": "yarn lage test",
-    "update-project-references": "node tools/update-project-references.js",
-    "watch": "yarn lage --verbose watch"
-  },
   "workspaces": [
     "packages/*"
   ],
@@ -36,54 +16,19 @@
     "**/@azure/core-util": "~1.12.0",
     "**/@azure/core-xml": "~1.4.5",
     "**/@azure/logger": "~1.2.0",
-    "**/syncpack/minimatch": "^6.0.0",
     "**/cache-base/union-value/set-value": "^2.0.0"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.52.0",
-    "@typescript-eslint/parser": "^5.52.0",
-    "beachball": "^2.31.8",
-    "eslint": "^8.34.0",
-    "eslint-config-prettier": "^8.6.0",
-    "eslint-plugin-import": "^2.27.5",
-    "execa": "^5.0.0",
-    "husky": "^7.0.4",
     "lage": "^2.7.16",
-    "lint-staged": "^12.5.0",
-    "lodash.merge": "^4.6.2",
     "prettier": "~3.8.0",
-    "prettier-package-json": "^2.8.0",
-    "resolve-from": "^5.0.0",
-    "syncpack": "8.5.14",
     "typescript": "~4.7.0"
   },
   "engines": {
     "node": ">=14"
   },
-  "lint-staged": {
-    "**/package.json": [
-      "prettier-package-json --write",
-      "prettier --write"
-    ],
-    "**/*.{js,json,md,yaml}": [
-      "prettier --write"
-    ],
-    "**/*.ts": [
-      "eslint --fix",
-      "prettier --write"
-    ]
-  },
   "rationale": {
     "resolutions": {
-      "@azure/*": "Node 18 compatibility",
-      "syncpack/minimatch": "Unpin minimatch due to security issue. Should match original major version."
+      "@azure/*": "Node 18 compatibility"
     }
-  },
-  "syncpack": {
-    "prod": true,
-    "dev": true,
-    "peer": true,
-    "workspace": false,
-    "resolutions": false
   }
 }

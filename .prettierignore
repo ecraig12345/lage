@@ -1,16 +1,18 @@
-# generated or imported files
+# Prettier v3 also respects .gitignore
+
+# Not formatted
+.*ignore
+*.proto
+*.cmd
+
+# Generated or imported files
+change/*.json
+docs/build
 CHANGELOG.*
-CODE_OF_CONDUCT.md
+LICENSE
 SECURITY.md
+*.snap
 yarn.lock
-*.log
-
-# generated folders
-node_modules
-lib
-change
-__snapshots__
-
-# config files that don't need formatting
-.husky
-.prettierignore
+**/.yarn
+# this is a test fixture
+yarn.js

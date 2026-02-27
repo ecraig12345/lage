@@ -1,18 +1,16 @@
 {
-  "endOfLine": "auto",
+  "printWidth": 140,
+  "semi": true,
+  "singleQuote": false,
   "trailingComma": "es5",
+  "tabWidth": 2,
   "overrides": [
-    {
-      "files": "*.md",
-      "options": {
-        "proseWrap": "always"
-      }
-    },
     {
       "files": "*.json5",
       "options": {
         "parser": "json"
       }
     }
-  ]
+  ],
+  "endOfLine": "lf"
 }
