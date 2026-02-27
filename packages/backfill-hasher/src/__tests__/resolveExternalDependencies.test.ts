@@ -5,7 +5,7 @@ import {
   _addToQueue,
   type DependencySpec,
   type DependencyQueue,
-} from "../resolveExternalDependencies";
+} from "../resolveExternalDependencies.js";
 
 describe("_addToQueue", () => {
   it("adds external dependencies to queue", () => {

@@ -1,4 +1,4 @@
-import { cacheConfigEnvNames as envNames } from "./cacheConfig";
+import { cacheConfigEnvNames as envNames } from "./cacheConfig.js";
 
 export type AzureBlobCacheStorageConfig = {
   provider: "azure-blob";

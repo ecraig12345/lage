@@ -1,13 +1,13 @@
 import * as path from "path";
-import { Transform, TransformCallback, pipeline } from "stream";
+import { Transform, type TransformCallback, pipeline } from "stream";
 import tarFs from "tar-fs";
 
-import { Logger } from "backfill-logger";
-import { AzureBlobCacheStorageOptions } from "backfill-config";
+import type { Logger } from "backfill-logger";
+import type { AzureBlobCacheStorageOptions } from "backfill-config";
 
 import { stat } from "fs-extra";
-import { ContainerClient } from "@azure/storage-blob";
-import { CacheStorage } from "./CacheStorage";
+import type { ContainerClient } from "@azure/storage-blob";
+import { CacheStorage } from "./CacheStorage.js";
 
 const ONE_MEGABYTE = 1024 * 1024;
 const FOUR_MEGABYTES = 4 * ONE_MEGABYTE;
@@ -25,7 +25,7 @@ class TimeoutStream extends Transform {
       this.destroy(new Error(message));
     }, timeout);
   }
-  _transform(
+  public _transform(
     chunk: any,
     _encoding: BufferEncoding,
     callback: TransformCallback
@@ -49,7 +49,7 @@ class SpongeStream extends Transform {
       readableHighWaterMark: 1024 * 1024 * 1024 * 1024,
     });
   }
-  _transform(
+  public _transform(
     chunk: any,
     _encoding: BufferEncoding,
     callback: TransformCallback
@@ -58,7 +58,7 @@ class SpongeStream extends Transform {
     this.push(chunk);
     callback();
   }
-  _flush(callback: TransformCallback): void {
+  public _flush(callback: TransformCallback): void {
     this.resume();
     callback();
   }

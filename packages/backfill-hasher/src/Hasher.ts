@@ -1,14 +1,14 @@
 import path from "path";
 import type { Logger } from "backfill-logger";
 import { type PackageInfos, findPackageRoot } from "workspace-tools";
-import { generateHashOfFiles } from "./hashOfFiles";
+import { generateHashOfFiles } from "./hashOfFiles.js";
 import {
   type PackageHashInfo,
   getPackageHash,
   generateHashOfInternalPackages,
-} from "./hashOfPackage";
-import { hashStrings } from "./hashStrings";
-import { getRepoInfo, getRepoInfoNoCache } from "./repoInfo";
+} from "./hashOfPackage.js";
+import { hashStrings } from "./hashStrings.js";
+import { getRepoInfo, getRepoInfoNoCache } from "./repoInfo.js";
 
 export interface IHasher {
   createPackageHash: (salt: string) => Promise<string>;
@@ -81,7 +81,7 @@ export class Hasher implements IHasher {
     const done: PackageHashInfo[] = [];
 
     while (queue.length > 0) {
-      const nextPackageRoot = queue.shift()!; // eslint-disable-line @typescript-eslint/no-non-null-assertion
+      const nextPackageRoot = queue.shift()!;
 
       const packageHash = await getPackageHash(
         nextPackageRoot,

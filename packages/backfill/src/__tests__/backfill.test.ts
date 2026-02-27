@@ -5,7 +5,7 @@ import { setupFixture } from "backfill-utils-test";
 import { createConfig } from "backfill-config";
 import { makeLogger } from "backfill-logger";
 
-import { backfill } from "../index";
+import { backfill } from "../index.js";
 
 const logger = makeLogger("mute");
 

@@ -4,7 +4,7 @@ import { removeTempDir, setupFixture } from "backfill-utils-test";
 import { makeLogger } from "backfill-logger";
 
 import { getPackageInfos } from "workspace-tools";
-import { Hasher, _addToQueue } from "../Hasher";
+import { Hasher, _addToQueue } from "../Hasher.js";
 
 const logger = makeLogger("mute");
 

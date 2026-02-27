@@ -1,6 +1,6 @@
 import chalk from "chalk";
 
-import { LogLevel } from ".";
+import type { LogLevel } from "./logLevel.js";
 
 export type OutputFormatter = {
   format(logLevel: LogLevel, ...args: string[]): string[];

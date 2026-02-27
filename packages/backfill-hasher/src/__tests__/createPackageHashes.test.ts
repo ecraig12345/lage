@@ -1,5 +1,5 @@
 import path from "path";
-import { createPackageHashes } from "../createPackageHashes";
+import { createPackageHashes } from "../createPackageHashes.js";
 
 describe("createPackageHashes", () => {
   it("creates packages hashes for repo hashes", () => {

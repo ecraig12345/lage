@@ -7,7 +7,7 @@ import {
   createDefaultConfig,
   getName,
   getSearchPaths,
-} from "../createConfig";
+} from "../createConfig.js";
 
 describe("getName()", () => {
   let packageRoot = "";

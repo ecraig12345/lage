@@ -4,9 +4,10 @@ export const modesObject = {
   READ_WRITE: "",
   PASS: "",
 };
+const modes = Object.keys(modesObject);
 
 export type BackfillModes = keyof typeof modesObject;
 
 export function isCorrectMode(mode: string): mode is BackfillModes {
-  return modesObject.hasOwnProperty(mode);
+  return modes.includes(mode);
 }

@@ -4,7 +4,7 @@ import fs from "fs-extra";
 import { setupFixture } from "backfill-utils-test";
 import { makeLogger } from "backfill-logger";
 
-import { createBuildCommand } from "../commandRunner";
+import { createBuildCommand } from "../commandRunner.js";
 
 const muteLogger = makeLogger("mute");
 
@@ -60,7 +60,7 @@ describe("createBuildCommand", () => {
       /* comment to prevent eslint from complaining */
     }
 
-    expect(buildCommand).rejects.toThrow();
+    await expect(buildCommand).rejects.toThrow();
     expect(stderr.filter((m) => m.includes("somecommand")).length).not.toBe(0);
   });
 

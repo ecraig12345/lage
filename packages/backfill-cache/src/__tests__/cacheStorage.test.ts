@@ -1,11 +1,11 @@
 import * as fs from "fs";
 import * as path from "path";
 import * as os from "os";
-import { Logger, makeLogger } from "backfill-logger";
-import { CacheStorage } from "../CacheStorage";
+import { type Logger, makeLogger } from "backfill-logger";
+import { CacheStorage } from "../CacheStorage.js";
 
 class MockLocalCacheStorage extends CacheStorage {
-  filesToCache: string[] | undefined;
+  public filesToCache: string[] | undefined;
   constructor(logger: Logger, cwd: string) {
     super(logger, cwd, true);
   }

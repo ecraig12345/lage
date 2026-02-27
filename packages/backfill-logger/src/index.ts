@@ -1,3 +1,7 @@
-export { isCorrectLogLevel, type LogLevel, logLevelsObject } from "./logLevel";
-export { type Logger, makeLogger } from "./logger";
-export type { Console } from "./console";
+export {
+  isCorrectLogLevel,
+  type LogLevel,
+  logLevelsObject,
+} from "./logLevel.js";
+export { type Logger, makeLogger } from "./logger.js";
+export type { Console } from "./console.js";

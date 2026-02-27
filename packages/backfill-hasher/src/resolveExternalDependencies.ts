@@ -65,7 +65,6 @@ export function resolveExternalDependencies(
   const queue: DependencyQueue = Object.entries(externalDependencies);
 
   while (queue.length > 0) {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- verified above
     const next = queue.shift()!;
 
     const [name, versionRange] = next;

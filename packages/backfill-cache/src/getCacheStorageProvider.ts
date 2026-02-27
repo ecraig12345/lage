@@ -1,11 +1,11 @@
-import { CacheStorageConfig, CustomStorageConfig } from "backfill-config";
-import { Logger } from "backfill-logger";
+import type { CacheStorageConfig, CustomStorageConfig } from "backfill-config";
+import type { Logger } from "backfill-logger";
 
-import { ICacheStorage } from "./CacheStorage";
-import { AzureBlobCacheStorage } from "./AzureBlobCacheStorage";
-import { LocalCacheStorage } from "./LocalCacheStorage";
-import { NpmCacheStorage } from "./NpmCacheStorage";
-import { LocalSkipCacheStorage } from "./LocalSkipCacheStorage";
+import type { ICacheStorage } from "./CacheStorage.js";
+import { AzureBlobCacheStorage } from "./AzureBlobCacheStorage.js";
+import { LocalCacheStorage } from "./LocalCacheStorage.js";
+import { NpmCacheStorage } from "./NpmCacheStorage.js";
+import { LocalSkipCacheStorage } from "./LocalSkipCacheStorage.js";
 
 export function isCustomProvider(
   config: CacheStorageConfig

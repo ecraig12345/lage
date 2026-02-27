@@ -1,6 +1,6 @@
 import path from "path";
-import { hashStrings } from "./hashStrings";
-import type { RepoInfo } from "./types";
+import { hashStrings } from "./hashStrings.js";
+import type { RepoInfo } from "./types.js";
 
 /**
  * Generates a hash string based on files in a package

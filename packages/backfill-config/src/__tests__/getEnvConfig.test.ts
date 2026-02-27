@@ -1,6 +1,6 @@
 import { makeLogger } from "backfill-logger";
-import { getEnvConfig } from "../envConfig";
-import type { CacheStorageConfig } from "../cacheConfig";
+import { getEnvConfig } from "../envConfig.js";
+import type { CacheStorageConfig } from "../cacheConfig.js";
 
 describe("getEnvConfig()", () => {
   const originalEnv = { ...process.env };

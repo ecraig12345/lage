@@ -4,8 +4,8 @@ import execa from "execa";
 
 import { setupFixture } from "backfill-utils-test";
 
-import { sideEffectWarningString, noSideEffectString } from "../audit";
-import { findPathToBackfill } from "./helper";
+import { sideEffectWarningString, noSideEffectString } from "../audit.js";
+import { findPathToBackfill } from "./helper.js";
 
 describe("Audit", () => {
   let pathToBackfill: string;

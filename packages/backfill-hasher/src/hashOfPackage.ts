@@ -4,10 +4,10 @@ import type { Logger } from "backfill-logger";
 import {
   resolveExternalDependencies,
   type Dependencies,
-} from "./resolveExternalDependencies";
-import { generateHashOfFiles } from "./hashOfFiles";
-import { hashStrings } from "./hashStrings";
-import type { RepoInfo } from "./types";
+} from "./resolveExternalDependencies.js";
+import { generateHashOfFiles } from "./hashOfFiles.js";
+import { hashStrings } from "./hashStrings.js";
+import type { RepoInfo } from "./types.js";
 
 export type PackageHashInfo = {
   name: string;
@@ -47,6 +47,7 @@ export async function getPackageHash(
     return memoization[memoizationKey];
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
   const { name, dependencies, devDependencies } = require(
     path.join(packageRoot, "package.json")
   );

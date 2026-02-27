@@ -6,15 +6,15 @@ import yargs from "yargs";
 import {
   getRawBuildCommand,
   createBuildCommand,
-  BuildCommand,
-} from "./commandRunner";
-import { initializeWatcher, closeWatcher } from "./audit";
+  type BuildCommand,
+} from "./commandRunner.js";
+import { initializeWatcher, closeWatcher } from "./audit.js";
 import {
   put as put_api,
   fetch as fetch_api,
   computeHash,
   computeHashOfOutput,
-} from "./api";
+} from "./api.js";
 
 export {
   createDefaultConfig,

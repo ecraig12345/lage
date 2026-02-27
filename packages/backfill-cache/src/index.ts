@@ -1,5 +1,5 @@
 export {
   getCacheStorageProvider,
   isCustomProvider,
-} from "./getCacheStorageProvider";
-export { type ICacheStorage, CacheStorage } from "./CacheStorage";
+} from "./getCacheStorageProvider.js";
+export { type ICacheStorage, CacheStorage } from "./CacheStorage.js";

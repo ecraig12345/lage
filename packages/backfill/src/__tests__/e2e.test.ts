@@ -4,7 +4,7 @@ import execa from "execa";
 
 import { setupFixture } from "backfill-utils-test";
 
-import { findPathToBackfill } from "./helper";
+import { findPathToBackfill } from "./helper.js";
 
 describe("End to end", () => {
   let pathToBackfill: string;
@@ -42,7 +42,7 @@ describe("End to end", () => {
     const donePromise = new Promise<void>((resolve) => {
       done = resolve;
     });
-    execProcess.on("exit", (code) => {
+    void execProcess.on("exit", (code) => {
       expect(code).toBe(1);
       done();
     });

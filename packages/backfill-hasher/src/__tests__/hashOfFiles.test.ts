@@ -3,8 +3,8 @@ import fs from "fs";
 
 import { removeTempDir, setupFixture } from "backfill-utils-test";
 
-import { generateHashOfFiles } from "../hashOfFiles";
-import { getRepoInfoNoCache } from "../repoInfo";
+import { generateHashOfFiles } from "../hashOfFiles.js";
+import { getRepoInfoNoCache } from "../repoInfo.js";
 
 describe("generateHashOfFiles()", () => {
   let root = "";

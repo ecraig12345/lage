@@ -1,6 +1,6 @@
 import type { LogLevel } from "backfill-logger";
-import type { CacheStorageConfig } from "./cacheConfig";
-import type { BackfillModes } from "./modes";
+import type { CacheStorageConfig } from "./cacheConfig.js";
+import type { BackfillModes } from "./modes.js";
 
 /** @deprecated not used */
 export type HashGlobs = string[];

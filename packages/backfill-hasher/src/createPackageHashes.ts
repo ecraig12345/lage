@@ -1,6 +1,6 @@
 import path from "path";
 import type { PackageInfos } from "workspace-tools";
-import type { PackageHashes, RepoHashes } from "./types";
+import type { PackageHashes, RepoHashes } from "./types.js";
 
 /**
  * This is a trie that looks like this:

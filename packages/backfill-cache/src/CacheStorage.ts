@@ -1,8 +1,8 @@
 import globby from "globby";
 
-import { Logger } from "backfill-logger";
-import { ICacheStorage } from "backfill-config";
-import { getFileHash } from "./hashFile";
+import type { Logger } from "backfill-logger";
+import type { ICacheStorage } from "backfill-config";
+import { getFileHash } from "./hashFile.js";
 
 // First key is the hash, second key is the file relative path
 const savedHashes: Map<string, Map<string, string>> = new Map();
@@ -24,7 +24,7 @@ async function getHashesFor(cwd: string): Promise<Map<string, string>> {
   return result;
 }
 
-export { ICacheStorage };
+export type { ICacheStorage };
 
 export abstract class CacheStorage implements ICacheStorage {
   public constructor(

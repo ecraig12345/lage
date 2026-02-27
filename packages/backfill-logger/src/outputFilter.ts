@@ -1,4 +1,4 @@
-import { LogLevel, logLevelsObject } from "./logLevel";
+import { type LogLevel, logLevelsObject } from "./logLevel.js";
 
 export type LogFilter = {
   shouldLog(logLevel: LogLevel): boolean;

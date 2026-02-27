@@ -1,9 +1,9 @@
 import path from "path";
 import fs from "fs-extra";
 
-import { Logger } from "backfill-logger";
+import type { Logger } from "backfill-logger";
 
-import { CacheStorage } from "./CacheStorage";
+import { CacheStorage } from "./CacheStorage.js";
 
 /**
  * A CacheStorage that essentially just lets fetch return nothing locally, skipping cache, but verifies whether the hash is still correct based on the hasher algorithm
@@ -33,7 +33,6 @@ export class LocalSkipCacheStorage extends CacheStorage {
     return hash === (await fs.readFile(hashFile, "utf-8"));
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   protected async _put(hash: string, _filesToCache: string[]): Promise<void> {
     const localCacheFolder = this.getLocalCacheFolder("skip-cache");
     const hashFile = path.join(localCacheFolder, "hash");

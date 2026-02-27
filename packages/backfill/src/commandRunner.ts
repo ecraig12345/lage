@@ -2,7 +2,7 @@ import execa from "execa";
 import fs from "fs-extra";
 import globby from "globby";
 
-import { Logger } from "backfill-logger";
+import type { Logger } from "backfill-logger";
 
 export type ExecaReturns = execa.ExecaChildProcess;
 export type BuildCommand = () => Promise<ExecaReturns | void>;

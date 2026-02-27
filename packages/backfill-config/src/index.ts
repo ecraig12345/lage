@@ -1,11 +1,11 @@
-export * from "./azureBlobCacheConfig";
+export * from "./azureBlobCacheConfig.js";
 export type {
   ICacheStorage,
   CustomStorageConfig,
   CacheStorageConfig,
-} from "./cacheConfig";
-export * from "./Config";
-export * from "./createConfig";
-export * from "./envConfig";
-export * from "./modes";
-export * from "./npmCacheConfig";
+} from "./cacheConfig.js";
+export type { Config } from "./Config.js";
+export * from "./createConfig.js";
+export * from "./envConfig.js";
+export * from "./modes.js";
+export * from "./npmCacheConfig.js";

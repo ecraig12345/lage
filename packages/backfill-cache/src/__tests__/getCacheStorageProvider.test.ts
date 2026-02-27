@@ -1,8 +1,8 @@
-import { Logger, makeLogger } from "backfill-logger";
-import { getCacheStorageProvider } from "../getCacheStorageProvider";
-import type { ICacheStorage } from "../CacheStorage";
-import { AzureBlobCacheStorage } from "../AzureBlobCacheStorage";
-import { LocalCacheStorage } from "../LocalCacheStorage";
+import { type Logger, makeLogger } from "backfill-logger";
+import { getCacheStorageProvider } from "../getCacheStorageProvider.js";
+import type { ICacheStorage } from "../CacheStorage.js";
+import { AzureBlobCacheStorage } from "../AzureBlobCacheStorage.js";
+import { LocalCacheStorage } from "../LocalCacheStorage.js";
 
 describe("getCacheStorageProvider", () => {
   test("cache provider is memoized by provider, cacheFolder and cwd", () => {
@@ -89,12 +89,12 @@ describe("getCacheStorageProvider", () => {
         private cwd: string
       ) {}
 
-      fetch(hash: string) {
+      public fetch(hash: string) {
         this.logger.silly(`fetching ${this.cwd} ${hash}`);
         return Promise.resolve(true);
       }
 
-      put(hash: string, filesToCache: string[]) {
+      public put(hash: string, filesToCache: string[]) {
         this.logger.silly(
           `putting ${this.cwd} ${hash} ${filesToCache.length} files`
         );

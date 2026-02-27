@@ -3,10 +3,10 @@ import execa from "execa";
 import fs from "fs-extra";
 import globby from "globby";
 
-import { NpmCacheStorageOptions } from "backfill-config";
-import { Logger } from "backfill-logger";
+import type { NpmCacheStorageOptions } from "backfill-config";
+import type { Logger } from "backfill-logger";
 
-import { CacheStorage } from "./CacheStorage";
+import { CacheStorage } from "./CacheStorage.js";
 
 export class NpmCacheStorage extends CacheStorage {
   constructor(

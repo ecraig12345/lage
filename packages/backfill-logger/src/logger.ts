@@ -1,17 +1,17 @@
 import path from "path";
-import { Readable } from "stream";
+import { type Readable } from "stream";
 import fs from "fs-extra";
 import filenamify from "filenamify";
 import chalk from "chalk";
 
-import { LogLevel } from "./logLevel";
-import { defaultTimer, Timer } from "./timer";
+import type { LogLevel } from "./logLevel.js";
+import { defaultTimer, type Timer } from "./timer.js";
 import {
-  ConsoleLogger,
-  LoggerOverrides,
+  type ConsoleLogger,
+  type LoggerOverrides,
   makeConsoleLogger,
-} from "./consoleLogger";
-export { isCorrectLogLevel, LogLevel } from "./logLevel";
+} from "./consoleLogger.js";
+export { isCorrectLogLevel, type LogLevel } from "./logLevel.js";
 
 type PerformanceReportData = {
   timestamp: number;

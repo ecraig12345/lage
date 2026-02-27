@@ -2,9 +2,9 @@ import path from "path";
 import type { Logger } from "backfill-logger";
 import findUp from "find-up";
 import pkgDir from "pkg-dir";
-import type { Config } from "./Config";
-import { getEnvConfig } from "./envConfig";
-import { isCorrectMode } from "./modes";
+import type { Config } from "./Config.js";
+import { getEnvConfig } from "./envConfig.js";
+import { isCorrectMode } from "./modes.js";
 
 /**
  * Read the config from `backfill.config.js` (in `fromPath` and/or parents)
@@ -15,6 +15,7 @@ export function createConfig(logger: Logger, fromPath: string): Config {
   const defaultConfig = createDefaultConfig(fromPath);
   const fileBasedConfig: Partial<Config> = getSearchPaths(fromPath).reduce(
     (acc, configPath) => {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
       const config: Partial<Config> = require(configPath);
 
       // TODO: In the next major version, the complete validation from
@@ -73,6 +74,7 @@ export function createDefaultConfig(fromPath: string): Config {
  */
 export function getName(packageRoot: string): string {
   return (
+    // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
     require(path.join(packageRoot, "package.json")).name ||
     path.basename(path.dirname(packageRoot))
   );

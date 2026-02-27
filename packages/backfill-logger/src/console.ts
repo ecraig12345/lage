@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 export type Console = {
   info(...args: string[]): void;
   warn(...args: string[]): void;

@@ -1,4 +1,4 @@
-import { hashStrings } from "../hashStrings";
+import { hashStrings } from "../hashStrings.js";
 
 describe("hashStrings()", () => {
   it("creates different hashes given different lists", () => {

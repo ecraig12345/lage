@@ -1,5 +1,5 @@
 import { removeTempDir, setupFixture } from "backfill-utils-test";
-import { getRepoInfo } from "../repoInfo";
+import { getRepoInfo } from "../repoInfo.js";
 
 describe("getRepoInfo()", () => {
   let root = "";

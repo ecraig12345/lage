@@ -3,7 +3,7 @@ import chokidar from "chokidar";
 import findUp from "find-up";
 import anymatch from "anymatch";
 
-import { Logger } from "backfill-logger";
+import type { Logger } from "backfill-logger";
 
 let changedFilesOutsideScope: string[] = [];
 let changedFilesInsideScope: string[] = [];
@@ -107,5 +107,5 @@ export async function closeWatcher(logger: Logger): Promise<void> {
     logger.info(noSideEffectString);
   }
 
-  watcher.close();
+  await watcher.close();
 }

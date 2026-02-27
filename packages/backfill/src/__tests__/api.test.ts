@@ -1,7 +1,7 @@
 import path from "path";
 import { createDefaultConfig } from "backfill-config";
 import { setupFixture } from "backfill-utils-test";
-import { fetch, put, makeLogger } from "../api";
+import { fetch, put, makeLogger } from "../api.js";
 
 describe("api", () => {
   it("fetch works with custom providers", async () => {

@@ -2,8 +2,8 @@ import path from "path";
 import fs from "fs-extra";
 import globby from "globby";
 
-import { Logger } from "backfill-logger";
-import { CacheStorage } from "./CacheStorage";
+import type { Logger } from "backfill-logger";
+import { CacheStorage } from "./CacheStorage.js";
 
 export class LocalCacheStorage extends CacheStorage {
   constructor(

@@ -5,7 +5,7 @@ import {
   getFileHashes,
   _parseGitFilename,
   _parseGitLsTree,
-} from "../getFileHashes";
+} from "../getFileHashes.js";
 
 describe(_parseGitFilename.name, () => {
   it("can parse backslash-escaped filenames", () => {

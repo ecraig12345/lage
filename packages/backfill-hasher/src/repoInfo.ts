@@ -5,9 +5,9 @@ import {
   getWorkspaceInfos,
 } from "workspace-tools";
 
-import { getFileHashes } from "./getFileHashes";
-import { createPackageHashes } from "./createPackageHashes";
-import type { RepoHashes, RepoInfo } from "./types";
+import { getFileHashes } from "./getFileHashes.js";
+import { createPackageHashes } from "./createPackageHashes.js";
+import type { RepoHashes, RepoInfo } from "./types.js";
 
 const repoInfoCache: RepoInfo[] = [];
 
