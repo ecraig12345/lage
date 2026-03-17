@@ -2,6 +2,21 @@
   "name": "@lage-run/globby",
   "entries": [
     {
+      "date": "Tue, 17 Mar 2026 22:10:03 GMT",
+      "version": "13.0.1",
+      "tag": "@lage-run/globby_v13.0.1",
+      "comments": {
+        "none": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/globby",
+            "commit": "a5ac515e475f96d4cf704330299dcb779a6d1452",
+            "comment": "update readme"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 10 Feb 2026 22:12:02 GMT",
       "version": "13.0.1",
       "tag": "@lage-run/globby_v13.0.1",

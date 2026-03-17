@@ -2,6 +2,27 @@
   "name": "@lage-run/cache",
   "entries": [
     {
+      "date": "Tue, 17 Mar 2026 22:10:03 GMT",
+      "version": "1.4.7",
+      "tag": "@lage-run/cache_v1.4.7",
+      "comments": {
+        "patch": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/cache",
+            "commit": "a5ac515e475f96d4cf704330299dcb779a6d1452",
+            "comment": "Update backfill-cache to 5.11.3"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/cache",
+            "commit": "a5ac515e475f96d4cf704330299dcb779a6d1452",
+            "comment": "Downgrade azure deps to Node 18-compatible versions"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 10 Feb 2026 22:12:02 GMT",
       "version": "1.4.5",
       "tag": "@lage-run/cache_v1.4.5",

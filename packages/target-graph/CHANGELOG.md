@@ -1,8 +1,16 @@
 # Change Log - @lage-run/target-graph
 
-<!-- This log was last generated on Tue, 10 Feb 2026 22:12:02 GMT and should not be manually modified. -->
+<!-- This log was last generated on Tue, 17 Mar 2026 22:10:03 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.13.0
+
+Tue, 17 Mar 2026 22:10:03 GMT
+
+### Minor changes
+
+- Fix bug where we have unnecessary dependency edges added to the graph when a package does not have the relevant target in scripts (1581488+christiango@users.noreply.github.com)
 
 ## 0.12.3
 

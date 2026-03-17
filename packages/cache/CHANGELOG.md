@@ -1,8 +1,17 @@
 # Change Log - @lage-run/cache
 
-<!-- This log was last generated on Tue, 10 Feb 2026 22:12:02 GMT and should not be manually modified. -->
+<!-- This log was last generated on Tue, 17 Mar 2026 22:10:03 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 1.4.7
+
+Tue, 17 Mar 2026 22:10:03 GMT
+
+### Patches
+
+- Update backfill-cache to 5.11.3 (elcraig@microsoft.com)
+- Downgrade azure deps to Node 18-compatible versions (elcraig@microsoft.com)
 
 ## 1.4.5
 
