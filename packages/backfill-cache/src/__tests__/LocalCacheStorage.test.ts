@@ -26,15 +26,7 @@ const setupCacheStorage = async (fixtureName: string) => {
   return { cacheStorage, internalCacheFolder, fixtureLocation };
 };
 
-function createFileInFolder(
-  folder: string,
-  filename: string,
-  expectFolderExists: boolean
-) {
-  if (expectFolderExists) {
-    expect(fs.pathExistsSync(folder)).toBe(true);
-  }
-
+function createFileInFolder(folder: string, filename: string) {
   fs.outputFileSync(path.join(folder, filename), "");
 }
 
@@ -64,8 +56,7 @@ async function fetchFromCache({
   if (expectSuccess) {
     createFileInFolder(
       path.join(fixtureLocation, internalCacheFolder, hash),
-      secretFile,
-      true
+      secretFile
     );
   }
 
@@ -100,7 +91,7 @@ async function putInCache({
   await cacheStorage.fetch(hash);
 
   if (expectSuccess) {
-    filesToCache.forEach((f) => createFileInFolder(fixtureLocation, f, false));
+    filesToCache.forEach((f) => createFileInFolder(fixtureLocation, f));
   }
 
   if (expectSuccess) {
