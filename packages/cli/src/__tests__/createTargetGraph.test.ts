@@ -124,6 +124,9 @@ async function createPackageTasks(
 ) {
   const logger = createLogger();
 
+  const rootPackageInfo = stubPackage({ name: "root" });
+  rootPackageInfo.packageJsonPath = path.join(ROOT, "package.json");
+
   const targetGraph = await createTargetGraph({
     logger,
     root: ROOT,
@@ -139,6 +142,7 @@ async function createPackageTasks(
     outputs: [],
     tasks,
     packageInfos,
+    rootPackageInfo,
     priorities: [],
   });
 

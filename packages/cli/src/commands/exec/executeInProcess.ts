@@ -92,13 +92,9 @@ export async function executeInProcess({ cwd, args, nodeArg, logger }: ExecuteIn
 
   const packageInfos = { [info.name]: info };
 
-  const resolve = () => {
-    return path.dirname(info.packageJsonPath).replace(/\\/g, "/");
-  };
-
   const { taskArgs } = filterArgsForTasks(args ?? []);
 
-  const factory = new TargetFactory({ root, resolve, packageInfos });
+  const factory = new TargetFactory({ root, packageInfos, rootPackageInfo: info });
 
   const definition = expandTargetDefinition(isGlobal ? undefined : info.name, task, pipeline, config.cacheOptions.outputGlob ?? []);
 

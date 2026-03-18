@@ -3,7 +3,7 @@ import { createTargetGraph } from "./createTargetGraph.js";
 import { filterArgsForTasks } from "./filterArgsForTasks.js";
 import { filterPipelineDefinitions } from "./filterPipelineDefinitions.js";
 import { getConfig, getMaxWorkersPerTask, getMaxWorkersPerTaskFromOptions, getConcurrency } from "@lage-run/config";
-import { getPackageInfos, getWorkspaceManagerRoot } from "workspace-tools";
+import { getPackageInfo, getPackageInfos, getWorkspaceManagerRoot } from "workspace-tools";
 import { initializeReporters } from "../initializeReporters.js";
 import { SimpleScheduler } from "@lage-run/scheduler";
 
@@ -47,6 +47,7 @@ export async function runAction(options: RunOptions, command: Command): Promise<
 
   // Build Target Graph
   const packageInfos = getPackageInfos(root);
+  const rootPackageInfo = getPackageInfo(root);
 
   const { tasks, taskArgs } = filterArgsForTasks(command.args);
 
@@ -63,6 +64,7 @@ export async function runAction(options: RunOptions, command: Command): Promise<
     outputs: config.cacheOptions.outputGlob,
     tasks,
     packageInfos,
+    rootPackageInfo,
     priorities: config.priorities,
     enableTargetConfigMerging: config.enableTargetConfigMerging,
     enablePhantomTargetOptimization: config.enablePhantomTargetOptimization,

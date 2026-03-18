@@ -1,6 +1,6 @@
 import type { Logger } from "@lage-run/logger";
 import { type Priority, type TargetGraph, WorkspaceTargetGraphBuilder } from "@lage-run/target-graph";
-import type { PackageInfos } from "workspace-tools";
+import type { PackageInfo, PackageInfos } from "workspace-tools";
 import { getBranchChanges, getDefaultRemoteBranch, getStagedChanges, getUnstagedChanges, getUntrackedChanges } from "workspace-tools";
 import { getFilteredPackages } from "../../filter/getFilteredPackages.js";
 import type { PipelineDefinition } from "@lage-run/config";
@@ -19,6 +19,7 @@ interface CreateTargetGraphOptions {
   outputs: string[];
   tasks: string[];
   packageInfos: PackageInfos;
+  rootPackageInfo: PackageInfo | undefined;
   priorities: Priority[];
   enableTargetConfigMerging: boolean;
   enablePhantomTargetOptimization: boolean;
@@ -53,10 +54,17 @@ export async function createTargetGraph(options: CreateTargetGraphOptions): Prom
     outputs,
     tasks,
     packageInfos,
+    rootPackageInfo,
     priorities,
   } = options;
 
-  const builder = new WorkspaceTargetGraphBuilder(root, packageInfos, enableTargetConfigMerging, enablePhantomTargetOptimization);
+  const builder = new WorkspaceTargetGraphBuilder({
+    root,
+    packageInfos,
+    rootPackageInfo,
+    enableTargetConfigMerging,
+    enablePhantomTargetOptimization,
+  });
 
   const packages = getFilteredPackages({
     root,

@@ -1,68 +1,52 @@
-import type { StagedTargetConfig, TargetConfig } from "./types/TargetConfig.js";
-import type { Target } from "./types/Target.js";
-import type { PackageInfos } from "workspace-tools";
-
-import { getPackageAndTask, getStagedTargetId, getTargetId } from "./targetId.js";
+import path from "path";
+import type { PackageInfo, PackageInfos } from "workspace-tools";
+import { builtInTargetTypes } from "./builtInTargetTypes.js";
 import { getWeight } from "./getWeight.js";
+import { getPackageAndTask, getStagedTargetId, getTargetId } from "./targetId.js";
+import type { Target } from "./types/Target.js";
+import type { StagedTargetConfig, TargetConfig } from "./types/TargetConfig.js";
 
 export interface TargetFactoryOptions {
   root: string;
   packageInfos: PackageInfos;
-  resolve(packageName: string): string;
+  /** Root package.json for reference by global tasks */
+  rootPackageInfo: PackageInfo | undefined;
 }
 
 export class TargetFactory {
-  private packageScripts: Set<string> = new Set<string>();
+  private _allPackageScripts: Set<string> | undefined;
 
-  constructor(private options: TargetFactoryOptions) {
-    const { packageInfos } = options;
-    for (const info of Object.values(packageInfos)) {
-      for (const scriptName of Object.keys(info.scripts ?? {})) {
-        this.packageScripts.add(scriptName);
-      }
-    }
-  }
-
-  private getTargetType(task: string, config: TargetConfig): string {
-    if (!config.type) {
-      if (this.packageScripts.has(task)) {
-        return "npmScript";
-      } else {
-        return "noop";
-      }
-    }
-
-    return config.type;
-  }
+  constructor(private options: TargetFactoryOptions) {}
 
   /**
    * Creates a package task `Target`
    */
   public createPackageTarget(packageName: string, task: string, config: TargetConfig): Target {
-    const { resolve } = this.options;
-    const { options, deps, dependsOn, cache, inputs, priority, maxWorkers, environmentGlob, weight } = config;
-    const cwd = resolve(packageName);
+    const { inputs, priority, maxWorkers, environmentGlob, weight } = config;
+    const packageInfo = this.getPackageInfo(packageName);
+    const cwd = path.dirname(packageInfo.packageJsonPath);
 
-    const targetType = this.getTargetType(task, config);
+    const targetType =
+      config.type || (typeof packageInfo?.scripts?.[task] === "string" ? builtInTargetTypes.npmScript : builtInTargetTypes.noop);
 
-    const target = {
+    const target: Target = {
       id: getTargetId(packageName, task),
       label: `${packageName} - ${task}`,
       type: targetType,
       packageName,
       task,
-      cache: cache !== false,
+      cache: config.cache !== false,
       cwd,
-      depSpecs: dependsOn ?? deps ?? [],
+      depSpecs: config.dependsOn ?? config.deps ?? [],
       dependencies: [],
       dependents: [],
       inputs,
-      outputs: targetType === "noop" ? [] : config.outputs,
+      outputs: targetType === builtInTargetTypes.noop ? [] : config.outputs,
       priority,
       maxWorkers,
       environmentGlob,
       weight: 1,
-      options,
+      options: config.options,
       shouldRun: true,
     };
 
@@ -73,16 +57,16 @@ export class TargetFactory {
 
   public createGlobalTarget(id: string, config: TargetConfig): Target {
     const { root } = this.options;
-    const { options, deps, dependsOn, cache, inputs, outputs, priority, maxWorkers, environmentGlob, weight } = config;
+    const { options, dependsOn = config.deps ?? [], cache, inputs, outputs, priority, maxWorkers, environmentGlob, weight } = config;
     const { task } = getPackageAndTask(id);
-    const target = {
+    const target: Target = {
       id,
       label: id,
-      type: this.getTargetType(task, config),
+      type: config.type || (this.getAllPackageScripts().has(task) ? builtInTargetTypes.npmScript : builtInTargetTypes.noop),
       task,
       cache: cache !== false,
       cwd: root,
-      depSpecs: dependsOn ?? deps ?? [],
+      depSpecs: dependsOn,
       dependencies: [],
       dependents: [],
       inputs,
@@ -110,18 +94,13 @@ export class TargetFactory {
     // Clone & modify the options to include the changed files as taskArgs
     const options = { ...config.options };
 
-    switch (config.type) {
-      case "noop":
-        break;
-
-      default:
-        options.taskArgs = options.taskArgs ?? [];
-        options.taskArgs.push(...changedFiles);
-        break;
+    if (config.type !== builtInTargetTypes.noop) {
+      // Clone any taskArgs and add the staged files
+      options.taskArgs = [...(options.taskArgs ?? []), ...changedFiles];
     }
 
     const id = getStagedTargetId(task);
-    const target = {
+    const target: Target = {
       id,
       label: id,
       type: config.type,
@@ -142,5 +121,33 @@ export class TargetFactory {
     };
 
     return target;
+  }
+
+  private getPackageInfo(packageName: string): PackageInfo {
+    const { packageInfos, rootPackageInfo } = this.options;
+    const packageInfo = rootPackageInfo && rootPackageInfo.name === packageName ? rootPackageInfo : packageInfos[packageName];
+    if (!packageInfo) {
+      throw new Error(`Package "${packageName}" not found when creating target`);
+    }
+    if (!packageInfo.packageJsonPath) {
+      throw new Error(`Package "${packageName}" is missing packageJsonPath when creating target`);
+    }
+    return packageInfo;
+  }
+
+  private getAllPackageScripts(): Set<string> {
+    if (!this._allPackageScripts) {
+      this._allPackageScripts = new Set();
+      const packages = Object.values(this.options.packageInfos);
+      this.options.rootPackageInfo && packages.push(this.options.rootPackageInfo);
+
+      for (const pkg of packages) {
+        if (!pkg.scripts) continue;
+        for (const scriptName of Object.keys(pkg.scripts)) {
+          this._allPackageScripts.add(scriptName);
+        }
+      }
+    }
+    return this._allPackageScripts;
   }
 }

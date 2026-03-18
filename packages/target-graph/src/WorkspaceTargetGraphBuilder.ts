@@ -2,10 +2,8 @@ import { createDependencyMap } from "workspace-tools/lib/graph/createDependencyM
 import { getPackageAndTask, getStagedTargetId, getTargetId } from "./targetId.js";
 import { expandDepSpecs } from "./expandDepSpecs.js";
 
-import path from "path";
-
 import type { DependencyMap } from "workspace-tools/lib/graph/createDependencyMap.js";
-import type { PackageInfos } from "workspace-tools";
+import type { PackageInfo, PackageInfos } from "workspace-tools";
 import type { Target } from "./types/Target.js";
 import type { TargetConfig } from "./types/TargetConfig.js";
 import type { TargetGraph } from "./types/TargetGraph.js";
@@ -61,24 +59,17 @@ export class WorkspaceTargetGraphBuilder {
    * @param packageInfos the package infos for the monorepo
    */
   constructor(
-    root: string,
-    private packageInfos: PackageInfos,
-    private enableTargetConfigMerging: boolean,
-    private enablePhantomTargetOptimization: boolean
+    private options: {
+      root: string;
+      packageInfos: PackageInfos;
+      rootPackageInfo: PackageInfo | undefined;
+      enableTargetConfigMerging: boolean;
+      enablePhantomTargetOptimization: boolean;
+    }
   ) {
-    this.dependencyMap = createDependencyMap(packageInfos, { withDevDependencies: true, withPeerDependencies: false });
+    this.dependencyMap = createDependencyMap(options.packageInfos, { withDevDependencies: true, withPeerDependencies: false });
     this.graphBuilder = new TargetGraphBuilder();
-    this.targetFactory = new TargetFactory({
-      root,
-      packageInfos,
-      resolve(packageName: string) {
-        try {
-          return path.dirname(packageInfos[packageName].packageJsonPath);
-        } catch (e) {
-          throw new Error(`Cannot open package.json file for ${packageName}`);
-        }
-      },
-    });
+    this.targetFactory = new TargetFactory(options);
   }
 
   /**
@@ -101,7 +92,7 @@ export class WorkspaceTargetGraphBuilder {
 
       this.processStagedConfig(target, config, changedFiles);
     } else {
-      const packages = Object.keys(this.packageInfos);
+      const packages = Object.keys(this.options.packageInfos);
 
       for (const packageName of packages) {
         const task = id;
@@ -131,7 +122,7 @@ export class WorkspaceTargetGraphBuilder {
    */
   private determineFinalTargetConfig(targetId: string, config: TargetConfig): TargetConfig {
     let finalConfig = config;
-    if (this.enableTargetConfigMerging && this.targetConfigMap.has(targetId)) {
+    if (this.options.enableTargetConfigMerging && this.targetConfigMap.has(targetId)) {
       const existingConfig = this.targetConfigMap.get(targetId)!;
       finalConfig = this.deepCloneTargetConfig(existingConfig, config);
     }
@@ -209,14 +200,15 @@ export class WorkspaceTargetGraphBuilder {
    * @param priorities the set of global priorities for the workspace.
    */
   public async build(tasks: string[], scope?: string[], priorities?: Priority[]): Promise<TargetGraph> {
-    scope ||= Object.keys(this.packageInfos);
+    scope ||= Object.keys(this.options.packageInfos);
 
     // Expands the dependency specs from the target definitions
     const fullDependencies = expandDepSpecs(
       this.graphBuilder.targets,
       this.dependencyMap,
-      this.packageInfos,
-      this.enablePhantomTargetOptimization
+      this.options.packageInfos,
+      this.options.rootPackageInfo,
+      this.options.enablePhantomTargetOptimization
     );
 
     for (const [from, to] of fullDependencies) {

@@ -3,7 +3,7 @@ import { createTargetGraph } from "../run/createTargetGraph.js";
 import { filterArgsForTasks } from "../run/filterArgsForTasks.js";
 import type { ConfigOptions } from "@lage-run/config";
 import { getConfig } from "@lage-run/config";
-import { type PackageInfos, getPackageInfos, getWorkspaceManagerRoot } from "workspace-tools";
+import { type PackageInfos, getPackageInfo, getPackageInfos, getWorkspaceManagerRoot } from "workspace-tools";
 import { getFilteredPackages } from "../../filter/getFilteredPackages.js";
 import createLogger from "@lage-run/logger";
 import path from "path";
@@ -112,6 +112,7 @@ export async function infoAction(options: InfoActionOptions, command: Command): 
   await initializeReporters(logger, options, { customReporters: config.reporters, root });
 
   const packageInfos = getPackageInfos(root);
+  const rootPackageInfo = getPackageInfo(root);
 
   const { tasks, taskArgs } = filterArgsForTasks(command.args);
 
@@ -128,6 +129,7 @@ export async function infoAction(options: InfoActionOptions, command: Command): 
     outputs: config.cacheOptions.outputGlob,
     tasks,
     packageInfos,
+    rootPackageInfo,
     priorities: config.priorities,
     enableTargetConfigMerging: config.enableTargetConfigMerging,
     enablePhantomTargetOptimization: config.enablePhantomTargetOptimization,

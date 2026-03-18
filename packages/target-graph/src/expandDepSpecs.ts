@@ -1,6 +1,6 @@
 import type { Target } from "./types/Target.js";
 import type { DependencyMap } from "workspace-tools/lib/graph/createDependencyMap.js";
-import type { PackageInfos } from "workspace-tools";
+import type { PackageInfo, PackageInfos } from "workspace-tools";
 import { getPackageAndTask, getStartTargetId, getTargetId } from "./targetId.js";
 import { builtInTargetTypes } from "./builtInTargetTypes.js";
 
@@ -17,7 +17,15 @@ import { builtInTargetTypes } from "./builtInTargetTypes.js";
  *
  * Returns true if the target should be EXCLUDED from dependency expansion.
  */
-function isPhantomTarget(targetId: string, task: string, targets: Map<string, Target>, packageInfos: PackageInfos): boolean {
+function isPhantomTarget(params: {
+  targetId: string;
+  task: string;
+  targets: Map<string, Target>;
+  packageInfos: PackageInfos;
+  rootPackageInfo: PackageInfo | undefined;
+}): boolean {
+  const { targetId, task, targets, packageInfos, rootPackageInfo } = params;
+
   const target = targets.get(targetId);
 
   // Only npmScript targets can be phantom — other types (worker, noop, etc.)
@@ -26,11 +34,10 @@ function isPhantomTarget(targetId: string, task: string, targets: Map<string, Ta
     return false;
   }
 
-  const pkgScripts = packageInfos[target.packageName]?.scripts;
-  // If the package has a scripts section but doesn't include this task, it's a phantom target.
-  // If the package has no scripts section at all (e.g., in unit tests), we include the target
-  // for backward compatibility.
-  return !!pkgScripts && !pkgScripts[task];
+  const pkgInfo = rootPackageInfo && target.packageName === rootPackageInfo.name ? rootPackageInfo : packageInfos[target.packageName];
+
+  // If the package scripts don't include this task, it's a phantom target.
+  return !pkgInfo?.scripts?.[task];
 }
 
 /**
@@ -40,14 +47,13 @@ export function expandDepSpecs(
   targets: Map<string, Target>,
   dependencyMap: DependencyMap,
   packageInfos: PackageInfos,
+  rootPackageInfo: PackageInfo | undefined,
   enablePhantomTargetOptimization: boolean
 ): [string, string][] {
   const dependencies: [string, string][] = [];
 
   /**
    * Adds a dependency in the form of [from, to] to the dependency list.
-   * @param from
-   * @param to
    */
   const addDependency = (from: string, to: string) => {
     dependencies.push([from, to]);
@@ -111,7 +117,10 @@ export function expandDepSpecs(
         const dependencyTargetIds = findDependenciesByTask(depTask, targetDependencies);
         for (const from of dependencyTargetIds) {
           // Skip phantom targets: packages that don't define this task as a real npm script.
-          if (!enablePhantomTargetOptimization || !isPhantomTarget(from, depTask, targets, packageInfos)) {
+          if (
+            !enablePhantomTargetOptimization ||
+            !isPhantomTarget({ targetId: from, task: depTask, targets, packageInfos, rootPackageInfo })
+          ) {
             addDependency(from, to);
           }
         }
@@ -122,7 +131,10 @@ export function expandDepSpecs(
         const dependencyTargetIds = findDependenciesByTask(depTask, targetDependencies);
         for (const from of dependencyTargetIds) {
           // Skip phantom targets: packages that don't define this task as a real npm script.
-          if (!enablePhantomTargetOptimization || !isPhantomTarget(from, depTask, targets, packageInfos)) {
+          if (
+            !enablePhantomTargetOptimization ||
+            !isPhantomTarget({ targetId: from, task: depTask, targets, packageInfos, rootPackageInfo })
+          ) {
             addDependency(from, to);
           }
         }
