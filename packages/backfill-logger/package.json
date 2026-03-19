@@ -1,0 +1,33 @@
+{
+  "name": "backfill-logger",
+  "version": "5.4.0",
+  "description": "Handle backfill output",
+  "license": "MIT",
+  "author": "Vincent Bailly <vibailly@microsoft.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/microsoft/lage"
+  },
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc --pretty",
+    "lint": "monorepo-scripts lint"
+  },
+  "dependencies": {
+    "chalk": "4.1.2",
+    "filenamify": "4.3.0",
+    "fs-extra": "8.1.0"
+  },
+  "devDependencies": {
+    "@lage-run/monorepo-scripts": "workspace:^",
+    "@types/fs-extra": "^8.0.0"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "files": [
+    "lib/!(__*)",
+    "lib/!(__*)/**"
+  ]
+}

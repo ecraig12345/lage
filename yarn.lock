@@ -1543,8 +1543,8 @@ __metadata:
   dependencies:
     "@actions/cache": "npm:3.3.0"
     "@lage-run/monorepo-scripts": "workspace:^"
-    backfill-config: "npm:6.7.1"
-    backfill-logger: "npm:5.4.0"
+    backfill-config: "workspace:^"
+    backfill-logger: "workspace:^"
     workspace-tools: "npm:0.41.0"
   languageName: unknown
   linkType: soft
@@ -1560,9 +1560,9 @@ __metadata:
     "@lage-run/monorepo-fixture": "workspace:^"
     "@lage-run/monorepo-scripts": "workspace:^"
     "@lage-run/target-graph": "workspace:^"
-    backfill-cache: "npm:5.11.3"
-    backfill-config: "npm:6.7.1"
-    backfill-logger: "npm:5.4.0"
+    backfill-cache: "workspace:^"
+    backfill-config: "workspace:^"
+    backfill-logger: "workspace:^"
     glob-hasher: "npm:^1.4.2"
   languageName: unknown
   linkType: soft
@@ -1610,7 +1610,7 @@ __metadata:
     "@lage-run/monorepo-scripts": "workspace:^"
     "@lage-run/runners": "workspace:^"
     "@lage-run/target-graph": "workspace:^"
-    backfill-config: "npm:6.7.1"
+    backfill-config: "workspace:^"
     cosmiconfig: "npm:9.0.1"
     workspace-tools: "npm:0.41.0"
   languageName: unknown
@@ -1664,7 +1664,7 @@ __metadata:
     "@lage-run/target-graph": "workspace:^"
     "@types/graceful-fs": "npm:^4.1.6"
     "@types/micromatch": "npm:^4.0.0"
-    backfill-hasher: "npm:6.7.0"
+    backfill-hasher: "workspace:^"
     execa: "npm:5.1.1"
     glob-hasher: "npm:^1.4.2"
     graceful-fs: "npm:4.2.11"
@@ -2204,6 +2204,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/fs-extra@npm:^8.0.0":
+  version: 8.1.5
+  resolution: "@types/fs-extra@npm:8.1.5"
+  dependencies:
+    "@types/node": "npm:*"
+  checksum: 10c0/c9f7965bc499a6cc1cadb37a4e9002c0f33810867a0a47a132c4165cbe3b49c6ea52e26c3c38f07720540dd5c470619254c0ef00a2e14a8bf4971ec5d478ba69
+  languageName: node
+  linkType: hard
+
 "@types/graceful-fs@npm:^4.1.6":
   version: 4.1.9
   resolution: "@types/graceful-fs@npm:4.1.9"
@@ -2329,6 +2338,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/tar-fs@npm:^2.0.1":
+  version: 2.0.4
+  resolution: "@types/tar-fs@npm:2.0.4"
+  dependencies:
+    "@types/node": "npm:*"
+    "@types/tar-stream": "npm:*"
+  checksum: 10c0/d1dd6944d0905debaabe5787af7f3aeb98f13a928d688d00fb7de0411040f8556c297d388abdd046f6b0646a374b53c198ade0484060b63ef36ad5ac585df138
+  languageName: node
+  linkType: hard
+
+"@types/tar-stream@npm:*":
+  version: 3.1.4
+  resolution: "@types/tar-stream@npm:3.1.4"
+  dependencies:
+    "@types/node": "npm:*"
+  checksum: 10c0/1ee17888b0532f9907788e3e9d60ef25fd5e376c4a09b40aa6ece407fa67ad3d11d25780914ed6360e50451d3039a4e248696c780dcba410779c2d37842afd19
+  languageName: node
+  linkType: hard
+
 "@types/tinycolor2@npm:^1.4.0":
   version: 1.4.6
   resolution: "@types/tinycolor2@npm:1.4.6"
@@ -2340,6 +2368,15 @@ __metadata:
   version: 21.0.3
   resolution: "@types/yargs-parser@npm:21.0.3"
   checksum: 10c0/e71c3bd9d0b73ca82e10bee2064c384ab70f61034bbfb78e74f5206283fc16a6d85267b606b5c22cb2a3338373586786fed595b2009825d6a9115afba36560a0
+  languageName: node
+  linkType: hard
+
+"@types/yargs@npm:^15.0.15":
+  version: 15.0.20
+  resolution: "@types/yargs@npm:15.0.20"
+  dependencies:
+    "@types/yargs-parser": "npm:*"
+  checksum: 10c0/7578e333b8e3e60e96950fc3d90f75afa5f6612cbaa309813848a5bf198fd39bd6bf8d25f8fde7106c614686e24fd409403cc22166f5571c9fc1148fe147c0f5
   languageName: node
   linkType: hard
 
@@ -2900,7 +2937,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"anymatch@npm:^3.1.3, anymatch@npm:~3.1.2":
+"anymatch@npm:3.1.3, anymatch@npm:^3.1.3, anymatch@npm:~3.1.2":
   version: 3.1.3
   resolution: "anymatch@npm:3.1.3"
   dependencies:
@@ -3085,53 +3122,125 @@ __metadata:
   languageName: node
   linkType: hard
 
-"backfill-cache@npm:5.11.3":
-  version: 5.11.3
-  resolution: "backfill-cache@npm:5.11.3"
+"backfill-cache@workspace:^, backfill-cache@workspace:packages/backfill-cache":
+  version: 0.0.0-use.local
+  resolution: "backfill-cache@workspace:packages/backfill-cache"
   dependencies:
-    "@azure/storage-blob": "npm:^12.15.0"
-    backfill-config: "npm:^6.7.1"
-    backfill-logger: "npm:^5.4.0"
-    execa: "npm:^5.0.0"
-    fs-extra: "npm:^8.1.0"
-    globby: "npm:^11.0.0"
-    p-limit: "npm:^3.0.0"
-    tar-fs: "npm:^2.1.0"
-  checksum: 10c0/8d685384676549b10e14cdca2eeb820ded1cceb7dde28a3eaaf2a81fb4631d758c567f1867e0f23fa78f8c290366ca37aab34ee44feb0dc0b981e7ed5d25958e
-  languageName: node
-  linkType: hard
+    "@azure/storage-blob": "npm:12.27.0"
+    "@lage-run/globby": "workspace:^"
+    "@lage-run/monorepo-scripts": "workspace:^"
+    "@types/fs-extra": "npm:^8.0.0"
+    "@types/tar-fs": "npm:^2.0.1"
+    backfill-config: "workspace:^"
+    backfill-logger: "workspace:^"
+    backfill-utils-test: "workspace:^"
+    execa: "npm:5.1.1"
+    fs-extra: "npm:8.1.0"
+    p-limit: "npm:3.1.0"
+    tar-fs: "npm:2.1.4"
+  languageName: unknown
+  linkType: soft
 
-"backfill-config@npm:6.7.1, backfill-config@npm:^6.7.1":
-  version: 6.7.1
-  resolution: "backfill-config@npm:6.7.1"
+"backfill-config@workspace:^, backfill-config@workspace:packages/backfill-config":
+  version: 0.0.0-use.local
+  resolution: "backfill-config@workspace:packages/backfill-config"
   dependencies:
-    backfill-logger: "npm:^5.4.0"
-    find-up: "npm:^5.0.0"
-    pkg-dir: "npm:^4.2.0"
-  checksum: 10c0/7a79012b1a9066c1897ff935dd39ad2236f9b73475d9680b2c93a6121a28d75c8cd46cbbbd7b7afe6a4bee68dd69a6dfd1207d44925648c8468228111058f45b
-  languageName: node
-  linkType: hard
+    "@lage-run/monorepo-scripts": "workspace:^"
+    backfill-logger: "workspace:^"
+    backfill-utils-test: "workspace:^"
+    find-up: "npm:5.0.0"
+    pkg-dir: "npm:4.2.0"
+  languageName: unknown
+  linkType: soft
 
-"backfill-hasher@npm:6.7.0":
-  version: 6.7.0
-  resolution: "backfill-hasher@npm:6.7.0"
+"backfill-hasher@workspace:^, backfill-hasher@workspace:packages/backfill-hasher":
+  version: 0.0.0-use.local
+  resolution: "backfill-hasher@workspace:packages/backfill-hasher"
   dependencies:
-    backfill-logger: "npm:^5.4.0"
-    workspace-tools: "npm:^0.41.0"
-  checksum: 10c0/5ba758976980d7467763c13ca9c4cf049785d97e004ef437fa8e961f0d653a76876218ac7364a8d54853328e91454aa30ef6c95d0cd8b26f208c0903d15cb099
-  languageName: node
-  linkType: hard
+    "@lage-run/monorepo-scripts": "workspace:^"
+    backfill-logger: "workspace:^"
+    backfill-utils-test: "workspace:^"
+    workspace-tools: "npm:0.41.0"
+  languageName: unknown
+  linkType: soft
 
-"backfill-logger@npm:5.4.0, backfill-logger@npm:^5.4.0":
-  version: 5.4.0
-  resolution: "backfill-logger@npm:5.4.0"
+"backfill-logger@workspace:^, backfill-logger@workspace:packages/backfill-logger":
+  version: 0.0.0-use.local
+  resolution: "backfill-logger@workspace:packages/backfill-logger"
   dependencies:
-    chalk: "npm:^4.1.1"
-    filenamify: "npm:^4.1.0"
-    fs-extra: "npm:^8.1.0"
-  checksum: 10c0/3c080da059321d6f288fa60436fa3f21caf087dbb08754d196fb3681917fb9e22a632617b254335c7ab55ce83d8421397d3311d1dceb48981e4c15f85b0be4bc
-  languageName: node
-  linkType: hard
+    "@lage-run/monorepo-scripts": "workspace:^"
+    "@types/fs-extra": "npm:^8.0.0"
+    chalk: "npm:4.1.2"
+    filenamify: "npm:4.3.0"
+    fs-extra: "npm:8.1.0"
+  languageName: unknown
+  linkType: soft
+
+"backfill-sample-dependency@workspace:^, backfill-sample-dependency@workspace:packages/backfill-sample-dependency":
+  version: 0.0.0-use.local
+  resolution: "backfill-sample-dependency@workspace:packages/backfill-sample-dependency"
+  dependencies:
+    "@lage-run/monorepo-scripts": "workspace:^"
+    backfill: "workspace:^"
+  languageName: unknown
+  linkType: soft
+
+"backfill-sample@workspace:packages/backfill-sample":
+  version: 0.0.0-use.local
+  resolution: "backfill-sample@workspace:packages/backfill-sample"
+  dependencies:
+    "@lage-run/monorepo-scripts": "workspace:^"
+    backfill: "workspace:^"
+    backfill-sample-dependency: "workspace:^"
+  languageName: unknown
+  linkType: soft
+
+"backfill-utils-dotenv@workspace:^, backfill-utils-dotenv@workspace:packages/backfill-utils-dotenv":
+  version: 0.0.0-use.local
+  resolution: "backfill-utils-dotenv@workspace:packages/backfill-utils-dotenv"
+  dependencies:
+    "@lage-run/monorepo-scripts": "workspace:^"
+    dotenv: "npm:8.6.0"
+    find-up: "npm:5.0.0"
+  languageName: unknown
+  linkType: soft
+
+"backfill-utils-test@workspace:^, backfill-utils-test@workspace:packages/backfill-utils-test":
+  version: 0.0.0-use.local
+  resolution: "backfill-utils-test@workspace:packages/backfill-utils-test"
+  dependencies:
+    "@lage-run/monorepo-scripts": "workspace:^"
+    "@types/fs-extra": "npm:^8.0.0"
+    execa: "npm:5.1.1"
+    fs-extra: "npm:8.1.0"
+    tempy: "npm:^0.7.1"
+  languageName: unknown
+  linkType: soft
+
+"backfill@workspace:^, backfill@workspace:packages/backfill":
+  version: 0.0.0-use.local
+  resolution: "backfill@workspace:packages/backfill"
+  dependencies:
+    "@lage-run/globby": "workspace:^"
+    "@lage-run/monorepo-scripts": "workspace:^"
+    "@types/fs-extra": "npm:^8.0.0"
+    "@types/yargs": "npm:^15.0.15"
+    anymatch: "npm:3.1.3"
+    backfill-cache: "workspace:^"
+    backfill-config: "workspace:^"
+    backfill-hasher: "workspace:^"
+    backfill-logger: "workspace:^"
+    backfill-utils-dotenv: "workspace:^"
+    backfill-utils-test: "workspace:^"
+    chokidar: "npm:3.6.0"
+    execa: "npm:5.1.1"
+    find-up: "npm:5.0.0"
+    fs-extra: "npm:8.1.0"
+    yargs: "npm:16.2.0"
+  bin:
+    backfill: ./bin/backfill.js
+  languageName: unknown
+  linkType: soft
 
 "balanced-match@npm:^1.0.0":
   version: 1.0.2
@@ -3397,7 +3506,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chalk@npm:4.1.2, chalk@npm:^4.0.0, chalk@npm:^4.1.1, chalk@npm:^4.1.2, chalk@npm:~4.1.2":
+"chalk@npm:4.1.2, chalk@npm:^4.0.0, chalk@npm:^4.1.2, chalk@npm:~4.1.2":
   version: 4.1.2
   resolution: "chalk@npm:4.1.2"
   dependencies:
@@ -3713,6 +3822,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"crypto-random-string@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "crypto-random-string@npm:2.0.0"
+  checksum: 10c0/288589b2484fe787f9e146f56c4be90b940018f17af1b152e4dde12309042ff5a2bf69e949aab8b8ac253948381529cc6f3e5a2427b73643a71ff177fa122b37
+  languageName: node
+  linkType: hard
+
 "debug@npm:4, debug@npm:^4.1.0, debug@npm:^4.1.1, debug@npm:^4.3.1, debug@npm:^4.3.2, debug@npm:^4.3.3, debug@npm:^4.3.4":
   version: 4.4.3
   resolution: "debug@npm:4.4.3"
@@ -3783,6 +3899,22 @@ __metadata:
   version: 3.0.0
   resolution: "define-lazy-prop@npm:3.0.0"
   checksum: 10c0/5ab0b2bf3fa58b3a443140bbd4cd3db1f91b985cc8a246d330b9ac3fc0b6a325a6d82bddc0b055123d745b3f9931afeea74a5ec545439a1630b9c8512b0eeb49
+  languageName: node
+  linkType: hard
+
+"del@npm:^6.0.0":
+  version: 6.1.1
+  resolution: "del@npm:6.1.1"
+  dependencies:
+    globby: "npm:^11.0.1"
+    graceful-fs: "npm:^4.2.4"
+    is-glob: "npm:^4.0.1"
+    is-path-cwd: "npm:^2.2.0"
+    is-path-inside: "npm:^3.0.2"
+    p-map: "npm:^4.0.0"
+    rimraf: "npm:^3.0.2"
+    slash: "npm:^3.0.0"
+  checksum: 10c0/8a095c5ccade42c867a60252914ae485ec90da243d735d1f63ec1e64c1cfbc2b8810ad69a29ab6326d159d4fddaa2f5bad067808c42072351ec458efff86708f
   languageName: node
   linkType: hard
 
@@ -3876,6 +4008,13 @@ __metadata:
   dependencies:
     esutils: "npm:^2.0.2"
   checksum: 10c0/c96bdccabe9d62ab6fea9399fdff04a66e6563c1d6fb3a3a063e8d53c3bb136ba63e84250bbf63d00086a769ad53aef92d2bd483f03f837fc97b71cbee6b2520
+  languageName: node
+  linkType: hard
+
+"dotenv@npm:8.6.0":
+  version: 8.6.0
+  resolution: "dotenv@npm:8.6.0"
+  checksum: 10c0/6750431dea8efbd54b9f2d9681b04e1ccc7989486461dcf058bb708d9e3d63b04115fcdf8840e38ad1e24a4a2e1e7c1560626c5e3ac7bc09371b127c49e2d45f
   languageName: node
   linkType: hard
 
@@ -4607,7 +4746,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"filenamify@npm:^4.1.0":
+"filenamify@npm:4.3.0":
   version: 4.3.0
   resolution: "filenamify@npm:4.3.0"
   dependencies:
@@ -4651,6 +4790,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"find-up@npm:5.0.0, find-up@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "find-up@npm:5.0.0"
+  dependencies:
+    locate-path: "npm:^6.0.0"
+    path-exists: "npm:^4.0.0"
+  checksum: 10c0/062c5a83a9c02f53cdd6d175a37ecf8f87ea5bbff1fdfb828f04bfa021441bc7583e8ebc0872a4c1baab96221fb8a8a275a19809fb93fbc40bd69ec35634069a
+  languageName: node
+  linkType: hard
+
 "find-up@npm:^4.0.0, find-up@npm:^4.1.0":
   version: 4.1.0
   resolution: "find-up@npm:4.1.0"
@@ -4658,16 +4807,6 @@ __metadata:
     locate-path: "npm:^5.0.0"
     path-exists: "npm:^4.0.0"
   checksum: 10c0/0406ee89ebeefa2d507feb07ec366bebd8a6167ae74aa4e34fb4c4abd06cf782a3ce26ae4194d70706f72182841733f00551c209fe575cb00bd92104056e78c1
-  languageName: node
-  linkType: hard
-
-"find-up@npm:^5.0.0":
-  version: 5.0.0
-  resolution: "find-up@npm:5.0.0"
-  dependencies:
-    locate-path: "npm:^6.0.0"
-    path-exists: "npm:^4.0.0"
-  checksum: 10c0/062c5a83a9c02f53cdd6d175a37ecf8f87ea5bbff1fdfb828f04bfa021441bc7583e8ebc0872a4c1baab96221fb8a8a275a19809fb93fbc40bd69ec35634069a
   languageName: node
   linkType: hard
 
@@ -4748,6 +4887,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fs-extra@npm:8.1.0":
+  version: 8.1.0
+  resolution: "fs-extra@npm:8.1.0"
+  dependencies:
+    graceful-fs: "npm:^4.2.0"
+    jsonfile: "npm:^4.0.0"
+    universalify: "npm:^0.1.0"
+  checksum: 10c0/259f7b814d9e50d686899550c4f9ded85c46c643f7fe19be69504888e007fcbc08f306fae8ec495b8b998635e997c9e3e175ff2eeed230524ef1c1684cc96423
+  languageName: node
+  linkType: hard
+
 "fs-extra@npm:^10.0.0":
   version: 10.1.0
   resolution: "fs-extra@npm:10.1.0"
@@ -4756,17 +4906,6 @@ __metadata:
     jsonfile: "npm:^6.0.1"
     universalify: "npm:^2.0.0"
   checksum: 10c0/5f579466e7109719d162a9249abbeffe7f426eb133ea486e020b89bc6d67a741134076bf439983f2eb79276ceaf6bd7b7c1e43c3fd67fe889863e69072fb0a5e
-  languageName: node
-  linkType: hard
-
-"fs-extra@npm:^8.1.0":
-  version: 8.1.0
-  resolution: "fs-extra@npm:8.1.0"
-  dependencies:
-    graceful-fs: "npm:^4.2.0"
-    jsonfile: "npm:^4.0.0"
-    universalify: "npm:^0.1.0"
-  checksum: 10c0/259f7b814d9e50d686899550c4f9ded85c46c643f7fe19be69504888e007fcbc08f306fae8ec495b8b998635e997c9e3e175ff2eeed230524ef1c1684cc96423
   languageName: node
   linkType: hard
 
@@ -5073,7 +5212,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"globby@npm:^11.0.0, globby@npm:^11.1.0":
+"globby@npm:^11.0.0, globby@npm:^11.0.1, globby@npm:^11.1.0":
   version: 11.1.0
   resolution: "globby@npm:11.1.0"
   dependencies:
@@ -5530,7 +5669,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"is-path-inside@npm:^3.0.3":
+"is-path-cwd@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "is-path-cwd@npm:2.2.0"
+  checksum: 10c0/afce71533a427a759cd0329301c18950333d7589533c2c90205bd3fdcf7b91eb92d1940493190567a433134d2128ec9325de2fd281e05be1920fbee9edd22e0a
+  languageName: node
+  linkType: hard
+
+"is-path-inside@npm:^3.0.2, is-path-inside@npm:^3.0.3":
   version: 3.0.3
   resolution: "is-path-inside@npm:3.0.3"
   checksum: 10c0/cf7d4ac35fb96bab6a1d2c3598fe5ebb29aafb52c0aaa482b5a3ed9d8ba3edc11631e3ec2637660c44b3ce0e61a08d54946e8af30dec0b60a7c27296c68ffd05
@@ -7120,7 +7266,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"p-limit@npm:3.1.0, p-limit@npm:^3.0.0, p-limit@npm:^3.0.2, p-limit@npm:^3.1.0":
+"p-limit@npm:3.1.0, p-limit@npm:^3.0.2, p-limit@npm:^3.1.0":
   version: 3.1.0
   resolution: "p-limit@npm:3.1.0"
   dependencies:
@@ -7383,7 +7529,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pkg-dir@npm:^4.2.0":
+"pkg-dir@npm:4.2.0, pkg-dir@npm:^4.2.0":
   version: 4.2.0
   resolution: "pkg-dir@npm:4.2.0"
   dependencies:
@@ -8241,7 +8387,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tar-fs@npm:^2.1.0":
+"tar-fs@npm:2.1.4":
   version: 2.1.4
   resolution: "tar-fs@npm:2.1.4"
   dependencies:
@@ -8276,6 +8422,26 @@ __metadata:
     minizlib: "npm:^3.1.0"
     yallist: "npm:^5.0.0"
   checksum: 10c0/b6bb420550ef50ef23356018155e956cd83282c97b6128d8d5cfe5740c57582d806a244b2ef0bf686a74ce526babe8b8b9061527623e935e850008d86d838929
+  languageName: node
+  linkType: hard
+
+"temp-dir@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "temp-dir@npm:2.0.0"
+  checksum: 10c0/b1df969e3f3f7903f3426861887ed76ba3b495f63f6d0c8e1ce22588679d9384d336df6064210fda14e640ed422e2a17d5c40d901f60e161c99482d723f4d309
+  languageName: node
+  linkType: hard
+
+"tempy@npm:^0.7.1":
+  version: 0.7.1
+  resolution: "tempy@npm:0.7.1"
+  dependencies:
+    del: "npm:^6.0.0"
+    is-stream: "npm:^2.0.0"
+    temp-dir: "npm:^2.0.0"
+    type-fest: "npm:^0.16.0"
+    unique-string: "npm:^2.0.0"
+  checksum: 10c0/f93764c9c236ade74037b5989799930687d8618fb9ce6040d3f2a82b0ae60f655cc07bad883a0ba55dc13dc56af2f92d8e8a534a9eff78f4ac79a19d65f7dadd
   languageName: node
   linkType: hard
 
@@ -8476,6 +8642,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"type-fest@npm:^0.16.0":
+  version: 0.16.0
+  resolution: "type-fest@npm:0.16.0"
+  checksum: 10c0/6b4d846534e7bcb49a6160b068ffaed2b62570d989d909ac3f29df5ef1e993859f890a4242eebe023c9e923f96adbcb3b3e88a198c35a1ee9a731e147a6839c3
+  languageName: node
+  linkType: hard
+
 "type-fest@npm:^0.20.2":
   version: 0.20.2
   resolution: "type-fest@npm:0.20.2"
@@ -8561,6 +8734,15 @@ __metadata:
   dependencies:
     imurmurhash: "npm:^0.1.4"
   checksum: 10c0/617240eb921af803b47d322d75a71a363dacf2e56c29ae5d1404fad85f64f4ec81ef10ee4fd79215d0202cbe1e5a653edb0558d59c9c81d3bd538c2d58e4c026
+  languageName: node
+  linkType: hard
+
+"unique-string@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "unique-string@npm:2.0.0"
+  dependencies:
+    crypto-random-string: "npm:^2.0.0"
+  checksum: 10c0/11820db0a4ba069d174bedfa96c588fc2c96b083066fafa186851e563951d0de78181ac79c744c1ed28b51f9d82ac5b8196ff3e4560d0178046ef455d8c2244b
   languageName: node
   linkType: hard
 
@@ -8773,7 +8955,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"workspace-tools@npm:0.41.0, workspace-tools@npm:^0.41.0":
+"workspace-tools@npm:0.41.0":
   version: 0.41.0
   resolution: "workspace-tools@npm:0.41.0"
   dependencies:
@@ -8937,7 +9119,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yargs@npm:^16.2.0":
+"yargs@npm:16.2.0, yargs@npm:^16.2.0":
   version: 16.2.0
   resolution: "yargs@npm:16.2.0"
   dependencies:

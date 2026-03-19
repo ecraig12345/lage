@@ -16,3 +16,4 @@ profile*.json
 temp
 *.tgz
 .claude/settings.local.json
+*.tsbuildinfo

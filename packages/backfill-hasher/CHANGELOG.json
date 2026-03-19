@@ -1,0 +1,701 @@
+{
+  "name": "backfill-hasher",
+  "entries": [
+    {
+      "date": "Fri, 27 Feb 2026 00:49:04 GMT",
+      "version": "6.7.0",
+      "tag": "backfill-hasher_v6.7.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-hasher",
+            "commit": "7c2effc9bb41ab49e64d2f3ce857399e456f3301",
+            "comment": "Improve internal structure and remove excess exports. If you were using exports besides Hasher, please file an issue."
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-hasher",
+            "commit": "8991848a60f40a2fdba6ab04de9257fe2b7af1ac",
+            "comment": "Simplify internal logic, remove `@rushstack/package-deps-hash` dependency, and add exports for functions duplicated by lage"
+          }
+        ],
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "backfill-hasher",
+            "commit": "8991848a60f40a2fdba6ab04de9257fe2b7af1ac",
+            "comment": "Update dependency workspace-tools to ^0.41.0"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 06 Aug 2025 08:17:18 GMT",
+      "version": "6.6.3",
+      "tag": "backfill-hasher_v6.6.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "backfill-hasher",
+            "comment": "Bump backfill-config to v6.7.1",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 06 Aug 2025 06:52:42 GMT",
+      "version": "6.6.2",
+      "tag": "backfill-hasher_v6.6.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-hasher",
+            "commit": "d22b529be11ec5e4c16d41dec2625e0fa7023aaf",
+            "comment": "Update to typescript 4.7 (should have no significant emit changes)"
+          },
+          {
+            "author": "beachball",
+            "package": "backfill-hasher",
+            "comment": "Bump backfill-config to v6.7.0",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "backfill-hasher",
+            "comment": "Bump backfill-logger to v5.4.0",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 31 Jul 2025 22:24:07 GMT",
+      "version": "6.6.1",
+      "tag": "backfill-hasher_v6.6.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "backfill-hasher",
+            "comment": "Bump backfill-config to v6.6.1",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sat, 29 Mar 2025 08:07:16 GMT",
+      "version": "6.6.0",
+      "tag": "backfill-hasher_v6.6.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "backfill-hasher",
+            "commit": "ca1aca1cba874a22ed83f4d1569c2030a48552f5",
+            "comment": "Update dependency workspace-tools to ^0.38.0"
+          }
+        ],
+        "minor": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-hasher",
+            "commit": "9befbf37c95d34bcfbea99c993a30fcd3bf8a7c0",
+            "comment": "Update to typescript 4.5 internally"
+          },
+          {
+            "author": "beachball",
+            "package": "backfill-hasher",
+            "comment": "Bump backfill-config to v6.6.0",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "backfill-hasher",
+            "comment": "Bump backfill-logger to v5.3.0",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 27 Dec 2024 21:00:44 GMT",
+      "version": "6.5.3",
+      "tag": "backfill-hasher_v6.5.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "backfill-hasher",
+            "comment": "Bump backfill-config to v6.5.0",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 15 Nov 2023 23:08:02 GMT",
+      "version": "6.5.2",
+      "tag": "backfill-hasher_v6.5.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "backfill-hasher",
+            "comment": "Bump backfill-config to v6.4.2",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 05 Sep 2023 21:29:30 GMT",
+      "version": "6.5.1",
+      "tag": "backfill-hasher_v6.5.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-hasher",
+            "commit": "9f7772ed806aac8015f252b602cbc58433d2aa45",
+            "comment": "Update typescript to 4.3"
+          },
+          {
+            "author": "renovate@whitesourcesoftware.com",
+            "package": "backfill-hasher",
+            "commit": "791e46b58889dfe76859fd3952b528569bb7efb5",
+            "comment": "Update dependency workspace-tools to ^0.35.0"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-hasher",
+            "commit": "aa8636e125486c3c17a43458f0b47d0e9605d1fc",
+            "comment": "Remove unnecessary dependency on find-up"
+          },
+          {
+            "author": "beachball",
+            "package": "backfill-hasher",
+            "comment": "Bump backfill-config to v6.4.1",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "backfill-hasher",
+            "comment": "Bump backfill-logger to v5.2.1",
+            "commit": "not available"
+          }
+        ],
+        "none": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-hasher",
+            "commit": "42a59ed8eb3a665b77afb7db9cb204c0cecf0257",
+            "comment": "Update formatting"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 05 Sep 2023 19:56:47 GMT",
+      "tag": "backfill-hasher_v6.5.0",
+      "version": "6.5.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-hasher",
+            "commit": "855bedee100eaa54032d85e7cd92f9205e914712",
+            "comment": "Require Node 14; add downlevel syntax compilation to ES2020 for Node 14"
+          },
+          {
+            "author": "beachball",
+            "package": "backfill-hasher",
+            "comment": "Bump backfill-config to v6.4.0",
+            "commit": "855bedee100eaa54032d85e7cd92f9205e914712"
+          },
+          {
+            "author": "beachball",
+            "package": "backfill-hasher",
+            "comment": "Bump backfill-logger to v5.2.0",
+            "commit": "855bedee100eaa54032d85e7cd92f9205e914712"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 05 Sep 2023 19:33:16 GMT",
+      "tag": "backfill-hasher_v6.4.5",
+      "version": "6.4.5",
+      "comments": {
+        "none": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-hasher",
+            "commit": "7d9dc77bc01070d0e805cd74b15bef16281f28a1",
+            "comment": "Unpin devDependencies"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 08 Dec 2022 02:52:13 GMT",
+      "tag": "backfill-hasher_v6.4.5",
+      "version": "6.4.5",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "backfill-hasher",
+            "comment": "Bump backfill-config to v6.3.1",
+            "commit": "d9352a0c5f7316f104d99a397c54886f94463429"
+          },
+          {
+            "author": "beachball",
+            "package": "backfill-hasher",
+            "comment": "Bump backfill-utils-test to v5.1.3",
+            "commit": "d9352a0c5f7316f104d99a397c54886f94463429"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 08 Dec 2022 02:38:15 GMT",
+      "tag": "backfill-hasher_v6.4.4",
+      "version": "6.4.4",
+      "comments": {
+        "none": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-hasher",
+            "commit": "8933334a222411ce6811ebd1460c84c5f9b97cbf",
+            "comment": "Update package.json ordering with prettier-package-json"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 08 Dec 2022 02:33:59 GMT",
+      "tag": "backfill-hasher_v6.4.4",
+      "version": "6.4.4",
+      "comments": {
+        "none": [
+          {
+            "author": "renovate@whitesourcesoftware.com",
+            "package": "backfill-hasher",
+            "commit": "not available",
+            "comment": "Update devDependency ts-jest to v25.5.1"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 08 Dec 2022 02:33:32 GMT",
+      "tag": "backfill-hasher_v6.4.4",
+      "version": "6.4.4",
+      "comments": {
+        "none": [
+          {
+            "author": "renovate@whitesourcesoftware.com",
+            "package": "backfill-hasher",
+            "commit": "318fec061aace7596510984c6fd21f1c897ff900",
+            "comment": "Update devDependency ts-jest to v25.5.1"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 08 Dec 2022 02:23:52 GMT",
+      "tag": "backfill-hasher_v6.4.4",
+      "version": "6.4.4",
+      "comments": {
+        "none": [
+          {
+            "author": "renovate@whitesourcesoftware.com",
+            "package": "backfill-hasher",
+            "commit": "not available",
+            "comment": "Update @types devDependencies"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 08 Dec 2022 02:23:21 GMT",
+      "tag": "backfill-hasher_v6.4.4",
+      "version": "6.4.4",
+      "comments": {
+        "none": [
+          {
+            "author": "renovate@whitesourcesoftware.com",
+            "package": "backfill-hasher",
+            "commit": "3c69db3d2f49ab2adc0c9191e69355b6569f08b2",
+            "comment": "Update @types devDependencies"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 08 Dec 2022 02:12:15 GMT",
+      "tag": "backfill-hasher_v6.4.4",
+      "version": "6.4.4",
+      "comments": {
+        "patch": [
+          {
+            "author": "renovate@whitesourcesoftware.com",
+            "package": "backfill-hasher",
+            "commit": "4c02fcb105332c3691e0e573c2f259baeb7447d1",
+            "comment": "Update dependency workspace-tools to ^0.29.0"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 08 Dec 2022 01:16:15 GMT",
+      "tag": "backfill-hasher_v6.4.3",
+      "version": "6.4.3",
+      "comments": {
+        "none": [
+          {
+            "author": "renovate@whitesourcesoftware.com",
+            "package": "backfill-hasher",
+            "commit": "31c81223403c163d5078d7a9764ffa69c943ac41",
+            "comment": "Update devDependency @types/jest to v25.2.3"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 08 Dec 2022 00:58:32 GMT",
+      "tag": "backfill-hasher_v6.4.3",
+      "version": "6.4.3",
+      "comments": {
+        "none": [
+          {
+            "author": "email not defined",
+            "package": "backfill-hasher",
+            "commit": "080fb1aa0570751e1e4d0429c1eb40e449621d4d",
+            "comment": "Pin devDependencies"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sat, 17 Sep 2022 00:00:24 GMT",
+      "tag": "backfill-hasher_v6.4.3",
+      "version": "6.4.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-hasher",
+            "commit": "628e67743a4a9fb4d9f9a5d98d578893f8076387",
+            "comment": "Update workspace-tools to ^0.27.0"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 15 Sep 2022 23:59:49 GMT",
+      "tag": "backfill-hasher_v6.4.2",
+      "version": "6.4.2",
+      "comments": {
+        "none": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-hasher",
+            "commit": "7cf25389e822f0bcc568b2be95b4069551c1a866",
+            "comment": "Update formatting with latest prettier version"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 24 Aug 2022 15:40:20 GMT",
+      "tag": "backfill-hasher_v6.4.2",
+      "version": "6.4.2",
+      "comments": {
+        "patch": [
+          {
+            "comment": "upgrade workspace-tools to ^0.26.3",
+            "author": "mahuangh@microsoft.com",
+            "commit": "f60ae7afcec12bf423298f65a89fe3736391d2b9",
+            "package": "backfill-hasher"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 10 Jun 2022 19:16:49 GMT",
+      "tag": "backfill-hasher_v6.4.1",
+      "version": "6.4.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "fixes windows to use the fast path as well",
+            "author": "kchau@microsoft.com",
+            "commit": "97c27bf470a22ba39f251a240c828117af36fb10",
+            "package": "backfill-hasher"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 10 Jun 2022 18:21:21 GMT",
+      "tag": "backfill-hasher_v6.4.0",
+      "version": "6.4.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Adds a \"fast path\" for hashing files in a package by using a look up tree",
+            "author": "kchau@microsoft.com",
+            "commit": "8f8e06270ddb3316004123b63d0481a63bd2e1a2",
+            "package": "backfill-hasher"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 31 Mar 2022 05:28:57 GMT",
+      "tag": "backfill-hasher_v6.3.0",
+      "version": "6.3.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Upgrading package-deps-hash version.",
+            "author": "dzearing@microsoft.com",
+            "commit": "8662e9d4ecd0eaaa01beeca7be1139444d5e31c4",
+            "package": "backfill-hasher"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 13 Jan 2022 19:46:10 GMT",
+      "tag": "backfill-hasher_v6.2.9",
+      "version": "6.2.9",
+      "comments": {
+        "patch": [
+          {
+            "comment": "fixing platform differences in a monorepo, added tests",
+            "author": "kchau@microsoft.com",
+            "commit": "633a5d11821e41f4f9fda6e9a6f14868c6ab66cf",
+            "package": "backfill-hasher"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 07 Jan 2022 21:26:53 GMT",
+      "tag": "backfill-hasher_v6.2.8",
+      "version": "6.2.8",
+      "comments": {
+        "patch": [
+          {
+            "comment": "bumps the workspace-tools",
+            "author": "kchau@microsoft.com",
+            "commit": "5f26b448b6cc7101d54e5be73c3f2bce3f7b213f",
+            "package": "backfill-hasher"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 07 Jan 2022 16:43:20 GMT",
+      "tag": "backfill-hasher_v6.2.7",
+      "version": "6.2.7",
+      "comments": {
+        "patch": [
+          {
+            "comment": "speeding up the hasher by reducing wasted calculations",
+            "author": "kchau@microsoft.com",
+            "commit": "52711efb5689eae90179bfee37f4da5b32723e72",
+            "package": "backfill-hasher"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 22 Jun 2021 14:38:58 GMT",
+      "tag": "backfill-hasher_v6.2.5",
+      "version": "6.2.5",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Fix: files from a different package are included in the hash.",
+            "author": "vibailly@microsoft.com",
+            "commit": "bd716573b8ace89b5f091f0e52c9e9428cffb760",
+            "package": "backfill-hasher"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 27 Apr 2021 08:32:03 GMT",
+      "tag": "backfill-hasher_v6.2.2",
+      "version": "6.2.2",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Bump @types/fs-extra from 8.0.1 to 9.0.11",
+            "author": "ronald.ndirangu@gmail.com",
+            "commit": "b1c0dd5f4da27ba00feee8a52f0145bdb868da5f",
+            "package": "backfill-hasher"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 23 Apr 2021 23:51:52 GMT",
+      "tag": "backfill-hasher_v6.2.1",
+      "version": "6.2.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "bumps workspace-tools to take advantage of the faster boot of the lib",
+            "author": "34725+kenotron@users.noreply.github.com",
+            "commit": "040579da32f3bbb4a6d561b69839f193b4982afb",
+            "package": "backfill-hasher"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 01 Dec 2020 09:43:25 GMT",
+      "tag": "backfill-hasher_v6.2.0",
+      "version": "6.2.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Bump typescript from 3.7.4 to 4.1.2",
+            "author": "bewegger@microsoft.com",
+            "commit": "d6b3b5f327b5f803eeea7b5b8d2b18343892314c",
+            "package": "backfill-hasher"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 01 Dec 2020 09:13:42 GMT",
+      "tag": "backfill-hasher_v6.1.5",
+      "version": "6.1.5",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Run Prettier 2.2.0",
+            "author": "bewegger@microsoft.com",
+            "commit": "facba7cd274f1d5b834d87d208f0293f7069ad53",
+            "package": "backfill-hasher"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 01 Dec 2020 09:06:20 GMT",
+      "tag": "backfill-hasher_v6.1.4",
+      "version": "6.1.4",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Bump find-up from 4.1.0 to 5.0.0",
+            "author": "bewegger@microsoft.com",
+            "commit": "e80d070bca453869e6fb9136ceb8687c4cf4fa2f",
+            "package": "backfill-hasher"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 18 Nov 2020 10:47:24 GMT",
+      "tag": "backfill-hasher_v6.1.3",
+      "version": "6.1.3",
+      "comments": {
+        "patch": [
+          {
+            "comment": "fix phantom dependencies",
+            "author": "vincent.bailly@microsoft.com",
+            "commit": "6222d2d1f8c25f6cc4a2c3c7a6d5a0b807ae07d2",
+            "package": "backfill-hasher"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 13 Oct 2020 08:40:08 GMT",
+      "tag": "backfill-hasher_v6.1.2",
+      "version": "6.1.2",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Use workspace root instead of git root",
+            "author": "bewegger@microsoft.com",
+            "commit": "71a76990817fb154f13b4a486aec0d8b4b26a36a",
+            "package": "backfill-hasher"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Mon, 31 Aug 2020 15:41:56 GMT",
+      "tag": "backfill-hasher_v6.1.1",
+      "version": "6.1.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Update package-deps-hash",
+            "author": "bewegger@microsoft.com",
+            "commit": "a4eaeeb4c41895c1169b589ef4f4fe4535310f45",
+            "package": "backfill-hasher"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 18 Aug 2020 16:03:05 GMT",
+      "tag": "backfill-hasher_v6.1.0",
+      "version": "6.1.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Include file path in hash. Addresses a bug where file renames do not produce new hash.",
+            "author": "bewegger@microsoft.com",
+            "commit": "257ab782980428a018e9dca3d8b13007ab5d0737",
+            "package": "backfill-hasher"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 17 Jul 2020 19:27:19 GMT",
+      "tag": "backfill-hasher_v6.0.1",
+      "version": "6.0.1",
+      "comments": {
+        "patch": [
+          {
+            "comment": "bumping workspace-tools to allow accepting a PREFFERRED_WORKSPACE_MANAGER when multiple lock files implementations exist in one repo",
+            "author": "kchau@microsoft.com",
+            "commit": "02adfd3147b173aa96bf8adf1b58997e681f3b08",
+            "package": "backfill-hasher"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 09 Jun 2020 11:50:22 GMT",
+      "tag": "backfill-hasher_v6.0.0",
+      "version": "6.0.0",
+      "comments": {
+        "major": [
+          {
+            "comment": "always use ** as hash glob",
+            "author": "vibailly@tuta.io",
+            "commit": "f9f7b3eb46b3af71a4a712d7c94ec94726d9ebf1",
+            "package": "backfill-hasher"
+          }
+        ]
+      }
+    }
+  ]
+}

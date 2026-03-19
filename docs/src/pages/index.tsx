@@ -153,14 +153,14 @@ const Conclusion = () => {
         <GetStartedLinkButton />
       </Section>
 
-      <Section>
+      {/* <Section>
         <SectionHeading>Better together</SectionHeading>
         <SectionDescription>
           Lage works great on its own, but even better alongside its related
           tools.
         </SectionDescription>
         <Tools />
-      </Section>
+      </Section> */}
     </>
   );
 };

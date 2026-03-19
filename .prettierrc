@@ -10,6 +10,12 @@
       "options": {
         "parser": "json"
       }
+    },
+    {
+      "files": ["packages/backfill/**/*", "packages/backfill-*/**/*"],
+      "options": {
+        "printWidth": 80
+      }
     }
   ],
   "endOfLine": "lf"

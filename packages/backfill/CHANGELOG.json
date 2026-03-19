@@ -1,0 +1,908 @@
+{
+  "name": "backfill",
+  "entries": [
+    {
+      "date": "Fri, 27 Feb 2026 00:49:04 GMT",
+      "version": "6.4.3",
+      "tag": "backfill_v6.4.3",
+      "comments": {
+        "none": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill",
+            "commit": "7c2effc9bb41ab49e64d2f3ce857399e456f3301",
+            "comment": "Simplify build script"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-config",
+            "commit": "7c2effc9bb41ab49e64d2f3ce857399e456f3301",
+            "comment": "Simplify build script"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-logger",
+            "commit": "7c2effc9bb41ab49e64d2f3ce857399e456f3301",
+            "comment": "Simplify build script"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-utils-dotenv",
+            "commit": "7c2effc9bb41ab49e64d2f3ce857399e456f3301",
+            "comment": "Simplify build script"
+          }
+        ],
+        "patch": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-cache",
+            "commit": "7c2effc9bb41ab49e64d2f3ce857399e456f3301",
+            "comment": "Move logic out of index file (no behavior change)"
+          },
+          {
+            "author": "email not defined",
+            "package": "backfill-hasher",
+            "commit": "8991848a60f40a2fdba6ab04de9257fe2b7af1ac",
+            "comment": "Update dependency workspace-tools to ^0.41.0"
+          }
+        ],
+        "minor": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-hasher",
+            "commit": "7c2effc9bb41ab49e64d2f3ce857399e456f3301",
+            "comment": "Improve internal structure and remove excess exports. If you were using exports besides Hasher, please file an issue."
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-hasher",
+            "commit": "8991848a60f40a2fdba6ab04de9257fe2b7af1ac",
+            "comment": "Simplify internal logic, remove `@rushstack/package-deps-hash` dependency, and add exports for functions duplicated by lage"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 10 Oct 2025 00:20:02 GMT",
+      "version": "6.4.2",
+      "tag": "backfill_v6.4.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "1581488+christiango@users.noreply.github.com",
+            "package": "backfill-cache",
+            "commit": "b8668aee2f693530345a868d6d76eadf8f43aa86",
+            "comment": "Make sure that the backfill cache copies files beginning with a . over during fetch calls"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 06 Aug 2025 08:17:18 GMT",
+      "version": "6.4.1",
+      "tag": "backfill_v6.4.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-config",
+            "commit": "ce8d8ffe09ace2bba44d847d13af391b346bfbf6",
+            "comment": "Fix TokenCredentialLike type"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 06 Aug 2025 06:52:42 GMT",
+      "version": "6.4.0",
+      "tag": "backfill_v6.4.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-config",
+            "commit": "63adc3efeba38dd678d49d8ac5bff11e6b169307",
+            "comment": "Remove all direct references to Azure types, update config validation, add docs"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-config",
+            "commit": "70373c6d9fb0e8c75b854c4f30d13914bdc7ffc3",
+            "comment": "Internally restructure into multiple files"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-logger",
+            "commit": "63adc3efeba38dd678d49d8ac5bff11e6b169307",
+            "comment": "Export logLevelsObject"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill",
+            "commit": "70373c6d9fb0e8c75b854c4f30d13914bdc7ffc3",
+            "comment": "Re-export relevant types"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-cache",
+            "commit": "70373c6d9fb0e8c75b854c4f30d13914bdc7ffc3",
+            "comment": "Remove unused dependency on `@azure/core-http`"
+          }
+        ],
+        "patch": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-config",
+            "commit": "d22b529be11ec5e4c16d41dec2625e0fa7023aaf",
+            "comment": "Update to typescript 4.7 (should have no significant emit changes)"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-logger",
+            "commit": "d22b529be11ec5e4c16d41dec2625e0fa7023aaf",
+            "comment": "Update to typescript 4.7 (should have no significant emit changes)"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill",
+            "commit": "d22b529be11ec5e4c16d41dec2625e0fa7023aaf",
+            "comment": "Update to typescript 4.7 (should have no significant emit changes)"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-cache",
+            "commit": "d22b529be11ec5e4c16d41dec2625e0fa7023aaf",
+            "comment": "Update to typescript 4.7 (should have no significant emit changes)"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-hasher",
+            "commit": "d22b529be11ec5e4c16d41dec2625e0fa7023aaf",
+            "comment": "Update to typescript 4.7 (should have no significant emit changes)"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-utils-dotenv",
+            "commit": "d22b529be11ec5e4c16d41dec2625e0fa7023aaf",
+            "comment": "Update to typescript 4.7 (should have no significant emit changes)"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 31 Jul 2025 22:24:07 GMT",
+      "version": "6.3.1",
+      "tag": "backfill_v6.3.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "backfill",
+            "comment": "Bump backfill-cache to v5.10.1",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "backfill",
+            "comment": "Bump backfill-config to v6.6.1",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "backfill",
+            "comment": "Bump backfill-hasher to v6.6.1",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sat, 29 Mar 2025 08:07:16 GMT",
+      "version": "6.3.0",
+      "tag": "backfill_v6.3.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill",
+            "commit": "9befbf37c95d34bcfbea99c993a30fcd3bf8a7c0",
+            "comment": "Update to typescript 4.5 internally, and update readme"
+          },
+          {
+            "author": "beachball",
+            "package": "backfill",
+            "comment": "Bump backfill-cache to v5.10.0",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "backfill",
+            "comment": "Bump backfill-config to v6.6.0",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "backfill",
+            "comment": "Bump backfill-hasher to v6.6.0",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "backfill",
+            "comment": "Bump backfill-logger to v5.3.0",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "backfill",
+            "comment": "Bump backfill-utils-dotenv to v5.3.0",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 27 Dec 2024 21:00:44 GMT",
+      "version": "6.2.4",
+      "tag": "backfill_v6.2.4",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "backfill",
+            "comment": "Bump backfill-cache to v5.9.0",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "backfill",
+            "comment": "Bump backfill-config to v6.5.0",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "backfill",
+            "comment": "Bump backfill-hasher to v6.5.3",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sat, 01 Jun 2024 08:03:35 GMT",
+      "version": "6.2.3",
+      "tag": "backfill_v6.2.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "backfill",
+            "comment": "Bump backfill-cache to v5.8.1",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 15 Nov 2023 23:08:02 GMT",
+      "version": "6.2.2",
+      "tag": "backfill_v6.2.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "backfill",
+            "comment": "Bump backfill-cache to v5.8.0",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "backfill",
+            "comment": "Bump backfill-config to v6.4.2",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "backfill",
+            "comment": "Bump backfill-hasher to v6.5.2",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 05 Sep 2023 21:29:30 GMT",
+      "version": "6.2.1",
+      "tag": "backfill_v6.2.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill",
+            "commit": "9f7772ed806aac8015f252b602cbc58433d2aa45",
+            "comment": "Update typescript to 4.3"
+          },
+          {
+            "author": "beachball",
+            "package": "backfill",
+            "comment": "Bump backfill-cache to v5.7.1",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "backfill",
+            "comment": "Bump backfill-config to v6.4.1",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "backfill",
+            "comment": "Bump backfill-hasher to v6.5.1",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "backfill",
+            "comment": "Bump backfill-logger to v5.2.1",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "backfill",
+            "comment": "Bump backfill-utils-dotenv to v5.2.1",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 05 Sep 2023 19:56:47 GMT",
+      "tag": "backfill_v6.2.0",
+      "version": "6.2.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill",
+            "commit": "855bedee100eaa54032d85e7cd92f9205e914712",
+            "comment": "Require Node 14; add downlevel syntax compilation to ES2020 for Node 14"
+          },
+          {
+            "author": "beachball",
+            "package": "backfill",
+            "comment": "Bump backfill-cache to v5.7.0",
+            "commit": "855bedee100eaa54032d85e7cd92f9205e914712"
+          },
+          {
+            "author": "beachball",
+            "package": "backfill",
+            "comment": "Bump backfill-config to v6.4.0",
+            "commit": "855bedee100eaa54032d85e7cd92f9205e914712"
+          },
+          {
+            "author": "beachball",
+            "package": "backfill",
+            "comment": "Bump backfill-hasher to v6.5.0",
+            "commit": "855bedee100eaa54032d85e7cd92f9205e914712"
+          },
+          {
+            "author": "beachball",
+            "package": "backfill",
+            "comment": "Bump backfill-logger to v5.2.0",
+            "commit": "855bedee100eaa54032d85e7cd92f9205e914712"
+          },
+          {
+            "author": "beachball",
+            "package": "backfill",
+            "comment": "Bump backfill-utils-dotenv to v5.2.0",
+            "commit": "855bedee100eaa54032d85e7cd92f9205e914712"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 05 Sep 2023 19:33:16 GMT",
+      "tag": "backfill_v6.1.27",
+      "version": "6.1.27",
+      "comments": {
+        "none": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill",
+            "commit": "7d9dc77bc01070d0e805cd74b15bef16281f28a1",
+            "comment": "Unpin devDependencies"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 13 Apr 2023 20:28:21 GMT",
+      "tag": "backfill_v6.1.27",
+      "version": "6.1.27",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "backfill",
+            "comment": "Bump backfill-cache to v5.6.4",
+            "commit": "78f5bf22ecbbd90a0a654fb2a55405883fdb433e"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 12 Jan 2023 22:25:00 GMT",
+      "tag": "backfill_v6.1.26",
+      "version": "6.1.26",
+      "comments": {
+        "none": [
+          {
+            "author": "email not defined",
+            "package": "backfill",
+            "commit": "344d9c595c09a7e4e1d1ac8d6636e033b0f68c1d",
+            "comment": "Update devDependency @types/yargs to v15.0.15"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 30 Dec 2022 05:14:35 GMT",
+      "tag": "backfill_v6.1.26",
+      "version": "6.1.26",
+      "comments": {
+        "none": [
+          {
+            "author": "email not defined",
+            "package": "backfill",
+            "commit": "96510e9fba86065f54a7ae47408a5646629502db",
+            "comment": "Update devDependency @types/node to v14.18.36"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 08 Dec 2022 02:52:13 GMT",
+      "tag": "backfill_v6.1.26",
+      "version": "6.1.26",
+      "comments": {
+        "patch": [
+          {
+            "author": "renovate@whitesourcesoftware.com",
+            "package": "backfill",
+            "commit": "db3823d3762dcf07ef2868b8f7facfda5a57f928",
+            "comment": "Update dependency execa to v5"
+          },
+          {
+            "author": "beachball",
+            "package": "backfill",
+            "comment": "Bump backfill-cache to v5.6.3",
+            "commit": "d9352a0c5f7316f104d99a397c54886f94463429"
+          },
+          {
+            "author": "beachball",
+            "package": "backfill",
+            "comment": "Bump backfill-config to v6.3.1",
+            "commit": "d9352a0c5f7316f104d99a397c54886f94463429"
+          },
+          {
+            "author": "beachball",
+            "package": "backfill",
+            "comment": "Bump backfill-hasher to v6.4.5",
+            "commit": "d9352a0c5f7316f104d99a397c54886f94463429"
+          },
+          {
+            "author": "beachball",
+            "package": "backfill",
+            "comment": "Bump backfill-utils-test to v5.1.3",
+            "commit": "d9352a0c5f7316f104d99a397c54886f94463429"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 08 Dec 2022 02:38:15 GMT",
+      "tag": "backfill_v6.1.25",
+      "version": "6.1.25",
+      "comments": {
+        "none": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill",
+            "commit": "8933334a222411ce6811ebd1460c84c5f9b97cbf",
+            "comment": "Update package.json ordering with prettier-package-json"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 08 Dec 2022 02:33:59 GMT",
+      "tag": "backfill_v6.1.25",
+      "version": "6.1.25",
+      "comments": {
+        "none": [
+          {
+            "author": "renovate@whitesourcesoftware.com",
+            "package": "backfill",
+            "commit": "not available",
+            "comment": "Update devDependency ts-jest to v25.5.1"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 08 Dec 2022 02:33:32 GMT",
+      "tag": "backfill_v6.1.25",
+      "version": "6.1.25",
+      "comments": {
+        "none": [
+          {
+            "author": "renovate@whitesourcesoftware.com",
+            "package": "backfill",
+            "commit": "318fec061aace7596510984c6fd21f1c897ff900",
+            "comment": "Update devDependency ts-jest to v25.5.1"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 08 Dec 2022 02:23:52 GMT",
+      "tag": "backfill_v6.1.25",
+      "version": "6.1.25",
+      "comments": {
+        "none": [
+          {
+            "author": "renovate@whitesourcesoftware.com",
+            "package": "backfill",
+            "commit": "not available",
+            "comment": "Update @types devDependencies"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 08 Dec 2022 02:23:21 GMT",
+      "tag": "backfill_v6.1.25",
+      "version": "6.1.25",
+      "comments": {
+        "none": [
+          {
+            "author": "renovate@whitesourcesoftware.com",
+            "package": "backfill",
+            "commit": "3c69db3d2f49ab2adc0c9191e69355b6569f08b2",
+            "comment": "Update @types devDependencies"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 08 Dec 2022 02:12:15 GMT",
+      "tag": "backfill_v6.1.25",
+      "version": "6.1.25",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "backfill",
+            "comment": "Bump backfill-hasher to v6.4.4",
+            "commit": "4c02fcb105332c3691e0e573c2f259baeb7447d1"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 08 Dec 2022 01:16:15 GMT",
+      "tag": "backfill_v6.1.24",
+      "version": "6.1.24",
+      "comments": {
+        "none": [
+          {
+            "author": "renovate@whitesourcesoftware.com",
+            "package": "backfill",
+            "commit": "31c81223403c163d5078d7a9764ffa69c943ac41",
+            "comment": "Update devDependency @types/jest to v25.2.3"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 08 Dec 2022 00:58:32 GMT",
+      "tag": "backfill_v6.1.24",
+      "version": "6.1.24",
+      "comments": {
+        "patch": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill",
+            "commit": "080fb1aa0570751e1e4d0429c1eb40e449621d4d",
+            "comment": "Add missing dependency on `find-up`"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Sat, 17 Sep 2022 00:00:24 GMT",
+      "tag": "backfill_v6.1.23",
+      "version": "6.1.23",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "backfill",
+            "comment": "Bump backfill-hasher to v6.4.3",
+            "commit": "628e67743a4a9fb4d9f9a5d98d578893f8076387"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 16 Sep 2022 00:38:30 GMT",
+      "tag": "backfill_v6.1.22",
+      "version": "6.1.22",
+      "comments": {
+        "none": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill",
+            "commit": "42aa67201aa9092be9339e9d3ed16a7479c44ce0",
+            "comment": "Fix mismatched @types/fs-extra dev dep"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Fri, 16 Sep 2022 00:21:39 GMT",
+      "tag": "backfill_v6.1.22",
+      "version": "6.1.22",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "backfill",
+            "comment": "Bump backfill-cache to v5.6.2",
+            "commit": "b8ca9b1b78c3c58d1df2c4cfae7e0c071acfe3fe"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 15 Sep 2022 23:59:49 GMT",
+      "tag": "backfill_v6.1.21",
+      "version": "6.1.21",
+      "comments": {
+        "none": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill",
+            "commit": "7cf25389e822f0bcc568b2be95b4069551c1a866",
+            "comment": "Update formatting with latest prettier version"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Wed, 18 May 2022 12:15:03 GMT",
+      "tag": "backfill_v6.1.17",
+      "version": "6.1.17",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Make incremental cache an opt-in option",
+            "author": "vibailly@microsoft.com",
+            "commit": "a2c7c0f6f41926087610eb567460dec4269ef348",
+            "package": "backfill"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 12 Oct 2021 19:45:45 GMT",
+      "tag": "backfill_v6.1.10",
+      "version": "6.1.10",
+      "comments": {
+        "patch": [
+          {
+            "comment": "get correct name of the storage provider",
+            "author": "kchau@microsoft.com",
+            "commit": "04f6ecf73f059d53248d84bfa167a43b41cf1f72",
+            "package": "backfill"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 21 Sep 2021 22:29:42 GMT",
+      "tag": "backfill_v6.1.9",
+      "version": "6.1.9",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Fix git root detection in worktrees",
+            "author": "elcraig@microsoft.com",
+            "commit": "c21ba92bfd37769ee06a2f3269694b6d8dfa14e9",
+            "package": "backfill"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Thu, 06 May 2021 13:46:20 GMT",
+      "tag": "backfill_v6.1.6",
+      "version": "6.1.6",
+      "comments": {
+        "patch": [
+          {
+            "comment": "opt-in to optimize cache size",
+            "author": "vibailly@microsoft.com",
+            "commit": "3df30b0220804713d8eb7193389ea577a516d4c7",
+            "package": "backfill"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 27 Apr 2021 09:06:13 GMT",
+      "tag": "backfill_v6.1.5",
+      "version": "6.1.5",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Bump @types/node from 13.13.35 to 14.14.41",
+            "author": "ronald.ndirangu@gmail.com",
+            "commit": "0e5a9db6edf7bfaa421cf1bb4c02a893ddd2b9d4",
+            "package": "backfill"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 27 Apr 2021 08:32:03 GMT",
+      "tag": "backfill_v6.1.3",
+      "version": "6.1.3",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Bump @types/fs-extra from 8.0.1 to 9.0.11",
+            "author": "ronald.ndirangu@gmail.com",
+            "commit": "b1c0dd5f4da27ba00feee8a52f0145bdb868da5f",
+            "package": "backfill"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 27 Apr 2021 08:29:06 GMT",
+      "tag": "backfill_v6.1.2",
+      "version": "6.1.2",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Bump find-up from 4.1.0 to 5.0.0",
+            "author": "ronald.ndirangu@gmail.com",
+            "commit": "f33abef63e0d7e5b3dc287ae2312ef2111a203a1",
+            "package": "backfill"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 01 Dec 2020 09:45:24 GMT",
+      "tag": "backfill_v6.1.0",
+      "version": "6.1.0",
+      "comments": {
+        "none": [
+          {
+            "comment": "Bump @types/node from 13.13.4 to 14.14.10",
+            "author": "bewegger@microsoft.com",
+            "commit": "14c6fa19134dd63317ba440ea47d94f357fc0921",
+            "package": "backfill"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 01 Dec 2020 09:43:25 GMT",
+      "tag": "backfill_v6.1.0",
+      "version": "6.1.0",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Bump typescript from 3.7.4 to 4.1.2",
+            "author": "bewegger@microsoft.com",
+            "commit": "d6b3b5f327b5f803eeea7b5b8d2b18343892314c",
+            "package": "backfill"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 01 Dec 2020 09:13:42 GMT",
+      "tag": "backfill_v6.0.8",
+      "version": "6.0.8",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Run Prettier 2.2.0",
+            "author": "bewegger@microsoft.com",
+            "commit": "facba7cd274f1d5b834d87d208f0293f7069ad53",
+            "package": "backfill"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 01 Dec 2020 09:06:20 GMT",
+      "tag": "backfill_v6.0.7",
+      "version": "6.0.7",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Bump find-up from 4.1.0 to 5.0.0",
+            "author": "bewegger@microsoft.com",
+            "commit": "e80d070bca453869e6fb9136ceb8687c4cf4fa2f",
+            "package": "backfill"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 01 Dec 2020 09:03:22 GMT",
+      "tag": "backfill_v6.0.6",
+      "version": "6.0.6",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Bump yargs to 16.1.1",
+            "author": "bewegger@microsoft.com",
+            "commit": "832a6e00a55d97027570e57742efb7fbb21e87b3",
+            "package": "backfill"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 13 Oct 2020 08:40:08 GMT",
+      "tag": "backfill_v6.0.4",
+      "version": "6.0.4",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Use workspace root instead of git root",
+            "author": "bewegger@microsoft.com",
+            "commit": "71a76990817fb154f13b4a486aec0d8b4b26a36a",
+            "package": "backfill"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 18 Aug 2020 16:03:05 GMT",
+      "tag": "backfill_v6.0.2",
+      "version": "6.0.2",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Update hash in test",
+            "author": "bewegger@microsoft.com",
+            "commit": "257ab782980428a018e9dca3d8b13007ab5d0737",
+            "package": "backfill"
+          }
+        ]
+      }
+    },
+    {
+      "date": "Tue, 09 Jun 2020 11:50:22 GMT",
+      "tag": "backfill_v6.0.0",
+      "version": "6.0.0",
+      "comments": {
+        "major": [
+          {
+            "comment": "always use ** for hashGlob",
+            "author": "vibailly@tuta.io",
+            "commit": "f9f7b3eb46b3af71a4a712d7c94ec94726d9ebf1",
+            "package": "backfill"
+          }
+        ]
+      }
+    }
+  ]
+}

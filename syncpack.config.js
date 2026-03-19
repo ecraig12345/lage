@@ -6,8 +6,8 @@ const config = {
   dependencyTypes: ["dev", "prod"],
   versionGroups: [
     {
-      label: "lage deps use workspace protocol",
-      dependencies: ["@lage-run/**"],
+      label: "internal deps use workspace protocol",
+      dependencies: ["@lage-run/**", "backfill", "backfill-*"],
       packages: ["**"],
       specifierTypes: ["workspace-protocol"],
     },
@@ -32,7 +32,7 @@ const config = {
       label: "pin dependencies",
       range: "",
       dependencyTypes: ["prod"],
-      packages: ["!@lage-run/docs", "!@lage-run/monorepo-scripts"],
+      packages: ["!@lage-run/docs", "!@lage-run/monorepo-scripts", "!backfill-utils-test"],
     },
   ],
 };

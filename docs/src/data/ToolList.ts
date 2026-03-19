@@ -26,13 +26,6 @@ export const ToolList: ToolInfo[] = [
     link: "https://github.com/microsoft/just",
   },
   {
-    title: "Backfill",
-    svg: backfillSvg,
-    description:
-      "A JavaScript caching library for reducing build time. Used internally by Lage.",
-    link: "https://github.com/microsoft/backfill",
-  },
-  {
     title: "p-graph",
     svg: pGraphSvg,
     description: "Run a promise graph with concurrency control.",

@@ -67,7 +67,7 @@ const config = {
   npmClient: "yarn",
 
   cacheOptions: {
-    /** @see https://github.com/microsoft/backfill#configuration */
+    /** @see https://www.npmjs.com/package/backfill#configuration */
     cacheStorageConfig: {
       // use this to specify a remote cache provider such as "azure-blob",
       provider: "azure-blob",

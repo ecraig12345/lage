@@ -18,8 +18,8 @@
   },
   "dependencies": {
     "@actions/cache": "3.3.0",
-    "backfill-config": "6.7.1",
-    "backfill-logger": "5.4.0",
+    "backfill-config": "workspace:^",
+    "backfill-logger": "workspace:^",
     "workspace-tools": "0.41.0"
   },
   "devDependencies": {
