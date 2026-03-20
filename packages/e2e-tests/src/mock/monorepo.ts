@@ -1,10 +1,10 @@
-import * as fs from "fs";
-import * as path from "path";
+import fs from "fs";
+import path from "path";
 import * as execa from "execa";
 import { findGitRoot, getPackageInfo } from "workspace-tools";
 
 import { glob } from "@lage-run/globby";
-import { Monorepo as BaseMonorepo, type MonorepoInitParams as BaseMonorepoInitParams } from "@lage-run/monorepo-fixture";
+import { Monorepo as BaseMonorepo, type MonorepoInitParams as BaseMonorepoInitParams } from "@lage-run/test-utilities";
 import type { ConfigFileOptions } from "@lage-run/cli";
 
 /** Absolute root path of the lage repo */
