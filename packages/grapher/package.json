@@ -1,0 +1,30 @@
+{
+  "name": "@ws-tools/grapher",
+  "version": "0.2.19",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/microsoft/workspace-tools"
+  },
+  "bin": {
+    "grapher": "./bin/grapher.js"
+  },
+  "exports": null,
+  "files": [
+    "lib/!(__*)",
+    "lib/!(__*)/**/*"
+  ],
+  "scripts": {
+    "build": "tsc --pretty",
+    "start": "tsc -w --preserveWatchOutput",
+    "test": "jest"
+  },
+  "dependencies": {
+    "commander": "^11.1.0",
+    "workspace-tools": "^0.41.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.0.0",
+    "@ws-tools/scripts": "*"
+  }
+}

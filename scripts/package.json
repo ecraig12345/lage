@@ -2,7 +2,10 @@
   "name": "@lage-run/monorepo-scripts",
   "version": "1.0.0",
   "private": true,
-  "bin": "bin/monorepo-scripts.js",
+  "bin": {
+    "monorepo-scripts": "bin/monorepo-scripts.js",
+    "ws-tools-scripts": "bin/ws-tools-scripts.js"
+  },
   "scripts": {
     "build": "yarn types",
     "lint": "monorepo-scripts lint",

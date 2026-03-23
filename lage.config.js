@@ -52,6 +52,7 @@ const config = {
       type: "noop",
       dependsOn: ["transpile", "types"],
     },
+    api: ["build"],
     "@lage-run/globby#types": {
       type: "npmScript",
     },

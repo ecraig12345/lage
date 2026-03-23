@@ -17,3 +17,14 @@ temp
 *.tgz
 .claude/settings.local.json
 *.tsbuildinfo
+
+# workspace-tools
+# docs/
+.rush/
+**/common/scripts/
+/scripts/jest/__fixtures__/*/node_modules/
+/scripts/jest/__fixtures__/**/.yarn/
+/scripts/jest/__fixtures__/monorepo-base/__managers__/*/individual/
+/scripts/jest/__fixtures__/monorepo-base/__managers__/*/packages/
+!/scripts/jest/__fixtures__/**/package-lock.json
+install-state.gz

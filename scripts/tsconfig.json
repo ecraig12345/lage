@@ -9,5 +9,5 @@
     }
   },
   // include all files in the scripts directory
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "**/__fixtures__"]
 }

@@ -1,3 +1,5 @@
+// Available options:
+// https://docs.renovatebot.com/configuration-options/
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
@@ -11,6 +13,7 @@
   "labels": ["renovate"],
   "prHourlyLimit": 5,
   "semanticCommits": "disabled",
+  "reviewers": ["ecraig12345"],
   "ignorePaths": [
     "**/node_modules/**",
     // incorrect manager is being used for fixtures, and most of them don't have real deps anyway
@@ -48,8 +51,13 @@
     },
     {
       // Disable due to Node version compatibility
-      "matchPackageNames": ["@azure/*", "node-gyp"],
+      "matchPackageNames": ["@azure/*", "node-gyp", "@microsoft/api-extractor"],
       "enabled": false
+    },
+    {
+      "groupName": "workspace-tools resolutions",
+      "matchPackageNames": ["/.*workspace-tools$/"],
+      "dependencyDashboardApproval": false
     }
   ]
 }
