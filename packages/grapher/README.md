@@ -1,15 +1,15 @@
-# @ws-tools/grapher
+# @lage-run/grapher
 
-**Generates a list of dependents and dependencies (internal to the monorepo) for a package or packages.**
+Generates a list of dependents and dependencies (internal to the monorepo) for a package or packages.
 
-For one package
+For one package:
 
 ```
-npx @ws-tools/grapher deps --scope foo
+npx @lage-run/grapher deps --scope foo
 ```
 
 For multiple packages:
 
 ```
-npx @ws-tools/grapher deps --scope foo --scope bar
+npx @lage-run/grapher deps --scope foo --scope bar
 ```
