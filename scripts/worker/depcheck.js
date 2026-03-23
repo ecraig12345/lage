@@ -1,7 +1,7 @@
 /** @import { WorkerRunnerFunction } from "../types.js" */
 const depcheck = require("depcheck");
 const path = require("path");
-const { findProjectRoot } = require("workspace-tools");
+const { findProjectRoot } = require("workspace-tools-npm");
 
 const root = findProjectRoot(process.cwd());
 

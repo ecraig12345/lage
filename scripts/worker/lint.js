@@ -1,7 +1,7 @@
 /** @import { BasicWorkerRunnerFunction } from "../types.js" */
 const { ESLint } = require("eslint");
 const path = require("path");
-const { getPackageInfo } = require("workspace-tools");
+const { getPackageInfo } = require("workspace-tools-npm");
 
 /**
  * This worker is used for `lage run lint`, in place of the per-package `lint` script.

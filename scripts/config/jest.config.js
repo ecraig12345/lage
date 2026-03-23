@@ -1,4 +1,4 @@
-const { findProjectRoot, getPackageInfos } = require("workspace-tools");
+const { findProjectRoot, getPackageInfos } = require("workspace-tools-npm");
 const fs = require("fs");
 const path = require("path");
 

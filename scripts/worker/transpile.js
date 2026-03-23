@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const fsPromises = require("fs/promises");
 const swc = require("@swc/core");
-const { findProjectRoot } = require("workspace-tools");
+const { findProjectRoot } = require("workspace-tools-npm");
 
 const root = findProjectRoot(process.cwd());
 
