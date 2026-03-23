@@ -1,14 +1,10 @@
+import { createTempDir, removeTempDir } from "@lage-run/test-utilities";
 import path from "path";
 import fs from "fs-extra";
-import tmp from "tmp";
-import { spawnSync, SpawnSyncOptions } from "child_process";
+import { spawnSync, type SpawnSyncOptions } from "child_process";
 
-// tmp is supposed to be able to clean up automatically, but this doesn't always work within jest.
-// So we attempt to use its built-in cleanup mechanisms, but tests should ideally do their own cleanup too.
-tmp.setGracefulCleanup();
-
-// Temp directories are created under tempRoot.name with incrementing numeric sub-directories
-let tempRoot: tmp.DirResult | undefined;
+/** Temp directories are created under tempRoot.name with incrementing numeric sub-directories */
+let tempRoot: string | undefined;
 let tempNumber = 0;
 
 /** Full fixture folders under `__fixtures__` */
@@ -37,7 +33,7 @@ type LernaFixtureName =
 
 export type TestFixtureName = RealFixtureName | LernaFixtureName;
 
-export const fixturesRoot = path.join(__dirname, "__fixtures__");
+export const fixturesRoot = path.resolve(__dirname, "../__fixtures__");
 
 /**
  * Create a temp directory, optionally containing the fixture files from `fixtureName`,
@@ -52,7 +48,7 @@ export function setupFixture(
     /** Whether to set up a git repo */
     git?: boolean;
   }
-) {
+): string {
   const useGit = !!options?.git;
 
   let fixturePath: string | undefined;
@@ -66,11 +62,11 @@ export function setupFixture(
 
   if (!tempRoot) {
     // Create a shared root temp directory for fixture files
-    tempRoot = tmp.dirSync({ unsafeCleanup: true }); // clean up even if files are left
+    tempRoot = createTempDir({ prefix: "ws-tools-" });
   }
 
   // Make the directory
-  const cwd = path.join(tempRoot.name, String(tempNumber++), fixturePath ? path.basename(fixturePath) : "");
+  const cwd = path.join(tempRoot, String(tempNumber++), fixturePath ? path.basename(fixturePath) : "");
 
   fs.mkdirpSync(cwd);
 
@@ -97,6 +93,7 @@ export function setupFixture(
     const lernaManagerMatch = fixtureName?.match(/^monorepo-basic-lerna-(\w+)/);
     if (lernaManagerMatch) {
       // Make a lerna.json with the appropriate npmClient
+      // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
       const lernaBase = require(path.join(fixturesRoot, "lerna.base.json"));
       fs.writeFileSync(path.join(cwd, "lerna.json"), JSON.stringify({ ...lernaBase, npmClient: lernaManagerMatch[1] }));
     }
@@ -117,14 +114,12 @@ export function setupFixture(
  * `tmp` is not always reliable about cleanup even with appropriate options, so it's recommended to
  * call this function in `afterAll`.
  */
-export function cleanupFixtures() {
-  if (tempRoot) {
-    tempRoot.removeCallback();
-    tempRoot = undefined;
-  }
+export function cleanupFixtures(): void {
+  tempRoot && removeTempDir(tempRoot);
+  tempRoot = undefined;
 }
 
-export function setupPackageJson(cwd: string, packageJson: Record<string, any> = {}) {
+export function setupPackageJson(cwd: string, packageJson: Record<string, any> = {}): void {
   const pkgJsonPath = path.join(cwd, "package.json");
   let oldPackageJson: Record<string, any> | undefined;
   if (fs.existsSync(pkgJsonPath)) {
@@ -137,7 +132,7 @@ export function setupPackageJson(cwd: string, packageJson: Record<string, any> =
  * Create a separate local git repo and configure it as a remote for `cwd`.
  * @returns The path to the remote repo directory.
  */
-export function setupLocalRemote(params: { cwd: string; remoteName: string; fixtureName?: TestFixtureName }) {
+export function setupLocalRemote(params: { cwd: string; remoteName: string; fixtureName?: TestFixtureName }): string {
   const { cwd, remoteName, fixtureName } = params;
 
   // Create a separate repo and configure it as a remote
@@ -165,7 +160,7 @@ export function setupLocalRemote(params: { cwd: string; remoteName: string; fixt
  * Very basic git wrapper that throws on error.
  * (Can't use the helper methods from `workspace-tools` to avoid a circular dependency.)
  */
-function basicGit(args: string[], options: { cwd: string } & SpawnSyncOptions) {
+function basicGit(args: string[], options: { cwd: string } & SpawnSyncOptions): void {
   const result = spawnSync("git", args, options);
   if (result.status !== 0) {
     const stdout = result.stdout?.toString().trim();

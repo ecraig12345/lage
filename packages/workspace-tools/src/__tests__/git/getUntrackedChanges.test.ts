@@ -1,9 +1,9 @@
-import { cleanupFixtures, setupFixture } from "@ws-tools/scripts/jest/setupFixture";
+import { cleanupFixtures, setupFixture } from "../setupFixture.js";
 import fs from "fs";
 import path from "path";
-import { git as _git, type GitOptions } from "../../git/git";
-import { getUntrackedChanges } from "../../git/gitUtilities";
-import type { GitCommonOptions } from "../../git/types";
+import { git as _git, type GitOptions } from "../../git/git.js";
+import { getUntrackedChanges } from "../../git/gitUtilities.js";
+import type { GitCommonOptions } from "../../git/types.js";
 
 /** Call git helper but throw on error by default */
 const git = (args: string[], opts: GitOptions) => _git(args, { throwOnError: true, ...opts });

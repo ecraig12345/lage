@@ -1,6 +1,6 @@
-import { cleanupFixtures, setupFixture } from "@ws-tools/scripts/jest/setupFixture";
-import { git as _git, type GitOptions } from "../../git/git";
-import { parseRemoteBranch } from "../../git/gitUtilities";
+import { cleanupFixtures, setupFixture } from "../setupFixture.js";
+import { git as _git, type GitOptions } from "../../git/git.js";
+import { parseRemoteBranch } from "../../git/gitUtilities.js";
 
 /** Call git helper but throw on error by default */
 const git = (args: string[], opts: GitOptions) => _git(args, { throwOnError: true, ...opts });

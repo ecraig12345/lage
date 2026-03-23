@@ -1,8 +1,11 @@
-import { cleanupFixtures, setupFixture, type TestFixtureName } from "@ws-tools/scripts/jest/setupFixture";
+import { cleanupFixtures, setupFixture, type TestFixtureName } from "../setupFixture.js";
 import fs from "fs";
 import path from "path";
-import { getWorkspaceManagerAndRoot, managerFiles } from "../../workspaces/implementations/getWorkspaceManagerAndRoot";
-import type { WorkspaceManager } from "../../types/WorkspaceManager";
+import {
+  getWorkspaceManagerAndRoot,
+  managerFiles,
+} from "../../workspaces/implementations/getWorkspaceManagerAndRoot.js";
+import type { WorkspaceManager } from "../../types/WorkspaceManager.js";
 
 describe("getWorkspaceManagerAndRoot", () => {
   afterAll(() => {

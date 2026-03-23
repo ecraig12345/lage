@@ -1,7 +1,7 @@
-import { cleanupFixtures, setupFixture } from "@ws-tools/scripts/jest/setupFixture";
-import { getUserEmail, getDefaultBranch } from "../../git/gitUtilities";
-import { git as _git, type GitOptions } from "../../git/git";
-import { getConfigValue } from "../../git/config";
+import { cleanupFixtures, setupFixture } from "../setupFixture.js";
+import { getUserEmail, getDefaultBranch } from "../../git/gitUtilities.js";
+import { git as _git, type GitOptions } from "../../git/git.js";
+import { getConfigValue } from "../../git/config.js";
 
 /** Call git helper but throw on error by default */
 const git = (args: string[], opts: GitOptions) => _git(args, { throwOnError: true, ...opts });

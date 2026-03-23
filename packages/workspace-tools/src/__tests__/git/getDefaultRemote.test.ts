@@ -1,7 +1,7 @@
 import os from "os";
-import { cleanupFixtures, setupFixture, setupPackageJson } from "@ws-tools/scripts/jest/setupFixture";
-import { gitFailFast } from "../../git/git";
-import { getDefaultRemote } from "../../git/getDefaultRemote";
+import { cleanupFixtures, setupFixture, setupPackageJson } from "../setupFixture.js";
+import { gitFailFast } from "../../git/git.js";
+import { getDefaultRemote } from "../../git/getDefaultRemote.js";
 
 describe("getDefaultRemote", () => {
   let cwd: string;

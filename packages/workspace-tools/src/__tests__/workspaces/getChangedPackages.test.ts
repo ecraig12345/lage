@@ -1,8 +1,8 @@
 import path from "path";
 import fs from "fs";
-import { cleanupFixtures, setupFixture, setupLocalRemote } from "@ws-tools/scripts/jest/setupFixture";
-import { stageAndCommit, git as _git, type GitOptions } from "../../git/index";
-import { getChangedPackages, getChangedPackagesBetweenRefs } from "../../workspaces/getChangedPackages";
+import { cleanupFixtures, setupFixture, setupLocalRemote } from "../setupFixture.js";
+import { stageAndCommit, git as _git, type GitOptions } from "../../git/index.js";
+import { getChangedPackages, getChangedPackagesBetweenRefs } from "../../workspaces/getChangedPackages.js";
 
 /** Call git helper but throw on error by default */
 const git = (args: string[], opts: GitOptions) => _git(args, { throwOnError: true, ...opts });

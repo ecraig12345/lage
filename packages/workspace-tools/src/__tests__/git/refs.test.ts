@@ -1,17 +1,17 @@
 //
 // These tests cover ref-related helpers.
 //
-import { cleanupFixtures, setupFixture, setupLocalRemote } from "@ws-tools/scripts/jest/setupFixture";
+import { cleanupFixtures, setupFixture, setupLocalRemote } from "../setupFixture.js";
 import fs from "fs";
 import path from "path";
-import { git as _git, type GitOptions } from "../../git/git";
+import { git as _git, type GitOptions } from "../../git/git.js";
 import {
   getBranchName,
   getCurrentHash,
   getFullBranchRef,
   getRemoteBranch,
   getShortBranchName,
-} from "../../git/gitUtilities";
+} from "../../git/gitUtilities.js";
 
 /** Call git helper but throw on error by default */
 const git = (args: string[], opts: GitOptions) => _git(args, { throwOnError: true, ...opts });

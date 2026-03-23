@@ -1,8 +1,8 @@
 import fs from "fs-extra";
 import path from "path";
-import { setupFixture } from "@ws-tools/scripts/jest/setupFixture";
-import { parseLockFile } from "../../lockfile/parseLockFile";
-import { getPackageInfo } from "../../getPackageInfo";
+import { setupFixture } from "../setupFixture.js";
+import { parseLockFile } from "../../lockfile/parseLockFile.js";
+import { getPackageInfo } from "../../getPackageInfo.js";
 
 const ERROR_MESSAGES = {
   NO_LOCK: "You do not have yarn.lock, pnpm-lock.yaml or package-lock.json. Please use one of these package managers.",

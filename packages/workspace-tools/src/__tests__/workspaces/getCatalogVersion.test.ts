@@ -1,5 +1,5 @@
-import type { Catalogs } from "../../types/Catalogs";
-import { getCatalogVersion } from "../../workspaces/getCatalogVersion";
+import type { Catalogs } from "../../types/Catalogs.js";
+import { getCatalogVersion } from "../../workspaces/getCatalogVersion.js";
 
 // Samples from https://yarnpkg.com/features/catalogs
 const defaultCatalogs: Required<Pick<Catalogs, "default">> = {

@@ -1,5 +1,5 @@
-import { cleanupFixtures, setupFixture } from "@ws-tools/scripts/jest/setupFixture";
-import { getBranchChanges } from "../../git/gitUtilities";
+import { cleanupFixtures, setupFixture } from "../setupFixture.js";
+import { getBranchChanges } from "../../git/gitUtilities.js";
 
 // Most of the logic for this is tested in getChangesBetweenRefs.test.ts
 describe("getBranchChanges", () => {

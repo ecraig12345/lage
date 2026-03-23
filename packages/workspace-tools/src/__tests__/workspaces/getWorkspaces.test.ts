@@ -1,7 +1,7 @@
-import { cleanupFixtures, setupFixture, type TestFixtureName } from "@ws-tools/scripts/jest/setupFixture";
+import { cleanupFixtures, setupFixture, type TestFixtureName } from "../setupFixture.js";
 import path from "path";
-import type { WorkspaceManager } from "../../types/WorkspaceManager";
-import { getWorkspaceInfos, getWorkspaceInfosAsync } from "../../workspaces/getWorkspaceInfos";
+import type { WorkspaceManager } from "../../types/WorkspaceManager.js";
+import { getWorkspaceInfos, getWorkspaceInfosAsync } from "../../workspaces/getWorkspaceInfos.js";
 import { getWorkspaceManagerAndRoot } from "../../workspaces/implementations";
 
 describe("getWorkspaceInfos", () => {
