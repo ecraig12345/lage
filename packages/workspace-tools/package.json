@@ -4,7 +4,8 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/microsoft/workspace-tools"
+    "url": "https://github.com/microsoft/lage",
+    "directory": "packages/workspace-tools"
   },
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -13,10 +14,12 @@
     "lib/!(__*)/**/*"
   ],
   "scripts": {
-    "api": "ws-tools-scripts api",
-    "build": "tsc --pretty",
-    "start": "tsc -w --preserveWatchOutput",
-    "test": "jest"
+    "api": "monorepo-scripts api",
+    "build": "yarn types && yarn transpile",
+    "transpile": "monorepo-scripts transpile",
+    "types": "yarn run -T tsc",
+    "test": "yarn run -T jest",
+    "lint": "monorepo-scripts lint"
   },
   "dependencies": {
     "@yarnpkg/lockfile": "^1.1.0",
@@ -28,6 +31,11 @@
     "micromatch": "^4.0.0"
   },
   "devDependencies": {
-    "@ws-tools/scripts": "*"
+    "@lage-run/monorepo-scripts": "workspace:^",
+    "@types/git-url-parse": "^16.0.0",
+    "@types/jju": "^1.4.2",
+    "@types/js-yaml": "^4.0.5",
+    "@types/micromatch": "^4.0.2",
+    "@types/yarnpkg__lockfile": "^1.1.5"
   }
 }

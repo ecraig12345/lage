@@ -5,7 +5,7 @@ import gitUrlParse from "git-url-parse";
  * including special handling for the many ADO/VSO URL formats.
  *
  * Examples:
- * - returns `microsoft/workspace-tools` for `https://github.com/microsoft/workspace-tools.git`
+ * - returns `microsoft/lage` for `https://github.com/microsoft/lage.git`
  * - returns `foo/bar/some-repo` for `https://dev.azure.com/foo/bar/_git/some-repo`
  */
 export function getRepositoryName(url: string) {

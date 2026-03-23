@@ -5,16 +5,16 @@ import { getRepositoryName } from "../../git/getRepositoryName";
 describe("getRepositoryName", () => {
   describe("github", () => {
     it("works with HTTPS URLs", () => {
-      expect(getRepositoryName("https://github.com/microsoft/workspace-tools")).toBe("microsoft/workspace-tools");
+      expect(getRepositoryName("https://github.com/microsoft/lage")).toBe("microsoft/lage");
     });
     it("works with HTTPS URLs with .git", () => {
-      expect(getRepositoryName("https://github.com/microsoft/workspace-tools.git")).toBe("microsoft/workspace-tools");
+      expect(getRepositoryName("https://github.com/microsoft/lage.git")).toBe("microsoft/lage");
     });
     it("works with SSH URLs", () => {
-      expect(getRepositoryName("git@github.com:microsoft/workspace-tools.git")).toBe("microsoft/workspace-tools");
+      expect(getRepositoryName("git@github.com:microsoft/lage.git")).toBe("microsoft/lage");
     });
     it("works with git:// URLs", () => {
-      expect(getRepositoryName("git://github.com/microsoft/workspace-tools")).toBe("microsoft/workspace-tools");
+      expect(getRepositoryName("git://github.com/microsoft/lage")).toBe("microsoft/lage");
     });
   });
 

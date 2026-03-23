@@ -28,7 +28,7 @@ Log additional output from certain functions.
 
 ## Breaking changes
 
-For details of changes in all versions, see the [changelog](https://github.com/microsoft/workspace-tools/blob/main/packages/workspace-tools/CHANGELOG.md). This only lists the most significant breaking API changes.
+For details of changes in all versions, see the [changelog](https://github.com/microsoft/lage/blob/main/packages/workspace-tools/CHANGELOG.md). This only lists the most significant breaking API changes.
 
 ### 0.41.0
 

@@ -61,9 +61,9 @@ describe("getDefaultRemote", () => {
     cwd = setupFixture(undefined, { git: true });
     setupPackageJson(cwd);
 
-    gitRemote("add", "first", "https://github.com/kenotron/workspace-tools.git");
-    gitRemote("add", "origin", "https://github.com/ecraig12345/workspace-tools.git");
-    gitRemote("add", "upstream", "https://github.com/microsoft/workspace-tools.git");
+    gitRemote("add", "first", "https://github.com/kenotron/lage.git");
+    gitRemote("add", "origin", "https://github.com/ecraig12345/lage.git");
+    gitRemote("add", "upstream", "https://github.com/microsoft/lage.git");
 
     // permissive
     expect(getDefaultRemote({ cwd, verbose: true })).toBe("upstream");
@@ -80,8 +80,8 @@ describe("getDefaultRemote", () => {
     cwd = setupFixture(undefined, { git: true });
     setupPackageJson(cwd);
 
-    gitRemote("add", "first", "https://github.com/kenotron/workspace-tools.git");
-    gitRemote("add", "origin", "https://github.com/microsoft/workspace-tools.git");
+    gitRemote("add", "first", "https://github.com/kenotron/lage.git");
+    gitRemote("add", "origin", "https://github.com/microsoft/lage.git");
 
     // permissive
     expect(getDefaultRemote({ cwd, verbose: true })).toBe("origin");
@@ -98,8 +98,8 @@ describe("getDefaultRemote", () => {
     cwd = setupFixture(undefined, { git: true });
     setupPackageJson(cwd);
 
-    gitRemote("add", "first", "https://github.com/kenotron/workspace-tools.git");
-    gitRemote("add", "second", "https://github.com/microsoft/workspace-tools.git");
+    gitRemote("add", "first", "https://github.com/kenotron/lage.git");
+    gitRemote("add", "second", "https://github.com/microsoft/lage.git");
 
     // permissive
     expect(getDefaultRemote({ cwd, verbose: true })).toBe("first");
@@ -114,9 +114,9 @@ describe("getDefaultRemote", () => {
 
   it("finds remote matching repository string", () => {
     cwd = setupFixture(undefined, { git: true });
-    setupPackageJson(cwd, { repository: "https://github.com/microsoft/workspace-tools.git" });
-    gitRemote("add", "first", "https://github.com/kenotron/workspace-tools.git");
-    gitRemote("add", "second", "https://github.com/microsoft/workspace-tools.git");
+    setupPackageJson(cwd, { repository: "https://github.com/microsoft/lage.git" });
+    gitRemote("add", "first", "https://github.com/kenotron/lage.git");
+    gitRemote("add", "second", "https://github.com/microsoft/lage.git");
 
     expect(getDefaultRemote({ cwd })).toBe("second");
     expect(getDefaultRemote({ cwd, strict: true })).toBe("second");
@@ -124,9 +124,9 @@ describe("getDefaultRemote", () => {
 
   it("finds remote matching repository object", () => {
     cwd = setupFixture(undefined, { git: true });
-    setupPackageJson(cwd, { repository: { url: "https://github.com/microsoft/workspace-tools.git", type: "git" } });
-    gitRemote("add", "first", "https://github.com/kenotron/workspace-tools.git");
-    gitRemote("add", "second", "https://github.com/microsoft/workspace-tools.git");
+    setupPackageJson(cwd, { repository: { url: "https://github.com/microsoft/lage.git", type: "git" } });
+    gitRemote("add", "first", "https://github.com/kenotron/lage.git");
+    gitRemote("add", "second", "https://github.com/microsoft/lage.git");
 
     expect(getDefaultRemote({ cwd })).toBe("second");
     expect(getDefaultRemote({ cwd, strict: true })).toBe("second");
@@ -149,8 +149,8 @@ describe("getDefaultRemote", () => {
   it("handles remotes set but none matching repository", () => {
     cwd = setupFixture(undefined, { git: true });
     setupPackageJson(cwd, { repository: { url: "https://github.com/ecraig12345/some-repo", type: "git" } });
-    gitRemote("add", "first", "https://github.com/kenotron/workspace-tools.git");
-    gitRemote("add", "second", "https://github.com/microsoft/workspace-tools.git");
+    gitRemote("add", "first", "https://github.com/kenotron/lage.git");
+    gitRemote("add", "second", "https://github.com/microsoft/lage.git");
 
     // permissive: defaults to first remote
     expect(getDefaultRemote({ cwd, verbose: true })).toBe("first");
@@ -162,25 +162,25 @@ describe("getDefaultRemote", () => {
 
   it("works with SSH remote format", () => {
     cwd = setupFixture(undefined, { git: true });
-    setupPackageJson(cwd, { repository: { url: "https://github.com/microsoft/workspace-tools", type: "git" } });
-    gitRemote("add", "first", "git@github.com:kenotron/workspace-tools.git");
-    gitRemote("add", "second", "git@github.com:microsoft/workspace-tools.git");
+    setupPackageJson(cwd, { repository: { url: "https://github.com/microsoft/lage", type: "git" } });
+    gitRemote("add", "first", "git@github.com:kenotron/lage.git");
+    gitRemote("add", "second", "git@github.com:microsoft/lage.git");
     expect(getDefaultRemote({ cwd })).toBe("second");
     expect(getDefaultRemote({ cwd, strict: true })).toBe("second");
   });
 
   it("works with shorthand repository format", () => {
     cwd = setupFixture(undefined, { git: true });
-    setupPackageJson(cwd, { repository: { url: "github:microsoft/workspace-tools", type: "git" } });
+    setupPackageJson(cwd, { repository: { url: "github:microsoft/lage", type: "git" } });
 
     // HTTPS
-    gitRemote("add", "first", "https://github.com/kenotron/workspace-tools.git");
-    gitRemote("add", "second", "https://github.com/microsoft/workspace-tools.git");
+    gitRemote("add", "first", "https://github.com/kenotron/lage.git");
+    gitRemote("add", "second", "https://github.com/microsoft/lage.git");
     expect(getDefaultRemote({ cwd })).toBe("second");
     expect(getDefaultRemote({ cwd, strict: true })).toBe("second");
 
     // SSH
-    gitRemote("set-url", "second", "git@github.com:microsoft/workspace-tools.git");
+    gitRemote("set-url", "second", "git@github.com:microsoft/lage.git");
     expect(getDefaultRemote({ cwd })).toBe("second");
     expect(getDefaultRemote({ cwd, strict: true })).toBe("second");
   });

@@ -2,10 +2,7 @@
   "name": "@lage-run/monorepo-scripts",
   "version": "1.0.0",
   "private": true,
-  "bin": {
-    "monorepo-scripts": "bin/monorepo-scripts.js",
-    "ws-tools-scripts": "bin/ws-tools-scripts.js"
-  },
+  "bin": "bin/monorepo-scripts.js",
   "scripts": {
     "build": "yarn types",
     "lint": "monorepo-scripts lint",
@@ -25,7 +22,7 @@
     "eslint-plugin-file-extension-in-import-ts": "^1.0.1",
     "jest": "^30.0.0",
     "typescript": "~5.9.3",
-    "workspace-tools": "0.41.0",
+    "workspace-tools": "workspace:^",
     "zimmerframe": "^1.1.4"
   }
 }

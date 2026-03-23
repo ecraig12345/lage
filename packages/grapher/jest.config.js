@@ -1,1 +1,1 @@
-module.exports = require("@ws-tools/scripts/jest/jest.config");
+module.exports = require("@lage-run/monorepo-scripts/config/jest.config.js");
