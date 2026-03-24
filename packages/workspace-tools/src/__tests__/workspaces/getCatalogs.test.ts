@@ -33,6 +33,7 @@ const namedCatalogs: Required<Catalogs> = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
 const lernaJson = require(path.join(fixturesRoot, "lerna.base.json"));
 
 describe("getCatalogs", () => {

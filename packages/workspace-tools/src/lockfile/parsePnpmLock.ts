@@ -1,5 +1,5 @@
-import { nameAtVersion } from "./nameAtVersion";
-import { LockDependency, ParsedLock, PnpmLockFile } from "./types";
+import { nameAtVersion } from "./nameAtVersion.js";
+import { type LockDependency, type ParsedLock, type PnpmLockFile } from "./types.js";
 
 export function parsePnpmLock(yaml: PnpmLockFile): ParsedLock {
   const object: {

@@ -1,4 +1,4 @@
-import type { LockDependency, ParsedLock, BerryLockFile } from "./types";
+import type { LockDependency, ParsedLock, BerryLockFile } from "./types.js";
 
 /**
  * Convert a Yarn Berry (v2+) YAML lock file contents into a standardized format.

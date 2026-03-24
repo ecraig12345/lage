@@ -1,5 +1,5 @@
-import { getTransitiveConsumers, getTransitiveProviders } from "./transitiveDeps";
-import { getPackageDependencies } from "../graph/getPackageDependencies";
+import { getTransitiveConsumers, getTransitiveProviders } from "./transitiveDeps.js";
+import { getPackageDependencies } from "../graph/getPackageDependencies.js";
 
 // Some deprecated functions below for backwards compatibility
 

@@ -1,6 +1,6 @@
-import { logVerboseWarning } from "../logging";
+import { logVerboseWarning } from "../logging.js";
 import { getWorkspaceManagerAndRoot } from "./implementations";
-import type { WorkspaceManager } from "../types/WorkspaceManager";
+import type { WorkspaceManager } from "../types/WorkspaceManager.js";
 
 /**
  * Get the root directory of a monorepo, defined as the directory where the workspace/monorepo manager

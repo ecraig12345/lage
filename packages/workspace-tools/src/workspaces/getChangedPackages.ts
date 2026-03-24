@@ -5,8 +5,8 @@ import {
   getUnstagedChanges,
   getUntrackedChanges,
 } from "../git";
-import { GitCommonOptions, type GetChangesBetweenRefsOptions } from "../git/types";
-import { getPackagesByFiles } from "./getPackagesByFiles";
+import { type GitCommonOptions, type GetChangesBetweenRefsOptions } from "../git/types.js";
+import { getPackagesByFiles } from "./getPackagesByFiles.js";
 
 type GetChangedPackagesOptions = GitCommonOptions & {
   /** The `merge-base` branch (must have been fetched locally) */
@@ -131,7 +131,7 @@ export function getChangedPackages(
   target?: string,
   ignoreGlobs?: string[],
   returnAllPackagesOnNoMatch?: boolean
-) {
+): string[] {
   let gitOptions: GitCommonOptions;
   if (typeof cwdOrOptions === "string") {
     gitOptions = { cwd: cwdOrOptions };

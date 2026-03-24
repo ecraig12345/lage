@@ -1,7 +1,7 @@
 import path from "path";
-import { isCachingEnabled } from "../../isCachingEnabled";
-import { searchUp } from "../../paths";
-import { WorkspaceManager } from "../../types/WorkspaceManager";
+import { isCachingEnabled } from "../../isCachingEnabled.js";
+import { searchUp } from "../../paths.js";
+import { type WorkspaceManager } from "../../types/WorkspaceManager.js";
 
 export interface WorkspaceManagerAndRoot {
   /** Workspace/monorepo manager name */

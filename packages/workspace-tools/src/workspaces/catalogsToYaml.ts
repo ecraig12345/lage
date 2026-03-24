@@ -1,4 +1,4 @@
-import type { Catalogs } from "../types/Catalogs";
+import type { Catalogs } from "../types/Catalogs.js";
 
 /**
  * Convert catalogs to the yaml format used by yarn v4 and pnpm.

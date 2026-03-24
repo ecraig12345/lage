@@ -8,7 +8,7 @@ import gitUrlParse from "git-url-parse";
  * - returns `microsoft/lage` for `https://github.com/microsoft/lage.git`
  * - returns `foo/bar/some-repo` for `https://dev.azure.com/foo/bar/_git/some-repo`
  */
-export function getRepositoryName(url: string) {
+export function getRepositoryName(url: string): string {
   try {
     // Mostly use this standard library, but fix some VSO/ADO-specific quirks to account for the
     // fact that all of the following URLs should be considered to point to the same repo:

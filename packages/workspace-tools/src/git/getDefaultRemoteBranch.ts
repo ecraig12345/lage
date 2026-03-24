@@ -1,6 +1,6 @@
-import { getDefaultRemote, GetDefaultRemoteOptions } from "./getDefaultRemote";
-import { git } from "./git";
-import { getDefaultBranch } from "./gitUtilities";
+import { getDefaultRemote, type GetDefaultRemoteOptions } from "./getDefaultRemote.js";
+import { git } from "./git.js";
+import { getDefaultBranch } from "./gitUtilities.js";
 
 export type GetDefaultRemoteBranchOptions = GetDefaultRemoteOptions & {
   /** Name of branch to use. If undefined, uses the default branch name (falling back to `master`). */
@@ -20,7 +20,7 @@ export function getDefaultRemoteBranch(options: GetDefaultRemoteBranchOptions): 
  * @deprecated Use the object param version
  */
 export function getDefaultRemoteBranch(...args: string[]): string;
-export function getDefaultRemoteBranch(...args: (string | GetDefaultRemoteBranchOptions)[]) {
+export function getDefaultRemoteBranch(...args: (string | GetDefaultRemoteBranchOptions)[]): string {
   const [branchOrOptions, argsCwd] = args;
   const options =
     typeof branchOrOptions === "string"

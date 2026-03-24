@@ -1,4 +1,4 @@
-import type { Catalogs } from "../../types/Catalogs";
+import type { Catalogs } from "../../types/Catalogs.js";
 
 /**
  * Manager-specific implementations used internally by other workspace/monorepo utilities.

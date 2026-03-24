@@ -1,5 +1,5 @@
-import { getPackageDependencies, PackageDependenciesOptions } from "./getPackageDependencies";
-import type { PackageInfos } from "../types/PackageInfo";
+import { getPackageDependencies, type PackageDependenciesOptions } from "./getPackageDependencies.js";
+import type { PackageInfos } from "../types/PackageInfo.js";
 
 export interface DependencyMap {
   /** Mapping from package names to their dependencies */

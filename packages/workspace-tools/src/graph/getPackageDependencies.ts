@@ -1,4 +1,4 @@
-import { PackageInfo } from "../types/PackageInfo";
+import { type PackageInfo } from "../types/PackageInfo.js";
 
 export interface PackageDependenciesOptions {
   withDevDependencies?: boolean;

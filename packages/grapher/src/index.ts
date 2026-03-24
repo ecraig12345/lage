@@ -1,9 +1,10 @@
 import commander from "commander";
-import { depsCommand } from "./commands/depsCommand";
+import { depsCommand } from "./commands/depsCommand.js";
 
-async function main() {
+function main(): void {
   try {
     const program = new commander.Command();
+    // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
     program.version(require("../package.json").version);
     program
       .command("deps")

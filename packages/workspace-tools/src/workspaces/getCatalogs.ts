@@ -1,7 +1,7 @@
-import type { Catalogs } from "../types/Catalogs";
-import type { WorkspaceManager } from "../types/WorkspaceManager";
+import type { Catalogs } from "../types/Catalogs.js";
+import type { WorkspaceManager } from "../types/WorkspaceManager.js";
 import { getWorkspaceUtilities } from "./implementations";
-import { wrapWorkspaceUtility } from "./wrapWorkspaceUtility";
+import { wrapWorkspaceUtility } from "./wrapWorkspaceUtility.js";
 
 /**
  * Get version catalogs, if supported by the manager (only pnpm and yarn v4 as of writing).

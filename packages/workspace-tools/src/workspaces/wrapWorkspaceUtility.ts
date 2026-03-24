@@ -1,5 +1,5 @@
-import { logVerboseWarning } from "../logging";
-import type { WorkspaceManager } from "../types/WorkspaceManager";
+import { logVerboseWarning } from "../logging.js";
+import type { WorkspaceManager } from "../types/WorkspaceManager.js";
 import { getWorkspaceManagerAndRoot, type WorkspaceManagerAndRoot } from "./implementations";
 
 interface WrappedUtilityParams {

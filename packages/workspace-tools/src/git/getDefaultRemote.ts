@@ -1,9 +1,9 @@
 import fs from "fs";
 import path from "path";
-import { findGitRoot } from "../paths";
-import { PackageInfo } from "../types/PackageInfo";
-import { getRepositoryName } from "./getRepositoryName";
-import { git } from "./git";
+import { findGitRoot } from "../paths.js";
+import { type PackageInfo } from "../types/PackageInfo.js";
+import { getRepositoryName } from "./getRepositoryName.js";
+import { git } from "./git.js";
 
 export type GetDefaultRemoteOptions = {
   /** Get repository info relative to this directory. */
@@ -34,7 +34,7 @@ export type GetDefaultRemoteOptions = {
 export function getDefaultRemote(options: GetDefaultRemoteOptions): string;
 /** @deprecated Use the object param version */
 export function getDefaultRemote(cwd: string): string;
-export function getDefaultRemote(cwdOrOptions: string | GetDefaultRemoteOptions) {
+export function getDefaultRemote(cwdOrOptions: string | GetDefaultRemoteOptions): string {
   const options = typeof cwdOrOptions === "string" ? { cwd: cwdOrOptions } : cwdOrOptions;
   const { cwd, strict, verbose } = options;
 

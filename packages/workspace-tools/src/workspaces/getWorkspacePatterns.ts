@@ -1,6 +1,6 @@
-import type { WorkspaceManager } from "../types/WorkspaceManager";
+import type { WorkspaceManager } from "../types/WorkspaceManager.js";
 import { getWorkspaceUtilities } from "./implementations";
-import { wrapWorkspaceUtility } from "./wrapWorkspaceUtility";
+import { wrapWorkspaceUtility } from "./wrapWorkspaceUtility.js";
 
 /**
  * Get the original glob patterns from the manager's workspaces config.

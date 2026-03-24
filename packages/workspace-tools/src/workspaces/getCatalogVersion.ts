@@ -1,4 +1,4 @@
-import type { Catalogs } from "../types/Catalogs";
+import type { Catalogs } from "../types/Catalogs.js";
 
 const catalogPrefix = "catalog:";
 

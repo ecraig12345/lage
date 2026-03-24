@@ -1,8 +1,8 @@
 import fs from "fs";
 import jju from "jju";
 import path from "path";
-import { managerFiles } from "./getWorkspaceManagerAndRoot";
-import type { WorkspaceUtilities } from "./WorkspaceUtilities";
+import { managerFiles } from "./getWorkspaceManagerAndRoot.js";
+import type { WorkspaceUtilities } from "./WorkspaceUtilities.js";
 
 export const rushUtilities: WorkspaceUtilities = {
   getWorkspacePatterns: ({ root }) => {

@@ -1,6 +1,6 @@
 import path from "path";
-import { getWorkspacePackagePaths, getWorkspacePackagePathsAsync } from "./getWorkspacePackagePaths";
-import { isCachingEnabled } from "../isCachingEnabled";
+import { getWorkspacePackagePaths, getWorkspacePackagePathsAsync } from "./getWorkspacePackagePaths.js";
+import { isCachingEnabled } from "../isCachingEnabled.js";
 
 const cache = new Map<string, string[] | undefined>();
 
@@ -22,7 +22,7 @@ export function getAllPackageJsonFiles(cwd: string): string[] | undefined {
   return packageJsonFiles;
 }
 
-export function _resetPackageJsonFilesCache() {
+export function _resetPackageJsonFilesCache(): void {
   cache.clear();
 }
 

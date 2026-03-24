@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
-import type { PackageInfo } from "../../types/PackageInfo";
-import type { WorkspaceUtilities } from "./WorkspaceUtilities";
+import type { PackageInfo } from "../../types/PackageInfo.js";
+import type { WorkspaceUtilities } from "./WorkspaceUtilities.js";
 
 type PackageJsonWithWorkspaces = Pick<PackageInfo, "workspaces">;
 

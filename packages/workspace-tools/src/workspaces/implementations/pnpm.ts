@@ -1,8 +1,8 @@
 import path from "path";
-import { readYaml } from "../../lockfile/readYaml";
-import type { Catalog, NamedCatalogs } from "../../types/Catalogs";
-import { managerFiles } from "./getWorkspaceManagerAndRoot";
-import type { WorkspaceUtilities } from "./WorkspaceUtilities";
+import { readYaml } from "../../lockfile/readYaml.js";
+import type { Catalog, NamedCatalogs } from "../../types/Catalogs.js";
+import { managerFiles } from "./getWorkspaceManagerAndRoot.js";
+import type { WorkspaceUtilities } from "./WorkspaceUtilities.js";
 
 type PnpmWorkspaceYaml = {
   packages: string[];

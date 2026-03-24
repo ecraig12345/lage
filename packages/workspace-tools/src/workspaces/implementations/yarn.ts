@@ -1,10 +1,10 @@
 import fs from "fs";
 import path from "path";
-import { getPackageInfo } from "../../getPackageInfo";
-import type { Catalog, NamedCatalogs } from "../../types/Catalogs";
-import { readYaml } from "../../lockfile/readYaml";
-import type { WorkspaceUtilities } from "./WorkspaceUtilities";
-import { getPackageJsonWorkspacePatterns } from "./getPackageJsonWorkspacePatterns";
+import { getPackageInfo } from "../../getPackageInfo.js";
+import type { Catalog, NamedCatalogs } from "../../types/Catalogs.js";
+import { readYaml } from "../../lockfile/readYaml.js";
+import type { WorkspaceUtilities } from "./WorkspaceUtilities.js";
+import { getPackageJsonWorkspacePatterns } from "./getPackageJsonWorkspacePatterns.js";
 
 export const yarnUtilities: WorkspaceUtilities = {
   getWorkspacePatterns: getPackageJsonWorkspacePatterns,

@@ -1,4 +1,4 @@
-import { PackageInfo } from "./PackageInfo";
+import { type PackageInfo } from "./PackageInfo.js";
 
 /**
  * Info about a single package ("workspace" in npm/yarn/pnpm terms) within a monorepo.

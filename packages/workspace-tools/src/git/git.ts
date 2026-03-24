@@ -2,8 +2,8 @@
 // Basic git wrappers
 //
 
-import { spawnSync, SpawnSyncOptions, SpawnSyncReturns } from "child_process";
-import { GitCommonOptions } from "./types";
+import { spawnSync, type SpawnSyncOptions, type SpawnSyncReturns } from "child_process";
+import { type GitCommonOptions } from "./types.js";
 
 export type GitOptions = Omit<SpawnSyncOptions, "cwd"> &
   GitCommonOptions & {
@@ -53,18 +53,18 @@ let observing: boolean;
  * Adds an observer for the git operations, e.g. for testing
  * @returns a function to remove the observer
  */
-export function addGitObserver(observer: GitObserver) {
+export function addGitObserver(observer: GitObserver): () => void {
   observers.push(observer);
   return () => removeGitObserver(observer);
 }
 
 /** Clear all git observers */
-export function clearGitObservers() {
+export function clearGitObservers(): void {
   observers.splice(0, observers.length);
 }
 
 /** Remove a git observer */
-function removeGitObserver(observer: GitObserver) {
+function removeGitObserver(observer: GitObserver): void {
   const index = observers.indexOf(observer);
   if (index > -1) {
     observers.splice(index, 1);
@@ -134,7 +134,7 @@ export function git(args: string[], options?: GitOptions): GitProcessOutput {
  * The caller is responsible for validating the input.
  * `shell` will always be set to false.
  */
-export function gitFailFast(args: string[], options?: GitCommonOptions & { noExitCode?: boolean }) {
+export function gitFailFast(args: string[], options?: GitCommonOptions & { noExitCode?: boolean }): void {
   const gitResult = git(args, options);
   if (!gitResult.success) {
     if (!options?.noExitCode) {
@@ -158,7 +158,7 @@ export function gitFailFast(args: string[], options?: GitCommonOptions & { noExi
  * without stderr output.
  * @internal
  */
-export function processGitOutput(output: GitProcessOutput, options?: { excludeNodeModules?: boolean }) {
+export function processGitOutput(output: GitProcessOutput, options?: { excludeNodeModules?: boolean }): string[] {
   if (!output.success) {
     // If the intent was to throw on failure, `throwOnError` should have been set for the git command.
     return [];

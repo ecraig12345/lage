@@ -1,6 +1,6 @@
-import { PackageInfos } from "../types/PackageInfo";
-import { getPackageDependencies } from "../graph/getPackageDependencies";
-import { isCachingEnabled } from "../isCachingEnabled";
+import { type PackageInfos } from "../types/PackageInfo.js";
+import { getPackageDependencies } from "../graph/getPackageDependencies.js";
+import { isCachingEnabled } from "../isCachingEnabled.js";
 
 const graphCache = new Map<string, [string | null, string][]>();
 
@@ -48,7 +48,7 @@ function getPackageGraph(packages: PackageInfos, scope: string[] = []) {
   return edges;
 }
 
-export function getDependentMap(packages: PackageInfos) {
+export function getDependentMap(packages: PackageInfos): Map<string, Set<string>> {
   const graph = getPackageGraph(packages);
   const map = new Map<string, Set<string>>();
   for (const [from, to] of graph) {
@@ -69,7 +69,7 @@ export function getDependentMap(packages: PackageInfos) {
  * and their consumers (or what are the consequences of `a`)
  * @deprecated Do not use
  */
-export function getTransitiveConsumers(targets: string[], packages: PackageInfos, scope: string[] = []) {
+export function getTransitiveConsumers(targets: string[], packages: PackageInfos, scope: string[] = []): string[] {
   const graph = getPackageGraph(packages, scope);
   const pkgQueue: string[] = [...targets];
   const visited = new Set<string>();
@@ -97,7 +97,7 @@ export function getTransitiveConsumers(targets: string[], packages: PackageInfos
  *
  * @deprecated Do not use
  */
-export function getTransitiveProviders(targets: string[], packages: PackageInfos) {
+export function getTransitiveProviders(targets: string[], packages: PackageInfos): string[] {
   const graph = getPackageGraph(packages);
   const pkgQueue: string[] = [...targets];
   const visited = new Set<string>();

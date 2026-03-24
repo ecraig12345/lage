@@ -1,5 +1,5 @@
-import { nameAtVersion } from "./nameAtVersion";
-import { ParsedLock, NpmLockFile } from "./types";
+import { nameAtVersion } from "./nameAtVersion.js";
+import { type ParsedLock, type NpmLockFile } from "./types.js";
 
 export function parseNpmLock(lock: NpmLockFile): ParsedLock {
   // Re-format the dependencies object so that the key includes the version, similarly to yarn.lock.

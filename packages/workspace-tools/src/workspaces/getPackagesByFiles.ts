@@ -1,6 +1,6 @@
 import micromatch from "micromatch";
 import path from "path";
-import { getWorkspaceInfos } from "./getWorkspaceInfos";
+import { getWorkspaceInfos } from "./getWorkspaceInfos.js";
 
 interface GetPackagesByFilesOptions {
   /** Monorepo root directory */
@@ -51,9 +51,7 @@ export function getPackagesByFiles(
     const candidates = workspaces.filter((pkg) => file.startsWith(path.relative(root, pkg.path).replace(/\\/g, "/")));
 
     if (candidates.length) {
-      const found = candidates.reduce((found, item) => {
-        return found.path.length > item.path.length ? found : item;
-      }, candidates[0]);
+      const found = candidates.reduce((fnd, item) => (fnd.path.length > item.path.length ? fnd : item), candidates[0]);
       packages.add(found.name);
     } else if (returnAllPackagesOnNoMatch) {
       return workspaces.map((pkg) => pkg.name);

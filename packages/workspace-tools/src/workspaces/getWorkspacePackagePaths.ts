@@ -1,9 +1,9 @@
 import glob, { type Options as GlobOptions } from "fast-glob";
 import path from "path";
-import type { WorkspaceManager } from "../types/WorkspaceManager";
+import type { WorkspaceManager } from "../types/WorkspaceManager.js";
 import { getWorkspaceUtilities, type WorkspaceManagerAndRoot } from "./implementations";
-import { isCachingEnabled } from "../isCachingEnabled";
-import { wrapWorkspaceUtility, wrapAsyncWorkspaceUtility } from "./wrapWorkspaceUtility";
+import { isCachingEnabled } from "../isCachingEnabled.js";
+import { wrapWorkspaceUtility, wrapAsyncWorkspaceUtility } from "./wrapWorkspaceUtility.js";
 
 /** Mapping from root path to resolved package paths, or undefined if there was an error */
 const packagePathsCache = new Map<string, string[] | undefined>();
@@ -105,7 +105,7 @@ function getInitialPathsOrGlobs(
 
   if (managerSetting?.type === "pattern") {
     return {
-      globs: managerSetting.patterns.map((glob) => path.join(glob, "package.json").replace(/\\/g, "/")),
+      globs: managerSetting.patterns.map((p) => path.join(p, "package.json").replace(/\\/g, "/")),
     };
   }
 

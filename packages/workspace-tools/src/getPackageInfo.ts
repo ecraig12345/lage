@@ -1,8 +1,8 @@
 import fs from "fs";
 import fsPromises from "fs/promises";
 import path from "path";
-import type { PackageInfo } from "./types/PackageInfo";
-import { logVerboseWarning } from "./logging";
+import type { PackageInfo } from "./types/PackageInfo.js";
+import { logVerboseWarning } from "./logging.js";
 
 /**
  * Read package.json from the given path if it exists.

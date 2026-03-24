@@ -4,7 +4,7 @@ import micromatch from "micromatch";
  * Searches all package names based on "scoping" (i.e. "scope" in the sense of inclusion).
  * NOTE: this is not the same as package scopes (`@scope/package`).
  */
-export function getScopedPackages(search: string[], packages: { [pkg: string]: unknown } | string[]) {
+export function getScopedPackages(search: string[], packages: { [pkg: string]: unknown } | string[]): string[] {
   const packageNames = Array.isArray(packages) ? packages : Object.keys(packages);
 
   const results = new Set<string>();
@@ -24,7 +24,7 @@ export function getScopedPackages(search: string[], packages: { [pkg: string]: u
     // only generate the bare package map if there ARE unscoped searches
     const barePackageMap = generateBarePackageMap(packageNames);
 
-    let matched = micromatch(Object.keys(barePackageMap), unscopedSearch, { nocase: true });
+    const matched = micromatch(Object.keys(barePackageMap), unscopedSearch, { nocase: true });
     for (const bare of matched) {
       for (const pkg of barePackageMap[bare]) {
         results.add(pkg);

@@ -1,8 +1,8 @@
-import { getPackageInfo, getPackageInfoAsync } from "../getPackageInfo";
-import type { WorkspaceInfos, WorkspacePackageInfo } from "../types/WorkspaceInfo";
-import type { WorkspaceManager } from "../types/WorkspaceManager";
-import { getWorkspacePackagePaths, getWorkspacePackagePathsAsync } from "./getWorkspacePackagePaths";
-import { wrapAsyncWorkspaceUtility, wrapWorkspaceUtility } from "./wrapWorkspaceUtility";
+import { getPackageInfo, getPackageInfoAsync } from "../getPackageInfo.js";
+import type { WorkspaceInfos, WorkspacePackageInfo } from "../types/WorkspaceInfo.js";
+import type { WorkspaceManager } from "../types/WorkspaceManager.js";
+import { getWorkspacePackagePaths, getWorkspacePackagePathsAsync } from "./getWorkspacePackagePaths.js";
+import { wrapAsyncWorkspaceUtility, wrapWorkspaceUtility } from "./wrapWorkspaceUtility.js";
 
 /**
  * Get an array with names, paths, and package.json contents for each package ("workspace" in

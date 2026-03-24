@@ -1,9 +1,9 @@
-import { PackageInfos } from "./types/PackageInfo";
-import { getWorkspaceInfos, getWorkspaceInfosAsync } from "./workspaces/getWorkspaceInfos";
-import { getPackageInfo } from "./getPackageInfo";
-import type { WorkspacePackageInfo } from "./types/WorkspaceInfo";
-import type { WorkspaceManager } from "./types/WorkspaceManager";
-import { findPackageRoot } from "./paths";
+import { type PackageInfos } from "./types/PackageInfo.js";
+import { getWorkspaceInfos, getWorkspaceInfosAsync } from "./workspaces/getWorkspaceInfos.js";
+import { getPackageInfo } from "./getPackageInfo.js";
+import type { WorkspacePackageInfo } from "./types/WorkspaceInfo.js";
+import type { WorkspaceManager } from "./types/WorkspaceManager.js";
+import { findPackageRoot } from "./paths.js";
 
 /**
  * Read all the package.json files in a monorepo and return a mapping from package name to info.

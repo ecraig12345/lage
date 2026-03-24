@@ -1,4 +1,4 @@
-import type { Catalog, NamedCatalogs } from "./Catalogs";
+import type { Catalog, NamedCatalogs } from "./Catalogs.js";
 
 /** Contents of `package.json`, plus the `packageJsonPath` */
 export interface PackageInfo {

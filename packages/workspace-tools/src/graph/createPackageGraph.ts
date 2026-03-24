@@ -1,9 +1,9 @@
 import micromatch from "micromatch";
-import type { PackageGraph } from "../types/PackageGraph";
-import type { PackageInfos } from "../types/PackageInfo";
-import type { DependencyMap } from "./createDependencyMap";
-import { createDependencyMap } from "./createDependencyMap";
-import type { PackageDependenciesOptions } from "./getPackageDependencies";
+import type { PackageGraph } from "../types/PackageGraph.js";
+import type { PackageInfos } from "../types/PackageInfo.js";
+import type { DependencyMap } from "./createDependencyMap.js";
+import { createDependencyMap } from "./createDependencyMap.js";
+import type { PackageDependenciesOptions } from "./getPackageDependencies.js";
 
 /**
  * Reference: https://github.com/pnpm/pnpm/blob/597047fc056dd25b83638a9ab3df0df1c555ee49/packages/filter-workspace-packages/src/parsePackageSelector.ts
@@ -91,10 +91,10 @@ export function createPackageGraph(
   }
 
   /** Gets the dependencyMap for a filter, using a cache based on filter options */
-  function getDependencyMapForFilter(packages: PackageInfos, filter?: PackageGraphFilter) {
+  function getDependencyMapForFilter(pkgs: PackageInfos, filter?: PackageGraphFilter) {
     const cacheKey = getCacheKeyForFilter(filter);
     if (!dependencyMapCache.has(cacheKey)) {
-      const dependencyMap = createDependencyMap(packages, filter);
+      const dependencyMap = createDependencyMap(pkgs, filter);
       dependencyMapCache.set(cacheKey, dependencyMap);
     }
     return dependencyMapCache.get(cacheKey)!;

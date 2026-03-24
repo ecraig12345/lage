@@ -1,4 +1,4 @@
-import type { WorkspaceInfos } from "../types/WorkspaceInfo";
+import type { WorkspaceInfos } from "../types/WorkspaceInfo.js";
 
 /**
  * Find the path for a particular package name from an array of info about packages ("workspaces"

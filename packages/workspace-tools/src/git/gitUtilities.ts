@@ -3,8 +3,8 @@
 // (could be split into separate files later if desired)
 //
 
-import { getConfigValue } from "./config";
-import { git, processGitOutput } from "./git";
+import { getConfigValue } from "./config.js";
+import { git, processGitOutput } from "./git.js";
 import type {
   GetChangesBetweenRefsOptions,
   GitBranchOptions,
@@ -15,7 +15,7 @@ import type {
   GitStageOptions,
   ParsedRemoteBranch,
   ParseRemoteBranchOptions,
-} from "./types";
+} from "./types.js";
 
 const diffArgs = ["--no-pager", "diff", "--name-only", "--relative"];
 
@@ -29,7 +29,7 @@ const diffArgs = ["--no-pager", "diff", "--name-only", "--relative"];
 export function getUntrackedChanges(options: GitCommonOptions): string[];
 /** @deprecated Use object params version */
 export function getUntrackedChanges(cwd: string): string[];
-export function getUntrackedChanges(cwdOrOptions: string | GitCommonOptions) {
+export function getUntrackedChanges(cwdOrOptions: string | GitCommonOptions): string[] {
   const options: GitCommonOptions = typeof cwdOrOptions === "string" ? { cwd: cwdOrOptions } : cwdOrOptions;
 
   const results = git(["ls-files", "--others", "--exclude-standard"], {
@@ -48,7 +48,7 @@ export function getUntrackedChanges(cwdOrOptions: string | GitCommonOptions) {
 export function fetchRemote(options: GitFetchOptions): void;
 /** @deprecated Use object params version */
 export function fetchRemote(remote: string, cwd: string): void;
-export function fetchRemote(remoteOrOptions: string | GitFetchOptions, cwd?: string) {
+export function fetchRemote(remoteOrOptions: string | GitFetchOptions, cwd?: string): void {
   const { remote, remoteBranch, options, ...gitOptions } =
     typeof remoteOrOptions === "string"
       ? ({ remote: remoteOrOptions, cwd: cwd! } satisfies GitFetchOptions)
@@ -80,7 +80,7 @@ export function fetchRemote(remoteOrOptions: string | GitFetchOptions, cwd?: str
  * @deprecated Use `fetchRemote({ remote, remoteBranch, cwd })`
  */
 // TODO: move to fetch.ts
-export function fetchRemoteBranch(remote: string, remoteBranch: string, cwd: string) {
+export function fetchRemoteBranch(remote: string, remoteBranch: string, cwd: string): void {
   fetchRemote({ remote, remoteBranch, cwd, throwOnError: true });
 }
 
@@ -94,7 +94,7 @@ export function fetchRemoteBranch(remote: string, remoteBranch: string, cwd: str
 export function getUnstagedChanges(options: GitCommonOptions): string[];
 /** @deprecated Use object params version */
 export function getUnstagedChanges(cwd: string): string[];
-export function getUnstagedChanges(cwdOrOptions: string | GitCommonOptions) {
+export function getUnstagedChanges(cwdOrOptions: string | GitCommonOptions): string[] {
   const options: GitCommonOptions = typeof cwdOrOptions === "string" ? { cwd: cwdOrOptions } : cwdOrOptions;
 
   const results = git(diffArgs, {
@@ -113,7 +113,7 @@ export function getUnstagedChanges(cwdOrOptions: string | GitCommonOptions) {
  * @deprecated Use `getBranchChanges({ branch, cwd })`
  */
 // TODO: move to getChanges.ts
-export function getChanges(branch: string, cwd: string) {
+export function getChanges(branch: string, cwd: string): string[] {
   return getChangesBetweenRefs({ fromRef: branch, cwd, throwOnError: true });
 }
 
@@ -127,7 +127,7 @@ export function getChanges(branch: string, cwd: string) {
 export function getBranchChanges(options: GitBranchOptions): string[];
 /** @deprecated Use object params version */
 export function getBranchChanges(branch: string, cwd: string): string[];
-export function getBranchChanges(branchOrOptions: string | GitBranchOptions, cwd?: string) {
+export function getBranchChanges(branchOrOptions: string | GitBranchOptions, cwd?: string): string[] {
   const { branch, ...options } =
     typeof branchOrOptions === "string" ? { branch: branchOrOptions, cwd: cwd! } : branchOrOptions;
 
@@ -183,7 +183,7 @@ export function getChangesBetweenRefs(
 export function getStagedChanges(options: GitCommonOptions): string[];
 /** @deprecated Use object params version */
 export function getStagedChanges(cwd: string): string[];
-export function getStagedChanges(cwdOrOptions: string | GitCommonOptions) {
+export function getStagedChanges(cwdOrOptions: string | GitCommonOptions): string[] {
   const options: GitCommonOptions = typeof cwdOrOptions === "string" ? { cwd: cwdOrOptions } : cwdOrOptions;
 
   const results = git([...diffArgs, "--staged"], {
@@ -204,7 +204,7 @@ export function getStagedChanges(cwdOrOptions: string | GitCommonOptions) {
 export function getRecentCommitMessages(options: GitBranchOptions): string[];
 /** @deprecated Use object params version */
 export function getRecentCommitMessages(branch: string, cwd: string): string[];
-export function getRecentCommitMessages(branchOrOptions: string | GitBranchOptions, cwd?: string) {
+export function getRecentCommitMessages(branchOrOptions: string | GitBranchOptions, cwd?: string): string[] {
   const { branch, ...options } =
     typeof branchOrOptions === "string" ? { branch: branchOrOptions, cwd: cwd! } : branchOrOptions;
 
@@ -223,7 +223,7 @@ export function getRecentCommitMessages(branchOrOptions: string | GitBranchOptio
 export function getUserEmail(options: GitCommonOptions): string | null;
 /** @deprecated Use object params version */
 export function getUserEmail(cwd: string): string | null;
-export function getUserEmail(cwdOrOptions: string | GitCommonOptions) {
+export function getUserEmail(cwdOrOptions: string | GitCommonOptions): string | null {
   const options: GitCommonOptions = typeof cwdOrOptions === "string" ? { cwd: cwdOrOptions } : cwdOrOptions;
   return getConfigValue({ key: "user.email", ...options });
 }
@@ -235,10 +235,10 @@ export function getUserEmail(cwdOrOptions: string | GitCommonOptions) {
  * @returns The branch name if successful, null otherwise
  */
 // TODO: move to refs.ts
-export function getBranchName(options: GitCommonOptions): string;
+export function getBranchName(options: GitCommonOptions): string | null;
 /** @deprecated Use object params version */
-export function getBranchName(cwd: string): string;
-export function getBranchName(cwdOrOptions: string | GitCommonOptions) {
+export function getBranchName(cwd: string): string | null;
+export function getBranchName(cwdOrOptions: string | GitCommonOptions): string | null {
   const options: GitCommonOptions = typeof cwdOrOptions === "string" ? { cwd: cwdOrOptions } : cwdOrOptions;
 
   const results = git(["rev-parse", "--abbrev-ref", "HEAD"], {
@@ -257,7 +257,7 @@ export function getBranchName(cwdOrOptions: string | GitCommonOptions) {
 export function getFullBranchRef(options: GitBranchOptions): string | null;
 /** @deprecated Use object params version */
 export function getFullBranchRef(branch: string, cwd: string): string | null;
-export function getFullBranchRef(branchOrOptions: string | GitBranchOptions, cwd?: string) {
+export function getFullBranchRef(branchOrOptions: string | GitBranchOptions, cwd?: string): string | null {
   const { branch, ...options } =
     typeof branchOrOptions === "string" ? { branch: branchOrOptions, cwd: cwd! } : branchOrOptions;
 
@@ -282,7 +282,7 @@ export function getShortBranchName(fullBranchRef: string, cwd: string): string |
 export function getShortBranchName(
   refOrOptions: string | ({ fullBranchRef: string } & GitCommonOptions),
   cwd?: string
-) {
+): string | null {
   const { fullBranchRef, ...options } =
     typeof refOrOptions === "string" ? { fullBranchRef: refOrOptions, cwd: cwd! } : refOrOptions;
 
@@ -301,7 +301,7 @@ export function getShortBranchName(
 export function getCurrentHash(options: GitCommonOptions): string | null;
 /** @deprecated Use object params version */
 export function getCurrentHash(cwd: string): string | null;
-export function getCurrentHash(cwdOrOptions: string | GitCommonOptions) {
+export function getCurrentHash(cwdOrOptions: string | GitCommonOptions): string | null {
   const options: GitCommonOptions = typeof cwdOrOptions === "string" ? { cwd: cwdOrOptions } : cwdOrOptions;
 
   const results = git(["rev-parse", "HEAD"], {
@@ -320,7 +320,10 @@ export function getCurrentHash(cwdOrOptions: string | GitCommonOptions) {
 export function getFileAddedHash(options: { filename: string } & GitCommonOptions): string | undefined;
 /** @deprecated Use object params version */
 export function getFileAddedHash(filename: string, cwd: string): string | undefined;
-export function getFileAddedHash(filenameOrOptions: string | ({ filename: string } & GitCommonOptions), cwd?: string) {
+export function getFileAddedHash(
+  filenameOrOptions: string | ({ filename: string } & GitCommonOptions),
+  cwd?: string
+): string | undefined {
   const { filename, ...options } =
     typeof filenameOrOptions === "string" ? { filename: filenameOrOptions, cwd: cwd! } : filenameOrOptions;
 
@@ -340,7 +343,7 @@ export function getFileAddedHash(filenameOrOptions: string | ({ filename: string
 export function init(options: GitInitOptions): void;
 /** @deprecated Use object params version */
 export function init(cwd: string, email?: string, username?: string): void;
-export function init(cwdOrOptions: string | GitInitOptions, _email?: string, _username?: string) {
+export function init(cwdOrOptions: string | GitInitOptions, _email?: string, _username?: string): void {
   const { email, username, ...options } =
     typeof cwdOrOptions === "string" ? { cwd: cwdOrOptions, email: _email, username: _username } : cwdOrOptions;
 
@@ -368,7 +371,7 @@ export function init(cwdOrOptions: string | GitInitOptions, _email?: string, _us
 export function stage(options: GitStageOptions): void;
 /** @deprecated Use object params version */
 export function stage(patterns: string[], cwd: string): void;
-export function stage(patternsOrOptions: string[] | GitStageOptions, cwd?: string) {
+export function stage(patternsOrOptions: string[] | GitStageOptions, cwd?: string): void {
   const { patterns, ...options } = Array.isArray(patternsOrOptions)
     ? { patterns: patternsOrOptions, cwd: cwd! }
     : patternsOrOptions;
@@ -385,7 +388,7 @@ export function stage(patternsOrOptions: string[] | GitStageOptions, cwd?: strin
 export function commit(options: GitCommitOptions): void;
 /** @deprecated Use object params version */
 export function commit(message: string, cwd: string, options?: string[]): void;
-export function commit(messageOrOptions: string | GitCommitOptions, _cwd?: string, _options?: string[]) {
+export function commit(messageOrOptions: string | GitCommitOptions, _cwd?: string, _options?: string[]): void {
   const { message, options, ...gitOptions } =
     typeof messageOrOptions === "string"
       ? { message: messageOrOptions, cwd: _cwd!, options: _options }
@@ -412,7 +415,7 @@ export function stageAndCommit(
   message?: string,
   cwd?: string,
   commitOptions?: string[]
-) {
+): void {
   const options: GitStageOptions & GitCommitOptions = Array.isArray(patternsOrOptions)
     ? { patterns: patternsOrOptions, message: message!, cwd: cwd!, options: commitOptions }
     : patternsOrOptions;
@@ -430,7 +433,7 @@ export function stageAndCommit(
 export function revertLocalChanges(options: GitCommonOptions): boolean;
 /** @deprecated Use object params version */
 export function revertLocalChanges(cwd: string): boolean;
-export function revertLocalChanges(cwdOrOptions: string | GitCommonOptions) {
+export function revertLocalChanges(cwdOrOptions: string | GitCommonOptions): boolean {
   const options: GitCommonOptions = typeof cwdOrOptions === "string" ? { cwd: cwdOrOptions } : cwdOrOptions;
 
   const stash = `workspace-tools_${new Date().getTime()}`;
@@ -490,11 +493,11 @@ export function getParentBranch(cwd: string): string | null {
 export function getRemoteBranch(options: GitBranchOptions): string | null;
 /** @deprecated Use object params version */
 export function getRemoteBranch(branch: string, cwd: string): string | null;
-export function getRemoteBranch(branchOrOptions: string | GitBranchOptions, cwd?: string) {
+export function getRemoteBranch(branchOrOptions: string | GitBranchOptions, cwd?: string): string | null {
   const options: GitBranchOptions =
     typeof branchOrOptions === "string" ? { branch: branchOrOptions, cwd: cwd! } : branchOrOptions;
 
-  const results = git(["rev-parse", "--abbrev-ref", "--symbolic-full-name", `${options.branch}@\{u\}`], options);
+  const results = git(["rev-parse", "--abbrev-ref", "--symbolic-full-name", `${options.branch}@{u}`], options);
 
   return results.success ? results.stdout.trim() : null;
 }
@@ -530,11 +533,11 @@ export function parseRemoteBranch(branchOrOptions: string | ParseRemoteBranchOpt
     return { remote: "", remoteBranch: branch };
   }
 
-  let remote = knownRemotes.find((remote) => branch.startsWith(`${remote}/`));
+  let remote = knownRemotes.find((r) => branch.startsWith(`${r}/`));
 
   if (!remote) {
     const remotes = git(["remote"], options).stdout.trim().split(/\n/);
-    remote = remotes.find((remote) => branch.startsWith(`${remote}/`));
+    remote = remotes.find((r) => branch.startsWith(`${r}/`));
   }
 
   if (remote) {
@@ -550,7 +553,7 @@ export function parseRemoteBranch(branchOrOptions: string | ParseRemoteBranchOpt
 export function getDefaultBranch(options: GitCommonOptions): string;
 /** @deprecated Use object params version */
 export function getDefaultBranch(cwd: string): string;
-export function getDefaultBranch(cwdOrOptions: string | GitCommonOptions) {
+export function getDefaultBranch(cwdOrOptions: string | GitCommonOptions): string {
   const options = typeof cwdOrOptions === "string" ? { cwd: cwdOrOptions } : cwdOrOptions;
 
   // Default to the legacy 'master' for backwards compat and old git clients
@@ -574,7 +577,7 @@ export function listAllTrackedFiles(patterns: string[], cwd: string): string[];
 export function listAllTrackedFiles(
   patternsOrOptions: string[] | ({ patterns: string[] } & GitCommonOptions),
   cwd?: string
-) {
+): string[] {
   const { patterns, ...options } = Array.isArray(patternsOrOptions)
     ? { patterns: patternsOrOptions, cwd: cwd! }
     : patternsOrOptions;
