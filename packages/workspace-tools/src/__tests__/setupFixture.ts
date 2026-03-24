@@ -1,6 +1,6 @@
 import { createTempDir, removeTempDir } from "@lage-run/test-utilities";
 import path from "path";
-import fs from "fs-extra";
+import fs from "fs";
 import { spawnSync, type SpawnSyncOptions } from "child_process";
 
 /** Temp directories are created under tempRoot.name with incrementing numeric sub-directories */
@@ -68,7 +68,7 @@ export function setupFixture(
   // Make the directory
   const cwd = path.join(tempRoot, String(tempNumber++), fixturePath ? path.basename(fixturePath) : "");
 
-  fs.mkdirpSync(cwd);
+  fs.mkdirSync(cwd, { recursive: true });
 
   if (useGit) {
     // git init if requested
@@ -88,7 +88,10 @@ export function setupFixture(
 
   // Copy and commit the fixture if requested
   if (fixturePath) {
-    fs.copySync(fixturePath, cwd, { filter: (src) => !/[/\\](node_modules|temp|.rush)([/\\]|$)/.test(src) });
+    fs.cpSync(fixturePath, cwd, {
+      recursive: true,
+      filter: (src) => !/[/\\](node_modules|temp|.rush)([/\\]|$)/.test(src),
+    });
 
     const lernaManagerMatch = fixtureName?.match(/^monorepo-basic-lerna-(\w+)/);
     if (lernaManagerMatch) {

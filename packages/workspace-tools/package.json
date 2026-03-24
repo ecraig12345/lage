@@ -22,13 +22,12 @@
     "lint": "monorepo-scripts lint"
   },
   "dependencies": {
-    "@yarnpkg/lockfile": "^1.1.0",
-    "fast-glob": "^3.3.1",
-    "git-url-parse": "^16.0.0",
-    "globby": "^11.0.0",
-    "jju": "^1.4.0",
-    "js-yaml": "^4.1.0",
-    "micromatch": "^4.0.0"
+    "@yarnpkg/lockfile": "1.1.0",
+    "fast-glob": "3.3.3",
+    "git-url-parse": "16.1.0",
+    "jju": "1.4.0",
+    "js-yaml": "4.1.1",
+    "micromatch": "4.0.8"
   },
   "devDependencies": {
     "@lage-run/monorepo-scripts": "workspace:^",
@@ -36,7 +35,8 @@
     "@types/git-url-parse": "^16.0.0",
     "@types/jju": "^1.4.2",
     "@types/js-yaml": "^4.0.5",
-    "@types/micromatch": "^4.0.2",
-    "@types/yarnpkg__lockfile": "^1.1.5"
+    "@types/micromatch": "^4.0.0",
+    "@types/yarnpkg__lockfile": "^1.1.5",
+    "ts-dedent": "^2.2.0"
   }
 }
