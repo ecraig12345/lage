@@ -1,12 +1,23 @@
 {
   "name": "basic-pnpm",
+  "description": "Fixture using the LATEST version of pnpm",
   "version": "0.1.0",
   "license": "MIT",
   "private": true,
-  "description": "derived from sveltejs/kit",
   "devDependencies": {
-    "@changesets/cli": "^2.14.1",
-    "prettier": "2.8.0",
-    "typescript": "^4.2.3"
+    "@types/node": "^20.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.23"
+  },
+  "engines": {
+    "node": ">=20",
+    "pnpm": "^10.0.0"
   }
 }
