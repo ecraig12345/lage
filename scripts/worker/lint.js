@@ -1,7 +1,8 @@
 /** @import { BasicWorkerRunnerFunction } from "../types.js" */
 const { ESLint } = require("eslint");
+const fs = require("fs");
 const path = require("path");
-const { getPackageInfo } = require("workspace-tools");
+const { getPackageInfo } = require("workspace-tools-npm");
 
 /**
  * This worker is used for `lage run lint`, in place of the per-package `lint` script.
@@ -21,14 +22,24 @@ async function lint(data) {
     return;
   }
 
-  const baseConfig = require("../config/eslintrc.js");
-  (baseConfig.parserOptions ??= {}).project = path.join(target.cwd, "tsconfig.json");
+  const projectConfigPath = path.join(target.cwd, ".eslintrc.js");
+  const baseConfigPath = path.resolve(__dirname, "../config/eslintrc.js");
+  const hasProjectConfig = fs.existsSync(projectConfigPath);
+  const config = hasProjectConfig ? require(projectConfigPath) : require(baseConfigPath);
+
+  (config.parserOptions ??= {}).project = path.join(target.cwd, "tsconfig.json");
+  if (hasProjectConfig) {
+    // The project configs intentionally don't have "root" or "extends" to make the single
+    // config for the editor work (repo root .eslintrc.js)
+    config.root = true;
+    config.extends = baseConfigPath;
+  }
 
   const shouldFix = taskArgs?.includes("--fix");
 
   const eslint = new ESLint({
     reportUnusedDisableDirectives: "error",
-    baseConfig,
+    baseConfig: config,
     fix: shouldFix,
     cache: false,
     cwd: target.cwd,

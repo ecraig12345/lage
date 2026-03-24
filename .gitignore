@@ -17,3 +17,11 @@ temp
 *.tgz
 .claude/settings.local.json
 *.tsbuildinfo
+
+# workspace-tools
+.rush/
+**/common/scripts/
+/packages/workspace-tools/src/__fixtures__/*/node_modules/
+/packages/workspace-tools/src/__fixtures__/**/.yarn/
+!/packages/workspace-tools/src/__fixtures__/**/package-lock.json
+install-state.gz

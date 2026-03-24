@@ -9,6 +9,7 @@
     "types": "tsc"
   },
   "dependencies": {
+    "@microsoft/api-extractor": "7.52.9",
     "@swc/core": "^1.9.1",
     "@swc/jest": "^0.2.39",
     "@types/eslint": "^8.0.0",
@@ -22,7 +23,12 @@
     "eslint-plugin-file-extension-in-import-ts": "^1.0.1",
     "jest": "^30.0.0",
     "typescript": "~5.9.3",
-    "workspace-tools": "0.41.0",
+    "workspace-tools-npm": "npm:workspace-tools@latest",
     "zimmerframe": "^1.1.4"
+  },
+  "rationale": {
+    "dependencies": {
+      "workspace-tools-npm": "This must point to a different workspace-tools version to avoid circular deps"
+    }
   }
 }

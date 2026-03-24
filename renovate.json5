@@ -1,3 +1,5 @@
+// Available options:
+// https://docs.renovatebot.com/configuration-options/
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
@@ -11,6 +13,7 @@
   "labels": ["renovate"],
   "prHourlyLimit": 5,
   "semanticCommits": "disabled",
+  "reviewers": ["ecraig12345"],
   "ignorePaths": [
     "**/node_modules/**",
     // incorrect manager is being used for fixtures, and most of them don't have real deps anyway
@@ -33,12 +36,6 @@
       "matchPackageNames": ["@bufbuild/*"]
     },
     {
-      // Automatically pick up backfill and workspace-tools updates
-      "matchPackageNames": ["backfill", "workspace-tools", "backfill-*"],
-      "matchUpdateTypes": ["major", "minor", "patch", "bump"],
-      "dependencyDashboardApproval": false
-    },
-    {
       // There's a dev dep "lage-npm": "npm:lage@<..." intended to pull in a slightly older
       // pre-built lage version for repo build orchestration (since local lage isn't built yet).
       // Disable updating this with Renovate because it will choose a range that includes the
@@ -48,8 +45,13 @@
     },
     {
       // Disable due to Node version compatibility
-      "matchPackageNames": ["@azure/*", "node-gyp"],
+      "matchPackageNames": ["@azure/*", "node-gyp", "@microsoft/api-extractor"],
       "enabled": false
+    },
+    {
+      "groupName": "workspace-tools resolutions",
+      "matchPackageNames": ["/.*workspace-tools$/"],
+      "dependencyDashboardApproval": false
     }
   ]
 }

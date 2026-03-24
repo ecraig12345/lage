@@ -4,7 +4,7 @@
 const fs = require("fs");
 const { isBuiltin } = require("module");
 const path = require("path");
-const { getPackageInfo } = require("workspace-tools");
+const { getPackageInfo } = require("workspace-tools-npm");
 const { parse } = require("@typescript-eslint/parser");
 
 /**

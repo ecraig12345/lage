@@ -53,5 +53,5 @@ jobs:
 
           yarn release -y -n $NPM_AUTHTOKEN
         env:
-          NPM_AUTHTOKEN: ${{ secrets.npm_authtoken }}
+          NPM_AUTHTOKEN: ${{ secrets.NPM_AUTHTOKEN }}
           REPO_PAT: ${{ secrets.REPO_PAT }}

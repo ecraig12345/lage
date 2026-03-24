@@ -114,7 +114,7 @@ Create a task runner that optimizes package tasks in a monorepo for a single mac
 
 - **OneDrive/SharePoint**: [rush](https://rushjs.io) showed us incremental builds
 - **Midgard**: [backfill](https://github.com/microsoft/lage/tree/master/packages/backfill) cache, [task-scheduler](https://github.com/microsoft/task-scheduler)
-- **Flywheel**: pipeline config, [workspace-tools](https://github.com/microsoft/workspace-tools), `lage` tool
+- **Flywheel**: pipeline config, [workspace-tools](https://github.com/microsoft/lage/tree/master/packages/workspace-tools), `lage` tool
 - **FluidX**: [p-graph](https://github.com/microsoft/p-graph) promise graph that supports priority queuing
 
 ---
