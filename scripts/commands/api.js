@@ -3,7 +3,7 @@ const path = require("path");
 const extractor = require("@microsoft/api-extractor");
 
 const cwd = process.cwd();
-const configPaths = [path.join(cwd, "api-extractor.json"), path.join(__dirname, "api-extractor.base.json")];
+const configPaths = [path.join(cwd, "api-extractor.json"), path.resolve(__dirname, "../config/api-extractor.base.json")];
 const configPath = configPaths.find((name) => fs.existsSync(name));
 
 if (!configPath) {

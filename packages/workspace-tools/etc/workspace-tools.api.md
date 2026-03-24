@@ -4,8 +4,6 @@
 
 ```ts
 
-/// <reference types="node" />
-
 import { SpawnSyncOptions } from 'child_process';
 import { SpawnSyncReturns } from 'child_process';
 
@@ -110,10 +108,10 @@ export function getBranchChanges(branch: string, cwd: string): string[];
 // Warning: (ae-forgotten-export) The symbol "GitCommonOptions" needs to be exported by the entry point index.d.ts
 //
 // @public
-export function getBranchName(options: GitCommonOptions): string;
+export function getBranchName(options: GitCommonOptions): string | null;
 
 // @public @deprecated (undocumented)
-export function getBranchName(cwd: string): string;
+export function getBranchName(cwd: string): string | null;
 
 // @public
 export function getCatalogs(cwd: string, managerOverride?: WorkspaceManager): Catalogs | undefined;
