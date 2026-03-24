@@ -10,6 +10,7 @@ import { parseBerryLock } from "./parseBerryLock.js";
 
 const memoization: { [path: string]: ParsedLock } = {};
 
+// eslint-disable-next-line @typescript-eslint/require-await -- was async due to async imports, and will be again in future
 export async function parseLockFile(packageRoot: string): Promise<ParsedLock> {
   const yarnLockPath = searchUp(["yarn.lock", "common/config/rush/yarn.lock"], packageRoot);
 
@@ -36,7 +37,9 @@ export async function parseLockFile(packageRoot: string): Promise<ParsedLock> {
       const yaml = readYaml<BerryLockFile>(yarnLockPath);
       parsed = parseBerryLock(yaml);
     } else {
-      const parseYarnLock = (await import("@yarnpkg/lockfile")).parse;
+      // TODO: this should be an async import in the future (currently causes issues with jest setup)
+      // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
+      const parseYarnLock = require("@yarnpkg/lockfile").parse;
       parsed = parseYarnLock(yarnLock);
     }
 

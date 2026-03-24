@@ -28,6 +28,8 @@ async function transpile({ target }) {
     return;
   }
 
+  const swcOptions = JSON.parse(fs.readFileSync(path.join(root, ".swcrc"), "utf8"));
+
   const queue = [srcDir];
 
   while (queue.length > 0) {
@@ -50,7 +52,8 @@ async function transpile({ target }) {
           .replace(".ts", ".js");
         const dest = path.join(target.cwd, targetRelativePath);
         const swcOutput = await swc.transformFile(fullPath, {
-          configFile: path.join(root, ".swcrc"),
+          configFile: false,
+          ...swcOptions,
           sourceFileName: path.relative(path.dirname(dest), fullPath).replace(/\\/g, "/"),
         });
 
