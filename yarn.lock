@@ -1691,7 +1691,7 @@ __metadata:
   dependencies:
     "@types/jest": "npm:^30.0.0"
     "@types/node": "npm:^16.18.3"
-    beachball: "npm:^2.63.0"
+    beachball: "npm:2.63.1"
     dts-bundle-generator: "patch:dts-bundle-generator@npm%3A9.5.1#~/.yarn/patches/dts-bundle-generator-npm-9.5.1-0927b6826f.patch"
     fast-glob: "npm:3.3.3"
     husky: "npm:^9.1.5"
@@ -1732,7 +1732,7 @@ __metadata:
     eslint-plugin-file-extension-in-import-ts: "npm:^1.0.1"
     jest: "npm:^30.0.0"
     typescript: "npm:~5.9.3"
-    workspace-tools-npm: "npm:workspace-tools@0.40.3"
+    workspace-tools-npm: "npm:workspace-tools@latest"
     zimmerframe: "npm:^1.1.4"
   bin:
     monorepo-scripts: bin/monorepo-scripts.js
@@ -3461,9 +3461,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"beachball@npm:^2.63.0":
-  version: 2.63.0
-  resolution: "beachball@npm:2.63.0"
+"beachball@npm:2.63.1":
+  version: 2.63.1
+  resolution: "beachball@npm:2.63.1"
   dependencies:
     cosmiconfig: "npm:^9.0.0"
     execa: "npm:^5.0.0"
@@ -3473,11 +3473,11 @@ __metadata:
     prompts: "npm:^2.4.2"
     semver: "npm:^7.0.0"
     toposort: "npm:^2.0.2"
-    workspace-tools: "npm:^0.40.2"
+    workspace-tools: "npm:^0.41.0"
     yargs-parser: "npm:^21.0.0"
   bin:
     beachball: bin/beachball.js
-  checksum: 10c0/d54af46a4db621550bb766a2e26e5fe1b1bd36846c5114fc16a4f5aeaca732be98dc39eaf6f4264a45ec4e70db0ba23a1463a3926ea91755469edbcae0a6690c
+  checksum: 10c0/6b745576cd871127cca5aede2095624b9e39ad2e69cb3317f640c03b0fdc571ff8ff99148043be3e3dd8ee1c1c973ec4f1bbf7c5ff5028eb8e3f5d13d06a1e15
   languageName: node
   linkType: hard
 
@@ -9139,9 +9139,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"workspace-tools-npm@npm:workspace-tools@0.40.3, workspace-tools@npm:0.40.3":
-  version: 0.40.3
-  resolution: "workspace-tools@npm:0.40.3"
+"workspace-tools-npm@npm:workspace-tools@latest, workspace-tools@npm:latest":
+  version: 0.41.0
+  resolution: "workspace-tools@npm:0.41.0"
   dependencies:
     "@yarnpkg/lockfile": "npm:^1.1.0"
     fast-glob: "npm:^3.3.1"
@@ -9150,7 +9150,7 @@ __metadata:
     jju: "npm:^1.4.0"
     js-yaml: "npm:^4.1.0"
     micromatch: "npm:^4.0.0"
-  checksum: 10c0/40542115d595946a7ece138503cd54e95d0c9dc9825594b24192bf97139b9167769ce23088f3241aceaec42a907220d798bf5e20730fa411524982ea31920a0b
+  checksum: 10c0/407f0bc0596d4ddbf2837d511e98bcd0a83b195e437e84cac9615235fb771bd5bcc50018f24c7a104b9a01815a92f6a3bf514246a88472e8d48e4d7f1112b416
   languageName: node
   linkType: hard
 

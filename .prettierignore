@@ -21,9 +21,6 @@ yarn.lock
 yarn.js
 
 # workspace-tools
-# docs/
-.rush/
-**/common/scripts/
 pnpm-lock.*
 package-lock.json
 *.api.md
