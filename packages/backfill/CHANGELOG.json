@@ -2,6 +2,59 @@
   "name": "backfill",
   "entries": [
     {
+      "date": "Sat, 28 Mar 2026 00:04:36 GMT",
+      "version": "6.4.6",
+      "tag": "backfill_v6.4.6",
+      "comments": {
+        "none": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-cache",
+            "commit": "c5abfc0962c78cf82e524e845efbf474c282efe8",
+            "comment": "Add API Extractor"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-config",
+            "commit": "c5abfc0962c78cf82e524e845efbf474c282efe8",
+            "comment": "Add API Extractor"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-hasher",
+            "commit": "c5abfc0962c78cf82e524e845efbf474c282efe8",
+            "comment": "Add API Extractor"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-logger",
+            "commit": "c5abfc0962c78cf82e524e845efbf474c282efe8",
+            "comment": "Add API Extractor"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-utils-dotenv",
+            "commit": "c5abfc0962c78cf82e524e845efbf474c282efe8",
+            "comment": "Add API Extractor"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill",
+            "commit": "c5abfc0962c78cf82e524e845efbf474c282efe8",
+            "comment": "Add API Extractor"
+          }
+        ],
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "backfill-cache",
+            "commit": "c5abfc0962c78cf82e524e845efbf474c282efe8",
+            "comment": "Revert glob caching changes due to potential regression"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 26 Mar 2026 19:53:28 GMT",
       "version": "6.4.5",
       "tag": "backfill_v6.4.5",

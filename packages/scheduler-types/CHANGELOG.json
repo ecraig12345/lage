@@ -2,6 +2,21 @@
   "name": "@lage-run/scheduler-types",
   "entries": [
     {
+      "date": "Sat, 28 Mar 2026 00:04:36 GMT",
+      "version": "0.3.32",
+      "tag": "@lage-run/scheduler-types_v0.3.32",
+      "comments": {
+        "none": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/scheduler-types",
+            "commit": "c5abfc0962c78cf82e524e845efbf474c282efe8",
+            "comment": "Add API Extractor"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 10 Feb 2026 22:12:02 GMT",
       "version": "0.3.29",
       "tag": "@lage-run/scheduler-types_v0.3.29",

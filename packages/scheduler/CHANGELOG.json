@@ -2,6 +2,21 @@
   "name": "@lage-run/scheduler",
   "entries": [
     {
+      "date": "Sat, 28 Mar 2026 00:04:36 GMT",
+      "version": "1.5.22",
+      "tag": "@lage-run/scheduler_v1.5.22",
+      "comments": {
+        "none": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/scheduler",
+            "commit": "c5abfc0962c78cf82e524e845efbf474c282efe8",
+            "comment": "Add API Extractor"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 26 Mar 2026 19:53:28 GMT",
       "version": "1.5.21",
       "tag": "@lage-run/scheduler_v1.5.21",

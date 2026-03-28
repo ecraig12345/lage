@@ -2,6 +2,29 @@
   "name": "backfill-cache",
   "entries": [
     {
+      "date": "Sat, 28 Mar 2026 00:04:36 GMT",
+      "version": "5.12.1",
+      "tag": "backfill-cache_v5.12.1",
+      "comments": {
+        "none": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-cache",
+            "commit": "c5abfc0962c78cf82e524e845efbf474c282efe8",
+            "comment": "Add API Extractor"
+          }
+        ],
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "backfill-cache",
+            "commit": "c5abfc0962c78cf82e524e845efbf474c282efe8",
+            "comment": "Revert glob caching changes due to potential regression"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 26 Mar 2026 19:53:28 GMT",
       "version": "5.12.0",
       "tag": "backfill-cache_v5.12.0",

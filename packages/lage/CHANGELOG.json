@@ -2,6 +2,107 @@
   "name": "lage",
   "entries": [
     {
+      "date": "Sat, 28 Mar 2026 00:04:36 GMT",
+      "version": "2.15.3",
+      "tag": "lage_v2.15.3",
+      "comments": {
+        "none": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/cache-github-actions",
+            "commit": "c5abfc0962c78cf82e524e845efbf474c282efe8",
+            "comment": "Add API Extractor"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/cache",
+            "commit": "c5abfc0962c78cf82e524e845efbf474c282efe8",
+            "comment": "Add API Extractor"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/cli",
+            "commit": "c5abfc0962c78cf82e524e845efbf474c282efe8",
+            "comment": "Add API Extractor"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/config",
+            "commit": "c5abfc0962c78cf82e524e845efbf474c282efe8",
+            "comment": "Add API Extractor"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/format-hrtime",
+            "commit": "c5abfc0962c78cf82e524e845efbf474c282efe8",
+            "comment": "Add API Extractor"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/hasher",
+            "commit": "c5abfc0962c78cf82e524e845efbf474c282efe8",
+            "comment": "Add API Extractor"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/logger",
+            "commit": "c5abfc0962c78cf82e524e845efbf474c282efe8",
+            "comment": "Add API Extractor"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/reporters",
+            "commit": "c5abfc0962c78cf82e524e845efbf474c282efe8",
+            "comment": "Add API Extractor"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/rpc",
+            "commit": "c5abfc0962c78cf82e524e845efbf474c282efe8",
+            "comment": "Add API Extractor"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/runners",
+            "commit": "c5abfc0962c78cf82e524e845efbf474c282efe8",
+            "comment": "Add API Extractor"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/scheduler-types",
+            "commit": "c5abfc0962c78cf82e524e845efbf474c282efe8",
+            "comment": "Add API Extractor"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/scheduler",
+            "commit": "c5abfc0962c78cf82e524e845efbf474c282efe8",
+            "comment": "Add API Extractor"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/target-graph",
+            "commit": "c5abfc0962c78cf82e524e845efbf474c282efe8",
+            "comment": "Add API Extractor"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/worker-threads-pool",
+            "commit": "c5abfc0962c78cf82e524e845efbf474c282efe8",
+            "comment": "Add API Extractor"
+          }
+        ],
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@lage-run/cli",
+            "commit": "c5abfc0962c78cf82e524e845efbf474c282efe8",
+            "comment": "Revert glob caching changes due to potential regression"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 26 Mar 2026 19:53:28 GMT",
       "version": "2.15.2",
       "tag": "lage_v2.15.2",

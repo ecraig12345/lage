@@ -2,6 +2,21 @@
   "name": "@lage-run/runners",
   "entries": [
     {
+      "date": "Sat, 28 Mar 2026 00:04:36 GMT",
+      "version": "1.4.1",
+      "tag": "@lage-run/runners_v1.4.1",
+      "comments": {
+        "none": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/runners",
+            "commit": "c5abfc0962c78cf82e524e845efbf474c282efe8",
+            "comment": "Add API Extractor"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 26 Mar 2026 19:53:28 GMT",
       "version": "1.4.1",
       "tag": "@lage-run/runners_v1.4.1",

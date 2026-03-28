@@ -1,8 +1,16 @@
 # Change Log - backfill-cache
 
-<!-- This log was last generated on Thu, 26 Mar 2026 19:53:28 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sat, 28 Mar 2026 00:04:36 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 5.12.1
+
+Sat, 28 Mar 2026 00:04:36 GMT
+
+### Patches
+
+- Revert glob caching changes due to potential regression (email not defined)
 
 ## 5.12.0
 

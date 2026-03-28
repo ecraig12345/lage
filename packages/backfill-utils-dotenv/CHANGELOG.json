@@ -2,6 +2,21 @@
   "name": "backfill-utils-dotenv",
   "entries": [
     {
+      "date": "Sat, 28 Mar 2026 00:04:36 GMT",
+      "version": "5.3.2",
+      "tag": "backfill-utils-dotenv_v5.3.2",
+      "comments": {
+        "none": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-utils-dotenv",
+            "commit": "c5abfc0962c78cf82e524e845efbf474c282efe8",
+            "comment": "Add API Extractor"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 19 Mar 2026 23:52:35 GMT",
       "version": "5.3.2",
       "tag": "backfill-utils-dotenv_v5.3.2",
