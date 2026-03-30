@@ -1,8 +1,16 @@
 # Change Log - @lage-run/globby
 
-<!-- This log was last generated on Tue, 10 Feb 2026 22:12:02 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 30 Mar 2026 21:21:13 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 13.0.2
+
+Mon, 30 Mar 2026 21:21:13 GMT
+
+### Patches
+
+- Fix bug introduced where globby results were being cached (1581488+christiango@users.noreply.github.com)
 
 ## 13.0.1
 

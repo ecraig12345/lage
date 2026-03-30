@@ -1,8 +1,19 @@
 # Change Log - lage
 
-<!-- This log was last generated on Sat, 28 Mar 2026 00:04:36 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 30 Mar 2026 21:21:13 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 2.15.4
+
+Mon, 30 Mar 2026 21:21:13 GMT
+
+### Patches
+
+- `@lage-run/globby`
+  - Fix bug introduced where globby results were being cached (1581488+christiango@users.noreply.github.com)
+- `@lage-run/cli`
+  - Reintroduce fix: include dotfiles in cache output glob matching (1581488+christiango@users.noreply.github.com)
 
 ## 2.15.3
 

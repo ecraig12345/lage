@@ -2,6 +2,21 @@
   "name": "@lage-run/globby",
   "entries": [
     {
+      "date": "Mon, 30 Mar 2026 21:21:13 GMT",
+      "version": "13.0.2",
+      "tag": "@lage-run/globby_v13.0.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "1581488+christiango@users.noreply.github.com",
+            "package": "@lage-run/globby",
+            "commit": "e38b72e356def2567dba0600f4b634f628523548",
+            "comment": "Fix bug introduced where globby results were being cached"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 17 Mar 2026 22:10:03 GMT",
       "version": "13.0.1",
       "tag": "@lage-run/globby_v13.0.1",

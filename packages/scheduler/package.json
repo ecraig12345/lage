@@ -1,6 +1,6 @@
 {
   "name": "@lage-run/scheduler",
-  "version": "1.5.22",
+  "version": "1.5.23",
   "description": "Scheduler for Lage",
   "repository": {
     "type": "git",
