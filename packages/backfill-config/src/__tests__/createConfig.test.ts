@@ -1,7 +1,7 @@
 import {
   afterAll,
   afterEach,
-  beforeAll,
+  beforeEach,
   describe,
   expect,
   it,
@@ -69,10 +69,11 @@ describe("getSearchPaths()", () => {
 
 describe("createConfig()", () => {
   const originalEnv = process.env;
-  const logger = makeLogger("info");
+  const logger = makeLogger("mute");
   let packageRoot = "";
 
-  beforeAll(() => {
+  beforeEach(() => {
+    // Note: jest-setup.js clears all BACKFILL_ vars that might have come from CI
     process.env = { ...originalEnv };
   });
 
