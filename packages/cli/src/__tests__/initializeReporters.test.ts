@@ -1,12 +1,18 @@
+import { afterEach, beforeEach, describe, expect, it, jest } from "@jest/globals";
 import { Logger, type Reporter } from "@lage-run/logger";
 import { AdoReporter, BasicReporter, ChromeTraceEventsReporter, GithubActionsReporter, LogReporter } from "@lage-run/reporters";
-import isInteractive from "is-interactive";
 import path from "path";
 import { createTempDir, removeTempDir } from "@lage-run/test-utilities";
-import { initializeReporters } from "../commands/initializeReporters.js";
 import type { ReporterInitOptions } from "../types/ReporterInitOptions.js";
 
 jest.mock("is-interactive", () => jest.fn(() => true));
+
+// jest.mock() is not hoisted above imports when jest is imported from @jest/globals.
+// NOTE: Once lage uses ESM, this should be replaced with jest.unstable_mockModule() and await import(...).
+// eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires, @typescript-eslint/consistent-type-imports
+const isInteractive = require("is-interactive") as jest.MockedFunction<typeof import("is-interactive")>;
+// eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires, @typescript-eslint/consistent-type-imports
+const { initializeReporters } = require("../commands/initializeReporters.js") as typeof import("../commands/initializeReporters.js");
 
 // The tests for custom reporters are in customReporter.test.ts
 describe("initializeReporters", () => {
@@ -64,7 +70,7 @@ describe("initializeReporters", () => {
   });
 
   it("should initialize old reporter when shell is not interactive", async () => {
-    (isInteractive as jest.Mock).mockReturnValueOnce(false);
+    isInteractive.mockReturnValueOnce(false);
     const logger = new Logger();
     reporters = await initializeReporters(logger, { ...options }, undefined);
 

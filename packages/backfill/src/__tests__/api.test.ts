@@ -1,3 +1,4 @@
+import { describe, expect, it, jest } from "@jest/globals";
 import path from "path";
 import { createDefaultConfig } from "backfill-config";
 import { setupFixture } from "@lage-run/test-utilities";
@@ -10,12 +11,12 @@ describe("api", () => {
     const logger = makeLogger("silly", process.stdout, process.stderr);
     const config = createDefaultConfig(packageRoot);
     const provider = {
-      fetch: jest.fn().mockResolvedValue(true),
-      put: jest.fn().mockResolvedValue(true),
+      fetch: jest.fn(() => Promise.resolve(true)),
+      put: jest.fn(() => Promise.resolve(true)),
     };
 
     config.cacheStorageConfig = {
-      provider: () => provider,
+      provider: () => provider as any,
     };
 
     const fetched = await fetch(
@@ -36,12 +37,12 @@ describe("api", () => {
     const logger = makeLogger("silly", process.stdout, process.stderr);
     const config = createDefaultConfig(packageRoot);
     const provider = {
-      fetch: jest.fn().mockResolvedValue(true),
-      put: jest.fn().mockResolvedValue(true),
+      fetch: jest.fn(() => Promise.resolve(true)),
+      put: jest.fn(() => Promise.resolve(true)),
     };
 
     config.cacheStorageConfig = {
-      provider: () => provider,
+      provider: () => provider as any,
     };
 
     await put(

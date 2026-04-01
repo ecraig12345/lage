@@ -1,10 +1,17 @@
+import { afterEach, beforeEach, describe, expect, it, jest } from "@jest/globals";
 import { Logger } from "@lage-run/logger";
-import fs, { type Stats } from "fs";
+import type { Stats } from "fs";
 import os from "os";
 import path from "path";
-import { simulateFileAccess } from "../commands/exec/simulateFileAccess.js";
 
 jest.mock("fs");
+
+// jest.mock() is not hoisted above imports when jest is imported from @jest/globals.
+// NOTE: Once lage uses ESM, this should be replaced with jest.unstable_mockModule() and await import(...).
+// eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires, @typescript-eslint/consistent-type-imports
+const fs = require("fs") as typeof import("fs");
+// eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires, @typescript-eslint/consistent-type-imports
+const { simulateFileAccess } = require("../commands/exec/simulateFileAccess.js") as typeof import("../commands/exec/simulateFileAccess.js");
 
 // Mock the logger
 const mockSilly = jest.fn();
@@ -20,11 +27,11 @@ const mockLogger = new MockLogger();
 
 describe("simulateFileAccess", () => {
   let mockRoot: string;
-  let mockOpenSync: jest.SpyInstance;
-  let mockReadSync: jest.SpyInstance;
-  let mockCloseSync: jest.SpyInstance;
-  let mockReaddirSync: jest.SpyInstance;
-  let mockUtimesSync: jest.SpyInstance;
+  let mockOpenSync: jest.SpiedFunction<typeof fs.openSync>;
+  let mockReadSync: jest.SpiedFunction<typeof fs.readSync>;
+  let mockCloseSync: jest.SpiedFunction<typeof fs.closeSync>;
+  let mockReaddirSync: jest.SpiedFunction<(pth: string) => string[]>; // variadic signature problems
+  let mockUtimesSync: jest.SpiedFunction<typeof fs.utimesSync>;
 
   beforeEach(() => {
     mockRoot = path.join(os.tmpdir(), "lage-test-root");
@@ -32,7 +39,7 @@ describe("simulateFileAccess", () => {
     mockOpenSync = jest.spyOn(fs, "openSync").mockReturnValue(123);
     mockReadSync = jest.spyOn(fs, "readSync").mockImplementation(() => 1);
     mockCloseSync = jest.spyOn(fs, "closeSync").mockImplementation(() => {});
-    mockReaddirSync = jest.spyOn(fs, "readdirSync").mockImplementation(() => []);
+    mockReaddirSync = jest.spyOn(fs, "readdirSync").mockImplementation(() => []) as any;
     mockUtimesSync = jest.spyOn(fs, "utimesSync").mockImplementation(() => {});
     jest.spyOn(fs, "lstatSync").mockImplementation((inputPath: any) => {
       const strPath = Buffer.isBuffer(inputPath) ? inputPath.toString() : String(inputPath);

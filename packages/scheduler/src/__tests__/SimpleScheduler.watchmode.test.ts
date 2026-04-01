@@ -1,3 +1,4 @@
+import { describe, expect, it, jest } from "@jest/globals";
 import { TargetHasher } from "@lage-run/hasher";
 import { Logger } from "@lage-run/logger";
 import type { TargetRunner } from "@lage-run/runners";
@@ -32,7 +33,7 @@ describe("SimpleScheduler watch mode", () => {
       async shouldRun() {
         return true;
       },
-      run: jest.fn(),
+      run: jest.fn<TargetRunner["run"]>(),
     };
 
     const scheduler = new SimpleScheduler({
@@ -79,7 +80,7 @@ describe("SimpleScheduler watch mode", () => {
       async shouldRun() {
         return true;
       },
-      run: jest.fn(),
+      run: jest.fn<TargetRunner["run"]>(),
     };
 
     const scheduler = new SimpleScheduler({
