@@ -1,14 +1,18 @@
 import { formatHrtime } from "./formatDuration.js";
 import chalk from "chalk";
 import type { TargetRun } from "@lage-run/scheduler-types";
-import { colors, GroupedReporter } from "./GroupedReporter.js";
+import { GroupedReporter, type GroupedReporterOptions } from "./GroupedReporter.js";
 
 /**
  * Reporter that formats logs for Azure DevOps, optionally with grouping.
  */
 export class AdoReporter extends GroupedReporter {
+  constructor(options: Omit<GroupedReporterOptions, "colors">) {
+    super(options);
+  }
+
   protected formatGroupStart(packageName: string, task: string, status: string, duration?: [number, number]): string {
-    return `##[group] ${colors.pkg(packageName)} ${colors.task(task)} ${status}${duration ? `, took ${formatHrtime(duration)}` : ""}\n`;
+    return `##[group] ${this.colors.pkg(packageName)} ${this.colors.task(task)} ${status}${duration ? `, took ${formatHrtime(duration)}` : ""}\n`;
   }
 
   protected formatGroupEnd(): string {

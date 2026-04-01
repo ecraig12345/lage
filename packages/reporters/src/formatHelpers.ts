@@ -1,8 +1,19 @@
 import { gradient } from "@ms-cloudpack/task-reporter";
+import type { TargetStatus } from "@lage-run/scheduler-types";
 import ansiRegex from "ansi-regex";
 
 /** 80-character divider line */
 export const hrLine = "┈".repeat(80);
+
+export const statusIcons: Record<TargetStatus, string> = {
+  running: "➔",
+  queued: "…",
+  pending: "…",
+  success: "✓",
+  failed: "✗",
+  skipped: "»",
+  aborted: "-",
+};
 
 const stripAnsiRegex = ansiRegex();
 

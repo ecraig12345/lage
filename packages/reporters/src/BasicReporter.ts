@@ -3,7 +3,7 @@ import type { Target } from "@lage-run/target-graph";
 import type { Writable } from "stream";
 import chalk from "chalk";
 import { formatHrtime } from "./formatDuration.js";
-import { fancyGradient, formatBytes, formatMemoryUsage, hrLine } from "./formatHelpers.js";
+import { fancyGradient, formatBytes, formatMemoryUsage, hrLine, statusIcons } from "./formatHelpers.js";
 import type { TargetReporter, MaybeTargetLogEntry, TargetLogEntry } from "./types/TargetReporter.js";
 import { isTargetLogEntry, isTargetStatusData } from "./isTargetLogEntry.js";
 import { isCompletionStatus, type CompletionStatus } from "./isCompletionStatus.js";
@@ -31,13 +31,6 @@ const colors = {
   summary: chalk.cyanBright,
   task: chalk.hex("#00DDDD"),
   pkg: chalk.hex("#FFD66B"),
-};
-
-const icons: Record<CompletionStatus, string> = {
-  success: "✓",
-  failed: "✗",
-  skipped: "-",
-  aborted: "-",
 };
 
 const terminal = {
@@ -172,7 +165,7 @@ export class BasicReporter implements TargetReporter {
     duration?: [number, number];
     memoryUsage?: NodeJS.MemoryUsage;
   }) {
-    const icon = icons[completion.status];
+    const icon = statusIcons[completion.status];
     const statusColor = colors[completion.status];
     const durationText = completion.duration ? ` (${formatHrtime(completion.duration)})` : "";
     const memText = formatMemoryUsage(completion.memoryUsage, this.logMemory);

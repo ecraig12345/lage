@@ -152,11 +152,10 @@ export class ProgressReporter implements TargetReporter {
     // (It would also end running or pending tasks, but we're handling that slightly differently above.)
     this.taskReporter.complete();
 
+    this.print(chalk.cyanBright(`\nSummary`));
+    this.print(hrLine);
+
     if (targetRuns.size > 0) {
-      this.print(chalk.cyanBright(`\nSummary`));
-
-      this.print(hrLine);
-
       const slowestTargets = slowestTargetRuns([...targetRuns.values()]);
 
       for (const wrappedTarget of slowestTargets) {

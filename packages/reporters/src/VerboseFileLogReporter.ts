@@ -1,10 +1,10 @@
 import { formatHrtime } from "./formatDuration.js";
-import { isTargetLogEntry, isTargetStatusData } from "./isTargetLogEntry.js";
+import { isTargetLogEntry, isTargetStatusData, isTargetStatusLogEntry } from "./isTargetLogEntry.js";
 import { LogLevel } from "@lage-run/logger";
 import { Writable } from "stream";
 import fs from "fs";
 import path from "path";
-import { formatMemoryUsage, stripAnsi } from "./formatHelpers.js";
+import { formatMemoryUsage, stripAnsi, statusIcons } from "./formatHelpers.js";
 import type { TargetLogEntry, MaybeTargetLogEntry, TargetReporter } from "./types/TargetReporter.js";
 
 interface VerboseFileLogReporterOptions {
@@ -46,47 +46,32 @@ export class VerboseFileLogReporter implements TargetReporter {
   }
 
   public log(entry: MaybeTargetLogEntry): void {
-    const isTargetLog = isTargetLogEntry(entry);
-    // if "hidden", do not even attempt to record or report the entry
-    if (isTargetLog && entry.data.target.hidden) {
+    // if level is "silly", do not report the entry
+    if (entry.level > LogLevel.verbose) {
       return;
     }
 
-    // if loglevel is not high enough, do not report the entry
-    if (LogLevel.verbose < entry.level) {
-      return;
-    }
-
-    // log normal target entries
-    if (isTargetLog) {
-      return this.logTargetEntry(entry);
-    }
-
-    // log generic entries (not related to target)
-    if (entry.msg) {
-      return this.print(`${entry.msg}`);
+    const targetEntry = isTargetLogEntry(entry) ? entry : undefined;
+    if (targetEntry) {
+      // if "hidden", do not even attempt to record or report the entry
+      if (!targetEntry.data.target.hidden) {
+        // log normal target entries
+        this.logTargetEntry(targetEntry);
+      }
+    } else if (entry.msg) {
+      // log generic entries (not related to target)
+      this.print(`${entry.msg}`);
     }
   }
 
-  private printEntry(entry: TargetLogEntry, message: string) {
-    let packageAndTask = "";
+  private printEntry(entry: TargetLogEntry, message: string): void {
+    const { packageName, task, id } = entry.data.target;
+    const packageAndTask = `${packageName ?? "<root>"} ${task}`.trim();
 
-    if (entry?.data?.target) {
-      const { packageName, task } = entry.data.target;
-      const pkg = packageName ?? "<root>";
+    const entryTargetId = id ? `[:${id}:]` : "";
+    const icon = isTargetStatusLogEntry(entry) ? statusIcons[entry.data.status] : ":";
 
-      packageAndTask = `${pkg} ${task}`.trim();
-    }
-
-    this.print(`${this.getEntryTargetId(entry)} ${packageAndTask} ${message}`.trim());
-  }
-
-  private getEntryTargetId(entry: TargetLogEntry) {
-    if (entry.data?.target?.id) {
-      return `[:${entry.data.target.id}:]`;
-    }
-
-    return "";
+    this.print(`${entryTargetId} ${packageAndTask} ${icon} ${message}`.trim());
   }
 
   private print(message: string) {
@@ -102,32 +87,32 @@ export class VerboseFileLogReporter implements TargetReporter {
 
       switch (status) {
         case "running":
-          return this.printEntry(entry, `➔ start`);
+          return this.printEntry(entry, `start`);
 
         case "success":
-          return this.printEntry(entry, `✓ done - ${formatHrtime(duration!)}${mem}`);
+          return this.printEntry(entry, `done - ${formatHrtime(duration!)}${mem}`);
 
         case "failed":
-          return this.printEntry(entry, `✖ fail${mem}`);
+          return this.printEntry(entry, `fail${mem}`);
 
         case "skipped":
-          return this.printEntry(entry, `» skip - ${hash}${mem}`);
+          return this.printEntry(entry, `skip - ${hash}${mem}`);
 
         case "aborted":
-          return this.printEntry(entry, `- aborted`);
+          return this.printEntry(entry, `aborted`);
 
         case "queued":
-          return this.printEntry(entry, `… queued`);
+          return this.printEntry(entry, `queued`);
 
         case "pending":
-          return this.printEntry(entry, `… pending`);
+          return this.printEntry(entry, `pending`);
 
         default:
           throw new Error(`Internal error: unhandled target status "${status}"`);
       }
     }
 
-    return this.printEntry(entry, `: ${stripAnsi(entry.msg)}`);
+    return this.printEntry(entry, stripAnsi(entry.msg));
   }
 
   public summarize(): void {

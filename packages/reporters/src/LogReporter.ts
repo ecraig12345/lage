@@ -1,16 +1,13 @@
 import { formatHrtime, hrtimeDiff } from "./formatDuration.js";
-import { isTargetLogEntry, isTargetStatusData } from "./isTargetLogEntry.js";
-import { LogLevel } from "@lage-run/logger";
+import { LogLevel, type LogEntry } from "@lage-run/logger";
 import chalk from "chalk";
 import type { Chalk } from "chalk";
-import type { SchedulerRunSummary, TargetStatus } from "@lage-run/scheduler-types";
-import type { Writable } from "stream";
+import type { SchedulerRunSummary, TargetRun, TargetStatus } from "@lage-run/scheduler-types";
+import type { TargetStatusData } from "./types/TargetLogData.js";
 import crypto from "crypto";
-import { fancyGradient, formatBytes, formatMemoryUsage, hrLine, stripAnsi } from "./formatHelpers.js";
+import { fancyGradient, formatBytes, hrLine } from "./formatHelpers.js";
 import { slowestTargetRuns } from "./slowestTargetRuns.js";
-import type { TargetLogEntry, MaybeTargetLogEntry, TargetReporter } from "./types/TargetReporter.js";
-import type { GroupedReporterOptions } from "./GroupedReporter.js";
-import { isCompletionStatus, isNonFailureCompletionStatus } from "./isCompletionStatus.js";
+import { GroupedReporter, type GroupedReporterOptions } from "./GroupedReporter.js";
 
 /** Color scheme from lage v1's reporter and others derived from it */
 export const colors = {
@@ -75,146 +72,47 @@ function getTaskLogPrefix(pkg: string, task: string) {
  * Lage v1 reporter that logs tasks without progress spinners.
  * It can either log entries immediately, or grouped when a target completes.
  */
-export class LogReporter implements TargetReporter {
-  private logStream: Writable;
-  /** Mapping from targetId log entries (the logs will be cleared for non-failed completed targets) */
-  private logEntries = new Map<string, TargetLogEntry[]>();
-
-  constructor(private options: GroupedReporterOptions) {
-    options.logLevel ??= LogLevel.info;
-    this.logStream = options.logStream || process.stdout;
-  }
-
-  public log(entry: MaybeTargetLogEntry): void {
-    if (isTargetLogEntry(entry)) {
-      // if "hidden", do not even attempt to record or report the entry
-      if (entry.data.target.hidden) return;
-    } else {
-      // log generic entries (not related to target)
-      if (this.shouldLog(entry) && entry.msg) {
-        this.print(entry.msg);
-      }
-      return;
-    }
-
-    // save the logs for errors
-    const targetId = entry.data.target.id;
-    if (!this.logEntries.has(targetId)) {
-      this.logEntries.set(targetId, []);
-    }
-    this.logEntries.get(targetId)!.push(entry);
-
-    if (!this.shouldLog(entry)) {
-      return;
-    }
-
-    if (this.options.grouped) {
-      this.logTargetEntryByGroup(entry);
-    } else {
-      this.logTargetEntry(entry);
-    }
-
-    // If it's a status message for non-failure completion, delete the target's entries to free memory
-    if (isTargetStatusData(entry.data) && isNonFailureCompletionStatus(entry.data.status)) {
-      this.logEntries.delete(targetId);
-    }
-  }
-
-  /**
-   * Whether the entry should be logged based solely on its level compared to the reporter's `logLevel`
-   * (does not consider `entry.target.hidden` or message presence)
-   */
-  private shouldLog(entry: MaybeTargetLogEntry): boolean {
-    return this.options.logLevel! >= entry.level;
-  }
-
-  private printEntry(entry: TargetLogEntry, message: string) {
-    let prefix = "";
-    const msg = message;
-
-    if (entry?.data?.target) {
-      const { packageName, task } = entry.data.target;
-      prefix = getTaskLogPrefix(packageName ?? "<root>", task);
-    }
-
-    this.print(`${prefix ? prefix + " " : ""}${msg}`);
+export class LogReporter extends GroupedReporter {
+  constructor(options: Omit<GroupedReporterOptions, "colors">) {
+    super({ ...options, colors });
   }
 
   private print(message: string) {
     this.logStream.write(message + "\n");
   }
 
-  private logTargetEntry(entry: TargetLogEntry) {
-    const colorFn = colors[entry.level];
-    const data = entry.data!;
+  protected override logTargetGroupCompleted(entry: Required<LogEntry<TargetStatusData>>): void {
+    const { id } = entry.data.target;
 
-    if (!isTargetStatusData(data)) {
-      return this.printEntry(entry, colorFn(":  " + stripAnsi(entry.msg)));
+    const entries = this.logEntries.get(id)!;
+
+    for (const targetEntry of entries) {
+      this.logTargetEntry(targetEntry);
     }
 
-    const { hash, duration, memoryUsage, status } = data;
-    const mem = formatMemoryUsage(memoryUsage, this.options.logMemory);
-
-    switch (status) {
-      case "running":
-        return this.printEntry(entry, colorFn(`${colors.ok("➔")} start`));
-
-      case "success":
-        return this.printEntry(entry, colorFn(`${colors.ok("✓")} done - ${formatHrtime(duration!)}${mem}`));
-
-      case "failed":
-        return this.printEntry(entry, colorFn(`${colors.error("✖")} fail${mem}`));
-
-      case "skipped":
-        return this.printEntry(entry, colorFn(`${colors.ok("»")} skip - ${hash!}${mem}`));
-
-      case "aborted":
-        return this.printEntry(entry, colorFn(`${colors.warn("-")} aborted`));
-
-      case "queued":
-        return this.printEntry(entry, colorFn(`${colors.warn("…")} queued`));
-
-      case "pending":
-        return;
-
-      default:
-        throw new Error(`Internal error: unhandled target status "${status}"`);
+    if (entries.length > 2) {
+      this.print(hrLine);
     }
   }
 
-  private logTargetEntryByGroup(entry: TargetLogEntry) {
-    const data = entry.data;
-
-    const target = data.target;
-    const { id } = target;
-
-    if (isTargetStatusData(data) && isCompletionStatus(data.status)) {
-      const entries = this.logEntries.get(id)!;
-
-      for (const targetEntry of entries) {
-        this.logTargetEntry(targetEntry);
-      }
-
-      if (entries.length > 2) {
-        this.print(hrLine);
-      }
-    }
+  protected override formatGroupStart(): string {
+    throw new Error("not implemented due to logTargetGroupCompleted override");
+  }
+  protected override formatGroupEnd(): string {
+    throw new Error("not implemented due to logTargetGroupCompleted override");
   }
 
-  public summarize(schedulerRunSummary: SchedulerRunSummary): void {
+  public override summarize(schedulerRunSummary: SchedulerRunSummary): void {
     const { targetRuns, targetRunByStatus } = schedulerRunSummary;
     const { failed, aborted, skipped, success, pending } = targetRunByStatus;
 
+    this.writeSummaryHeader();
+
     if (targetRuns.size > 0) {
-      this.print(chalk.cyanBright(`\nSummary`));
-
-      this.print(hrLine);
-
       const slowestTargets = slowestTargetRuns([...targetRuns.values()]);
 
       for (const wrappedTarget of slowestTargets) {
         const { target, status, duration } = wrappedTarget;
-
         const colorFn = statusColorFn[status] ?? chalk.white;
         const queueDuration = hrtimeDiff(wrappedTarget.queueTime, wrappedTarget.startTime);
 
@@ -240,8 +138,20 @@ export class LogReporter implements TargetReporter {
       this.print("Nothing has been run.");
     }
 
-    this.print(hrLine);
+    this.writeSummaryFooter();
 
+    const allCacheHits = [...targetRuns.values()].filter((run) => !run.target.hidden).length === skipped.length;
+    const allCacheHitText = allCacheHits ? fancyGradient(`All targets skipped!`) : "";
+
+    this.print(`Took a total of ${formatHrtime(schedulerRunSummary.duration)} to complete. ${allCacheHitText}`);
+  }
+
+  protected override writeSummaryHeader(): void {
+    this.print(chalk.cyanBright(`\nSummary`));
+    this.print(hrLine);
+  }
+
+  protected override writeFailures(failed: string[], targetRuns: Map<string, TargetRun<unknown>>): void {
     for (const targetId of failed) {
       const target = targetRuns.get(targetId)?.target;
 
@@ -261,11 +171,10 @@ export class LogReporter implements TargetReporter {
         this.print(hrLine);
       }
     }
+  }
 
-    const allCacheHits = [...targetRuns.values()].filter((run) => !run.target.hidden).length === skipped.length;
-    const allCacheHitText = allCacheHits ? fancyGradient(`All targets skipped!`) : "";
-
-    this.print(`Took a total of ${formatHrtime(schedulerRunSummary.duration)} to complete. ${allCacheHitText}`);
+  protected override writeSummaryFooter(): void {
+    this.print(hrLine);
   }
 
   public resetLogEntries(): void {
