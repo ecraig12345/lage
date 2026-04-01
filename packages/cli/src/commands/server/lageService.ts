@@ -237,7 +237,7 @@ export function createLageService({ cwd, serverControls, logger, concurrency, ta
         }
 
         fs.writeFileSync(targetHashFullPath, await targetHasher.hash(target));
-      } catch (e) {
+      } catch {
         throw new ConnectError(`Error writing target hash file: ${targetHashFullPath}`, Code.Internal);
       }
 

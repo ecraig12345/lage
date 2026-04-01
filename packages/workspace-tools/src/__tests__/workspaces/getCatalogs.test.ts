@@ -7,7 +7,7 @@ import type { Catalogs } from "../../types/Catalogs.js";
 import type { WorkspaceManager } from "../../types/WorkspaceManager.js";
 import { catalogsToYaml } from "../../workspaces/catalogsToYaml.js";
 import { getCatalogs } from "../../workspaces/getCatalogs.js";
-import { getWorkspaceManagerAndRoot } from "../../workspaces/implementations";
+import { getWorkspaceManagerAndRoot } from "../../workspaces/implementations/index.js";
 import { managerFiles } from "../../workspaces/implementations/getWorkspaceManagerAndRoot.js";
 
 // Samples from https://yarnpkg.com/features/catalogs
@@ -34,7 +34,7 @@ const namedCatalogs: Required<Catalogs> = {
   },
 };
 
-// eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const lernaJson = require(path.join(fixturesRoot, "lerna.base.json"));
 
 describe("getCatalogs", () => {
