@@ -1,8 +1,10 @@
+/** @import { Linter } from "eslint" */
 /** @import { BasicWorkerRunnerFunction } from "../types.js" */
 const { ESLint } = require("eslint");
 const fs = require("fs");
 const path = require("path");
 const { getPackageInfo } = require("workspace-tools-npm");
+const { createConfig } = require("../config/eslintConfig.js");
 
 /**
  * This worker is used for `lage run lint`, in place of the per-package `lint` script.
@@ -18,32 +20,26 @@ async function lint(data) {
 
   if (!packageJson?.scripts?.lint) {
     process.stdout.write('No "lint" script found - skipping');
-    // pass
     return;
-  }
-
-  const projectConfigPath = path.join(target.cwd, ".eslintrc.js");
-  const baseConfigPath = path.resolve(__dirname, "../config/eslintrc.js");
-  const hasProjectConfig = fs.existsSync(projectConfigPath);
-  const config = hasProjectConfig ? require(projectConfigPath) : require(baseConfigPath);
-
-  (config.parserOptions ??= {}).project = path.join(target.cwd, "tsconfig.json");
-  if (hasProjectConfig) {
-    // The project configs intentionally don't have "root" or "extends" to make the single
-    // config for the editor work (repo root .eslintrc.js)
-    config.root = true;
-    config.extends = baseConfigPath;
   }
 
   const shouldFix = taskArgs?.includes("--fix");
 
-  const eslint = new ESLint({
-    reportUnusedDisableDirectives: "error",
-    baseConfig: config,
-    fix: shouldFix,
-    cache: false,
-    cwd: target.cwd,
-  });
+  // Use the per-package eslint.config.js if it exists (these extend the shared config),
+  // otherwise create the default shared config for this package.
+  const projectConfigPath = path.join(target.cwd, "eslint.config.js");
+  /** @type {ESLint.Options} */
+  const eslintOptions = { fix: shouldFix, cache: false, cwd: target.cwd };
+
+  if (fs.existsSync(projectConfigPath)) {
+    eslintOptions.overrideConfigFile = projectConfigPath;
+  } else {
+    // disable config file lookup so only baseConfig is used
+    eslintOptions.overrideConfigFile = true;
+    eslintOptions.baseConfig = /** @type {Linter.Config} */ (createConfig({ dirname: target.cwd }));
+  }
+
+  const eslint = new ESLint(eslintOptions);
 
   const files = target.packageName === "@lage-run/monorepo-scripts" ? ["."] : ["src"];
   const results = await eslint.lintFiles(files);
