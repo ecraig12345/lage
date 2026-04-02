@@ -2,6 +2,29 @@
   "name": "@lage-run/scheduler",
   "entries": [
     {
+      "date": "Thu, 02 Apr 2026 03:54:25 GMT",
+      "version": "1.6.0",
+      "tag": "@lage-run/scheduler_v1.6.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/scheduler",
+            "commit": "8bdb4b56c0d0a73f73d52e8570796c4ccfe9527a",
+            "comment": "Add logMemory option for SimpleScheduler and WrappedTarget"
+          }
+        ],
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@lage-run/scheduler",
+            "commit": "8bdb4b56c0d0a73f73d52e8570796c4ccfe9527a",
+            "comment": "Remove unused catch bindings"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 28 Mar 2026 00:04:36 GMT",
       "version": "1.5.22",
       "tag": "@lage-run/scheduler_v1.5.22",

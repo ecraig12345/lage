@@ -2,6 +2,151 @@
   "name": "lage",
   "entries": [
     {
+      "date": "Thu, 02 Apr 2026 03:54:25 GMT",
+      "version": "2.15.5",
+      "tag": "lage_v2.15.5",
+      "comments": {
+        "patch": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-cache",
+            "commit": "8bdb4b56c0d0a73f73d52e8570796c4ccfe9527a",
+            "comment": "Directly use `globby` v11 instead of `@lage-run/globby`"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-cache",
+            "commit": "8bdb4b56c0d0a73f73d52e8570796c4ccfe9527a",
+            "comment": "LocalCacheStorage: remove incorrect check for file changes between source and dest while fetching from cache (removes superfluous stat calls)"
+          },
+          {
+            "author": "email not defined",
+            "package": "backfill-cache",
+            "commit": "8bdb4b56c0d0a73f73d52e8570796c4ccfe9527a",
+            "comment": "Remove unused catch binding"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/cli",
+            "commit": "8bdb4b56c0d0a73f73d52e8570796c4ccfe9527a",
+            "comment": "Directly use `globby` v11 instead of `@lage-run/globby`"
+          },
+          {
+            "author": "email not defined",
+            "package": "@lage-run/cli",
+            "commit": "8bdb4b56c0d0a73f73d52e8570796c4ccfe9527a",
+            "comment": "Import formatDuration/hrToSeconds/hrtimeDiff from @lage-run/reporters instead of @lage-run/format-hrtime"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/cli",
+            "commit": "8bdb4b56c0d0a73f73d52e8570796c4ccfe9527a",
+            "comment": "Use cache directory helpers"
+          },
+          {
+            "author": "email not defined",
+            "package": "@lage-run/cli",
+            "commit": "8bdb4b56c0d0a73f73d52e8570796c4ccfe9527a",
+            "comment": "Remove unused catch bindings"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/hasher",
+            "commit": "8bdb4b56c0d0a73f73d52e8570796c4ccfe9527a",
+            "comment": "Directly use `globby` v11 instead of `@lage-run/globby` (implement caching internally)"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/cache",
+            "commit": "8bdb4b56c0d0a73f73d52e8570796c4ccfe9527a",
+            "comment": "Use cache directory helpers"
+          },
+          {
+            "author": "email not defined",
+            "package": "@lage-run/scheduler",
+            "commit": "8bdb4b56c0d0a73f73d52e8570796c4ccfe9527a",
+            "comment": "Remove unused catch bindings"
+          },
+          {
+            "author": "email not defined",
+            "package": "@lage-run/target-graph",
+            "commit": "8bdb4b56c0d0a73f73d52e8570796c4ccfe9527a",
+            "comment": "Upgrade typescript-eslint to v8 and fix lint issues"
+          },
+          {
+            "author": "email not defined",
+            "package": "workspace-tools",
+            "commit": "8bdb4b56c0d0a73f73d52e8570796c4ccfe9527a",
+            "comment": "Upgrade typescript-eslint to v8 and fix lint issues"
+          }
+        ],
+        "minor": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/cli",
+            "commit": "8bdb4b56c0d0a73f73d52e8570796c4ccfe9527a",
+            "comment": "Add `--log-memory` option to the `run` command"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/hasher",
+            "commit": "8bdb4b56c0d0a73f73d52e8570796c4ccfe9527a",
+            "comment": "TargetHasher: remove unnecessary writes to `node_modules/.cache/lage/hashes`"
+          },
+          {
+            "author": "email not defined",
+            "package": "@lage-run/reporters",
+            "commit": "8bdb4b56c0d0a73f73d52e8570796c4ccfe9527a",
+            "comment": "Merge @lage-run/format-hrtime into @lage-run/reporters; re-export formatDuration, hrToSeconds, hrtimeDiff"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/reporters",
+            "commit": "8bdb4b56c0d0a73f73d52e8570796c4ccfe9527a",
+            "comment": "Add logMemory option to certain reporters"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/scheduler",
+            "commit": "8bdb4b56c0d0a73f73d52e8570796c4ccfe9527a",
+            "comment": "Add logMemory option for SimpleScheduler and WrappedTarget"
+          },
+          {
+            "author": "email not defined",
+            "package": "@lage-run/scheduler-types",
+            "commit": "8bdb4b56c0d0a73f73d52e8570796c4ccfe9527a",
+            "comment": "Update cleanup() return type to allow Promise<void>"
+          },
+          {
+            "author": "email not defined",
+            "package": "@lage-run/worker-threads-pool",
+            "commit": "8bdb4b56c0d0a73f73d52e8570796c4ccfe9527a",
+            "comment": "Fix `terminate()` to be async and await worker termination"
+          }
+        ],
+        "none": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/cache",
+            "commit": "8bdb4b56c0d0a73f73d52e8570796c4ccfe9527a",
+            "comment": "update dev deps"
+          },
+          {
+            "author": "email not defined",
+            "package": "backfill-config",
+            "commit": "8bdb4b56c0d0a73f73d52e8570796c4ccfe9527a",
+            "comment": "update lint disables"
+          },
+          {
+            "author": "email not defined",
+            "package": "backfill-hasher",
+            "commit": "8bdb4b56c0d0a73f73d52e8570796c4ccfe9527a",
+            "comment": "update lint disables"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 30 Mar 2026 21:21:13 GMT",
       "version": "2.15.4",
       "tag": "lage_v2.15.4",

@@ -1,8 +1,16 @@
 # Change Log - @lage-run/scheduler-types
 
-<!-- This log was last generated on Tue, 10 Feb 2026 22:12:02 GMT and should not be manually modified. -->
+<!-- This log was last generated on Thu, 02 Apr 2026 03:54:25 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.4.0
+
+Thu, 02 Apr 2026 03:54:25 GMT
+
+### Minor changes
+
+- Update cleanup() return type to allow Promise\<void> (email not defined)
 
 ## 0.3.29
 

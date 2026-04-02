@@ -2,6 +2,21 @@
   "name": "workspace-tools",
   "entries": [
     {
+      "date": "Thu, 02 Apr 2026 03:54:25 GMT",
+      "version": "0.41.2",
+      "tag": "workspace-tools_v0.41.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "workspace-tools",
+            "commit": "8bdb4b56c0d0a73f73d52e8570796c4ccfe9527a",
+            "comment": "Upgrade typescript-eslint to v8 and fix lint issues"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 26 Mar 2026 19:53:28 GMT",
       "version": "0.41.1",
       "tag": "workspace-tools_v0.41.1",

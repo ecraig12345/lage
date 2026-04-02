@@ -1,8 +1,16 @@
 # Change Log - @lage-run/cache
 
-<!-- This log was last generated on Thu, 19 Mar 2026 23:52:35 GMT and should not be manually modified. -->
+<!-- This log was last generated on Thu, 02 Apr 2026 03:54:25 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 1.4.12
+
+Thu, 02 Apr 2026 03:54:25 GMT
+
+### Patches
+
+- Use cache directory helpers (elcraig@microsoft.com)
 
 ## 1.4.8
 

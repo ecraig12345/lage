@@ -1,8 +1,23 @@
 # Change Log - @lage-run/cli
 
-<!-- This log was last generated on Mon, 30 Mar 2026 21:21:13 GMT and should not be manually modified. -->
+<!-- This log was last generated on Thu, 02 Apr 2026 03:54:25 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.36.0
+
+Thu, 02 Apr 2026 03:54:25 GMT
+
+### Minor changes
+
+- Add `--log-memory` option to the `run` command (elcraig@microsoft.com)
+
+### Patches
+
+- Directly use `globby` v11 instead of `@lage-run/globby` (elcraig@microsoft.com)
+- Import formatDuration/hrToSeconds/hrtimeDiff from @lage-run/reporters instead of @lage-run/format-hrtime (email not defined)
+- Use cache directory helpers (elcraig@microsoft.com)
+- Remove unused catch bindings (email not defined)
 
 ## 0.35.2
 

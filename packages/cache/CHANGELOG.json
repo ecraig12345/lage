@@ -2,6 +2,29 @@
   "name": "@lage-run/cache",
   "entries": [
     {
+      "date": "Thu, 02 Apr 2026 03:54:25 GMT",
+      "version": "1.4.12",
+      "tag": "@lage-run/cache_v1.4.12",
+      "comments": {
+        "patch": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/cache",
+            "commit": "8bdb4b56c0d0a73f73d52e8570796c4ccfe9527a",
+            "comment": "Use cache directory helpers"
+          }
+        ],
+        "none": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/cache",
+            "commit": "8bdb4b56c0d0a73f73d52e8570796c4ccfe9527a",
+            "comment": "update dev deps"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 28 Mar 2026 00:04:36 GMT",
       "version": "1.4.10",
       "tag": "@lage-run/cache_v1.4.10",

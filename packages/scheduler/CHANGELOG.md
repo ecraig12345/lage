@@ -1,8 +1,20 @@
 # Change Log - @lage-run/scheduler
 
-<!-- This log was last generated on Thu, 26 Mar 2026 19:53:28 GMT and should not be manually modified. -->
+<!-- This log was last generated on Thu, 02 Apr 2026 03:54:25 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 1.6.0
+
+Thu, 02 Apr 2026 03:54:25 GMT
+
+### Minor changes
+
+- Add logMemory option for SimpleScheduler and WrappedTarget (elcraig@microsoft.com)
+
+### Patches
+
+- Remove unused catch bindings (email not defined)
 
 ## 1.5.21
 

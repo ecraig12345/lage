@@ -1,8 +1,21 @@
 # Change Log - backfill
 
-<!-- This log was last generated on Mon, 30 Mar 2026 21:21:13 GMT and should not be manually modified. -->
+<!-- This log was last generated on Thu, 02 Apr 2026 03:54:25 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 6.4.8
+
+Thu, 02 Apr 2026 03:54:25 GMT
+
+### Patches
+
+- `backfill-cache`
+  - Directly use `globby` v11 instead of `@lage-run/globby` (elcraig@microsoft.com)
+  - LocalCacheStorage: remove incorrect check for file changes between source and dest while fetching from cache (removes superfluous stat calls) (elcraig@microsoft.com)
+  - Remove unused catch binding (email not defined)
+- `backfill`
+  - Directly use `globby` v11 instead of `@lage-run/globby` (elcraig@microsoft.com)
 
 ## 6.4.7
 

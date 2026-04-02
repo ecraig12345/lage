@@ -1,8 +1,17 @@
 # Change Log - @lage-run/reporters
 
-<!-- This log was last generated on Thu, 19 Mar 2026 23:52:35 GMT and should not be manually modified. -->
+<!-- This log was last generated on Thu, 02 Apr 2026 03:54:25 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 1.6.0
+
+Thu, 02 Apr 2026 03:54:25 GMT
+
+### Minor changes
+
+- Merge @lage-run/format-hrtime into @lage-run/reporters; re-export formatDuration, hrToSeconds, hrtimeDiff (email not defined)
+- Add logMemory option to certain reporters (elcraig@microsoft.com)
 
 ## 1.5.0
 

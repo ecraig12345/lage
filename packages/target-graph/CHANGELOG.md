@@ -1,8 +1,16 @@
 # Change Log - @lage-run/target-graph
 
-<!-- This log was last generated on Thu, 26 Mar 2026 19:53:28 GMT and should not be manually modified. -->
+<!-- This log was last generated on Thu, 02 Apr 2026 03:54:25 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.14.2
+
+Thu, 02 Apr 2026 03:54:25 GMT
+
+### Patches
+
+- Upgrade typescript-eslint to v8 and fix lint issues (email not defined)
 
 ## 0.14.1
 

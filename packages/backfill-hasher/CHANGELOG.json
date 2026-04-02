@@ -2,6 +2,21 @@
   "name": "backfill-hasher",
   "entries": [
     {
+      "date": "Thu, 02 Apr 2026 03:54:25 GMT",
+      "version": "6.7.3",
+      "tag": "backfill-hasher_v6.7.3",
+      "comments": {
+        "none": [
+          {
+            "author": "email not defined",
+            "package": "backfill-hasher",
+            "commit": "8bdb4b56c0d0a73f73d52e8570796c4ccfe9527a",
+            "comment": "update lint disables"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 28 Mar 2026 00:04:36 GMT",
       "version": "6.7.2",
       "tag": "backfill-hasher_v6.7.2",

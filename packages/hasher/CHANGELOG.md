@@ -1,8 +1,20 @@
 # Change Log - @lage-run/hasher
 
-<!-- This log was last generated on Thu, 26 Mar 2026 19:53:28 GMT and should not be manually modified. -->
+<!-- This log was last generated on Thu, 02 Apr 2026 03:54:25 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 1.10.0
+
+Thu, 02 Apr 2026 03:54:25 GMT
+
+### Minor changes
+
+- TargetHasher: remove unnecessary writes to `node_modules/.cache/lage/hashes` (elcraig@microsoft.com)
+
+### Patches
+
+- Directly use `globby` v11 instead of `@lage-run/globby` (implement caching internally) (elcraig@microsoft.com)
 
 ## 1.9.6
 

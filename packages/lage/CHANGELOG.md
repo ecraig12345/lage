@@ -1,8 +1,50 @@
 # Change Log - lage
 
-<!-- This log was last generated on Mon, 30 Mar 2026 21:21:13 GMT and should not be manually modified. -->
+<!-- This log was last generated on Thu, 02 Apr 2026 03:54:25 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 2.15.5
+
+Thu, 02 Apr 2026 03:54:25 GMT
+
+### Minor changes
+
+- `@lage-run/cli`
+  - Add `--log-memory` option to the `run` command (elcraig@microsoft.com)
+- `@lage-run/hasher`
+  - TargetHasher: remove unnecessary writes to `node_modules/.cache/lage/hashes` (elcraig@microsoft.com)
+- `@lage-run/reporters`
+  - Merge @lage-run/format-hrtime into @lage-run/reporters; re-export formatDuration, hrToSeconds, hrtimeDiff (email not defined)
+  - Add logMemory option to certain reporters (elcraig@microsoft.com)
+- `@lage-run/scheduler`
+  - Add logMemory option for SimpleScheduler and WrappedTarget (elcraig@microsoft.com)
+- `@lage-run/scheduler-types`
+  - Update cleanup() return type to allow Promise\<void> (email not defined)
+- `@lage-run/worker-threads-pool`
+  - Fix `terminate()` to be async and await worker termination (email not defined)
+
+### Patches
+
+- `backfill-cache`
+  - Directly use `globby` v11 instead of `@lage-run/globby` (elcraig@microsoft.com)
+  - LocalCacheStorage: remove incorrect check for file changes between source and dest while fetching from cache (removes superfluous stat calls) (elcraig@microsoft.com)
+  - Remove unused catch binding (email not defined)
+- `@lage-run/cli`
+  - Directly use `globby` v11 instead of `@lage-run/globby` (elcraig@microsoft.com)
+  - Import formatDuration/hrToSeconds/hrtimeDiff from @lage-run/reporters instead of @lage-run/format-hrtime (email not defined)
+  - Use cache directory helpers (elcraig@microsoft.com)
+  - Remove unused catch bindings (email not defined)
+- `@lage-run/hasher`
+  - Directly use `globby` v11 instead of `@lage-run/globby` (implement caching internally) (elcraig@microsoft.com)
+- `@lage-run/cache`
+  - Use cache directory helpers (elcraig@microsoft.com)
+- `@lage-run/scheduler`
+  - Remove unused catch bindings (email not defined)
+- `@lage-run/target-graph`
+  - Upgrade typescript-eslint to v8 and fix lint issues (email not defined)
+- `workspace-tools`
+  - Upgrade typescript-eslint to v8 and fix lint issues (email not defined)
 
 ## 2.15.4
 

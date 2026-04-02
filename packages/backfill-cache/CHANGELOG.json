@@ -2,6 +2,33 @@
   "name": "backfill-cache",
   "entries": [
     {
+      "date": "Thu, 02 Apr 2026 03:54:25 GMT",
+      "version": "5.12.3",
+      "tag": "backfill-cache_v5.12.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-cache",
+            "commit": "8bdb4b56c0d0a73f73d52e8570796c4ccfe9527a",
+            "comment": "Directly use `globby` v11 instead of `@lage-run/globby`"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-cache",
+            "commit": "8bdb4b56c0d0a73f73d52e8570796c4ccfe9527a",
+            "comment": "LocalCacheStorage: remove incorrect check for file changes between source and dest while fetching from cache (removes superfluous stat calls)"
+          },
+          {
+            "author": "email not defined",
+            "package": "backfill-cache",
+            "commit": "8bdb4b56c0d0a73f73d52e8570796c4ccfe9527a",
+            "comment": "Remove unused catch binding"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 30 Mar 2026 21:21:13 GMT",
       "version": "5.12.2",
       "tag": "backfill-cache_v5.12.2",

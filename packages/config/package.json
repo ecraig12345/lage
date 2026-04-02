@@ -1,6 +1,6 @@
 {
   "name": "@lage-run/config",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "description": "Config management for Lage",
   "repository": {
     "type": "git",

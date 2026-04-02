@@ -2,6 +2,27 @@
   "name": "@lage-run/reporters",
   "entries": [
     {
+      "date": "Thu, 02 Apr 2026 03:54:25 GMT",
+      "version": "1.6.0",
+      "tag": "@lage-run/reporters_v1.6.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "email not defined",
+            "package": "@lage-run/reporters",
+            "commit": "8bdb4b56c0d0a73f73d52e8570796c4ccfe9527a",
+            "comment": "Merge @lage-run/format-hrtime into @lage-run/reporters; re-export formatDuration, hrToSeconds, hrtimeDiff"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/reporters",
+            "commit": "8bdb4b56c0d0a73f73d52e8570796c4ccfe9527a",
+            "comment": "Add logMemory option to certain reporters"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 28 Mar 2026 00:04:36 GMT",
       "version": "1.5.1",
       "tag": "@lage-run/reporters_v1.5.1",

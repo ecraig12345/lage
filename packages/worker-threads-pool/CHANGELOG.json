@@ -2,6 +2,21 @@
   "name": "@lage-run/worker-threads-pool",
   "entries": [
     {
+      "date": "Thu, 02 Apr 2026 03:54:25 GMT",
+      "version": "0.10.0",
+      "tag": "@lage-run/worker-threads-pool_v0.10.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "email not defined",
+            "package": "@lage-run/worker-threads-pool",
+            "commit": "8bdb4b56c0d0a73f73d52e8570796c4ccfe9527a",
+            "comment": "Fix `terminate()` to be async and await worker termination"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 28 Mar 2026 00:04:36 GMT",
       "version": "0.9.4",
       "tag": "@lage-run/worker-threads-pool_v0.9.4",
