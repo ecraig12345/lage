@@ -72,13 +72,14 @@ export interface Target {
     packageName?: string;
     priority?: number;
     shouldRun?: boolean;
+    skipRemoteCache?: boolean;
     task: string;
     type?: string;
     weight?: number;
 }
 
 // @public
-export interface TargetConfig extends Pick<Target, "type" | "inputs" | "outputs" | "priority" | "cache" | "environmentGlob" | "maxWorkers" | "options"> {
+export interface TargetConfig extends Pick<Target, "type" | "inputs" | "outputs" | "priority" | "cache" | "skipRemoteCache" | "environmentGlob" | "maxWorkers" | "options"> {
     dependsOn?: string[];
     // @deprecated
     deps?: string[];
