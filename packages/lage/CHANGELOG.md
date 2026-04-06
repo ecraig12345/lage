@@ -1,8 +1,30 @@
 # Change Log - lage
 
-<!-- This log was last generated on Thu, 02 Apr 2026 03:54:25 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 06 Apr 2026 21:27:03 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 2.15.6
+
+Mon, 06 Apr 2026 21:27:03 GMT
+
+### Minor changes
+
+- `@lage-run/logger`
+  - Allow reporter cleanup to be async (elcraig@microsoft.com)
+- `@lage-run/reporters`
+  - Add testing options for BasicReporter and ProgressReporter. Fix ProgressReporter aborted tasks counts and add cleanup. (elcraig@microsoft.com)
+  - Update `@ms-cloudpack/task-reporter`, which should significantly improve `ProgressReporter` performance. Add `formatHrtime` helper and reduce formatting repetition across reporters. (elcraig@microsoft.com)
+- `@lage-run/cache`
+  - Add target property for controlling whether remote cache should be used for that target or not. (lutomanovic@microsoft.com)
+- `@lage-run/target-graph`
+  - Add target property for controlling whether remote cache should be used for that target or not. (lutomanovic@microsoft.com)
+
+### Patches
+
+- `@lage-run/cli`
+  - Update reporter cleanup (elcraig@microsoft.com)
+  - Use `formatHrtime` helper (elcraig@microsoft.com)
 
 ## 2.15.5
 

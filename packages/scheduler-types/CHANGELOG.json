@@ -2,6 +2,21 @@
   "name": "@lage-run/scheduler-types",
   "entries": [
     {
+      "date": "Mon, 06 Apr 2026 21:27:03 GMT",
+      "version": "0.4.1",
+      "tag": "@lage-run/scheduler-types_v0.4.1",
+      "comments": {
+        "none": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/scheduler-types",
+            "commit": "8088908867c957c2f392936eed36a5eb2dde0c26",
+            "comment": "Add TargetStatus comment"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 02 Apr 2026 03:54:25 GMT",
       "version": "0.4.0",
       "tag": "@lage-run/scheduler-types_v0.4.0",

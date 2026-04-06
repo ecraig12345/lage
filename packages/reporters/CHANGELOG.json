@@ -2,6 +2,27 @@
   "name": "@lage-run/reporters",
   "entries": [
     {
+      "date": "Mon, 06 Apr 2026 21:27:03 GMT",
+      "version": "1.7.0",
+      "tag": "@lage-run/reporters_v1.7.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/reporters",
+            "commit": "8088908867c957c2f392936eed36a5eb2dde0c26",
+            "comment": "Add testing options for BasicReporter and ProgressReporter. Fix ProgressReporter aborted tasks counts and add cleanup."
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/reporters",
+            "commit": "8088908867c957c2f392936eed36a5eb2dde0c26",
+            "comment": "Update `@ms-cloudpack/task-reporter`, which should significantly improve `ProgressReporter` performance. Add `formatHrtime` helper and reduce formatting repetition across reporters."
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 02 Apr 2026 03:54:25 GMT",
       "version": "1.6.0",
       "tag": "@lage-run/reporters_v1.6.0",

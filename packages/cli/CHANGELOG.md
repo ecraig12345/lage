@@ -1,8 +1,17 @@
 # Change Log - @lage-run/cli
 
-<!-- This log was last generated on Thu, 02 Apr 2026 03:54:25 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 06 Apr 2026 21:27:03 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.36.1
+
+Mon, 06 Apr 2026 21:27:03 GMT
+
+### Patches
+
+- Update reporter cleanup (elcraig@microsoft.com)
+- Use `formatHrtime` helper (elcraig@microsoft.com)
 
 ## 0.36.0
 

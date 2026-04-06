@@ -2,6 +2,73 @@
   "name": "lage",
   "entries": [
     {
+      "date": "Mon, 06 Apr 2026 21:27:03 GMT",
+      "version": "2.15.6",
+      "tag": "lage_v2.15.6",
+      "comments": {
+        "patch": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/cli",
+            "commit": "8088908867c957c2f392936eed36a5eb2dde0c26",
+            "comment": "Update reporter cleanup"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/cli",
+            "commit": "8088908867c957c2f392936eed36a5eb2dde0c26",
+            "comment": "Use `formatHrtime` helper"
+          }
+        ],
+        "minor": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/logger",
+            "commit": "8088908867c957c2f392936eed36a5eb2dde0c26",
+            "comment": "Allow reporter cleanup to be async"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/reporters",
+            "commit": "8088908867c957c2f392936eed36a5eb2dde0c26",
+            "comment": "Add testing options for BasicReporter and ProgressReporter. Fix ProgressReporter aborted tasks counts and add cleanup."
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/reporters",
+            "commit": "8088908867c957c2f392936eed36a5eb2dde0c26",
+            "comment": "Update `@ms-cloudpack/task-reporter`, which should significantly improve `ProgressReporter` performance. Add `formatHrtime` helper and reduce formatting repetition across reporters."
+          },
+          {
+            "author": "lutomanovic@microsoft.com",
+            "package": "@lage-run/cache",
+            "commit": "8088908867c957c2f392936eed36a5eb2dde0c26",
+            "comment": "Add target property for controlling whether remote cache should be used for that target or not."
+          },
+          {
+            "author": "lutomanovic@microsoft.com",
+            "package": "@lage-run/target-graph",
+            "commit": "8088908867c957c2f392936eed36a5eb2dde0c26",
+            "comment": "Add target property for controlling whether remote cache should be used for that target or not."
+          }
+        ],
+        "none": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/scheduler-types",
+            "commit": "8088908867c957c2f392936eed36a5eb2dde0c26",
+            "comment": "Add TargetStatus comment"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "workspace-tools",
+            "commit": "8088908867c957c2f392936eed36a5eb2dde0c26",
+            "comment": "update eslint config"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 02 Apr 2026 03:54:25 GMT",
       "version": "2.15.5",
       "tag": "lage_v2.15.5",

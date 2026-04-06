@@ -1,8 +1,16 @@
 # Change Log - @lage-run/cache
 
-<!-- This log was last generated on Thu, 02 Apr 2026 03:54:25 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 06 Apr 2026 21:27:03 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 1.5.0
+
+Mon, 06 Apr 2026 21:27:03 GMT
+
+### Minor changes
+
+- Add target property for controlling whether remote cache should be used for that target or not. (lutomanovic@microsoft.com)
 
 ## 1.4.12
 

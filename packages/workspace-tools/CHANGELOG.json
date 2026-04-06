@@ -2,6 +2,21 @@
   "name": "workspace-tools",
   "entries": [
     {
+      "date": "Mon, 06 Apr 2026 21:27:03 GMT",
+      "version": "0.41.2",
+      "tag": "workspace-tools_v0.41.2",
+      "comments": {
+        "none": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "workspace-tools",
+            "commit": "8088908867c957c2f392936eed36a5eb2dde0c26",
+            "comment": "update eslint config"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 02 Apr 2026 03:54:25 GMT",
       "version": "0.41.2",
       "tag": "workspace-tools_v0.41.2",

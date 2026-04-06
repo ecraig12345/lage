@@ -2,6 +2,21 @@
   "name": "@lage-run/target-graph",
   "entries": [
     {
+      "date": "Mon, 06 Apr 2026 21:27:03 GMT",
+      "version": "0.15.0",
+      "tag": "@lage-run/target-graph_v0.15.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "lutomanovic@microsoft.com",
+            "package": "@lage-run/target-graph",
+            "commit": "8088908867c957c2f392936eed36a5eb2dde0c26",
+            "comment": "Add target property for controlling whether remote cache should be used for that target or not."
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 02 Apr 2026 03:54:25 GMT",
       "version": "0.14.2",
       "tag": "@lage-run/target-graph_v0.14.2",

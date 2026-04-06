@@ -1,8 +1,16 @@
 # Change Log - @lage-run/logger
 
-<!-- This log was last generated on Tue, 10 Feb 2026 22:12:02 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 06 Apr 2026 21:27:03 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 1.4.0
+
+Mon, 06 Apr 2026 21:27:03 GMT
+
+### Minor changes
+
+- Allow reporter cleanup to be async (elcraig@microsoft.com)
 
 ## 1.3.3
 

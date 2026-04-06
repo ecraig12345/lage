@@ -2,6 +2,27 @@
   "name": "@lage-run/cli",
   "entries": [
     {
+      "date": "Mon, 06 Apr 2026 21:27:03 GMT",
+      "version": "0.36.1",
+      "tag": "@lage-run/cli_v0.36.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/cli",
+            "commit": "8088908867c957c2f392936eed36a5eb2dde0c26",
+            "comment": "Update reporter cleanup"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/cli",
+            "commit": "8088908867c957c2f392936eed36a5eb2dde0c26",
+            "comment": "Use `formatHrtime` helper"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 02 Apr 2026 03:54:25 GMT",
       "version": "0.36.0",
       "tag": "@lage-run/cli_v0.36.0",

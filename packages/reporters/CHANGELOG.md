@@ -1,8 +1,17 @@
 # Change Log - @lage-run/reporters
 
-<!-- This log was last generated on Thu, 02 Apr 2026 03:54:25 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 06 Apr 2026 21:27:03 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 1.7.0
+
+Mon, 06 Apr 2026 21:27:03 GMT
+
+### Minor changes
+
+- Add testing options for BasicReporter and ProgressReporter. Fix ProgressReporter aborted tasks counts and add cleanup. (elcraig@microsoft.com)
+- Update `@ms-cloudpack/task-reporter`, which should significantly improve `ProgressReporter` performance. Add `formatHrtime` helper and reduce formatting repetition across reporters. (elcraig@microsoft.com)
 
 ## 1.6.0
 
