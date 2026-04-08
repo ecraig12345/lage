@@ -2,6 +2,21 @@
   "name": "backfill-utils-dotenv",
   "entries": [
     {
+      "date": "Wed, 08 Apr 2026 03:39:42 GMT",
+      "version": "5.3.3",
+      "tag": "backfill-utils-dotenv_v5.3.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-utils-dotenv",
+            "commit": "3e9927ed09b426cd53f4918ef9d9b291ea2d686f",
+            "comment": "Fix output to be importable from ESM in Node"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 28 Mar 2026 00:04:36 GMT",
       "version": "5.3.2",
       "tag": "backfill-utils-dotenv_v5.3.2",

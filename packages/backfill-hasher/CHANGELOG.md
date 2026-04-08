@@ -1,8 +1,16 @@
 # Change Log - backfill-hasher
 
-<!-- This log was last generated on Thu, 26 Mar 2026 19:53:28 GMT and should not be manually modified. -->
+<!-- This log was last generated on Wed, 08 Apr 2026 03:39:42 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 6.7.4
+
+Wed, 08 Apr 2026 03:39:42 GMT
+
+### Patches
+
+- Fix output to be importable from ESM in Node (elcraig@microsoft.com)
 
 ## 6.7.2
 

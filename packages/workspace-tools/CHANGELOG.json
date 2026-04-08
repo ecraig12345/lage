@@ -2,6 +2,21 @@
   "name": "workspace-tools",
   "entries": [
     {
+      "date": "Wed, 08 Apr 2026 03:39:42 GMT",
+      "version": "0.41.3",
+      "tag": "workspace-tools_v0.41.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "workspace-tools",
+            "commit": "3e9927ed09b426cd53f4918ef9d9b291ea2d686f",
+            "comment": "Fix output to be importable from ESM in Node"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 06 Apr 2026 21:27:03 GMT",
       "version": "0.41.2",
       "tag": "workspace-tools_v0.41.2",

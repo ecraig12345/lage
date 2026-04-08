@@ -2,6 +2,21 @@
   "name": "backfill-config",
   "entries": [
     {
+      "date": "Wed, 08 Apr 2026 03:39:42 GMT",
+      "version": "6.7.3",
+      "tag": "backfill-config_v6.7.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "backfill-config",
+            "commit": "3e9927ed09b426cd53f4918ef9d9b291ea2d686f",
+            "comment": "Fix output to be importable from ESM in Node"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 02 Apr 2026 03:54:25 GMT",
       "version": "6.7.2",
       "tag": "backfill-config_v6.7.2",

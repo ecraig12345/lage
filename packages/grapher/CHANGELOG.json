@@ -2,6 +2,21 @@
   "name": "@lage-run/grapher",
   "entries": [
     {
+      "date": "Wed, 08 Apr 2026 03:39:42 GMT",
+      "version": "0.2.22",
+      "tag": "@lage-run/grapher_v0.2.22",
+      "comments": {
+        "patch": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/grapher",
+            "commit": "3e9927ed09b426cd53f4918ef9d9b291ea2d686f",
+            "comment": "Fix output to be importable from ESM in Node"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 06 Apr 2026 21:27:03 GMT",
       "version": "0.2.21",
       "tag": "@lage-run/grapher_v0.2.21",

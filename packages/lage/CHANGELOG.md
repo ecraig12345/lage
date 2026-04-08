@@ -1,8 +1,51 @@
 # Change Log - lage
 
-<!-- This log was last generated on Mon, 06 Apr 2026 21:27:03 GMT and should not be manually modified. -->
+<!-- This log was last generated on Wed, 08 Apr 2026 03:39:42 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 2.15.7
+
+Wed, 08 Apr 2026 03:39:42 GMT
+
+### Patches
+
+- `backfill-cache`
+  - Fix output to be importable from ESM in Node (elcraig@microsoft.com)
+- `backfill-config`
+  - Fix output to be importable from ESM in Node (elcraig@microsoft.com)
+- `backfill-hasher`
+  - Fix output to be importable from ESM in Node (elcraig@microsoft.com)
+- `backfill-logger`
+  - Fix output to be importable from ESM in Node (elcraig@microsoft.com)
+- `backfill-utils-dotenv`
+  - Fix output to be importable from ESM in Node (elcraig@microsoft.com)
+- `@lage-run/cache`
+  - Fix output to be importable from ESM in Node (elcraig@microsoft.com)
+- `@lage-run/cli`
+  - Fix output to be importable from ESM in Node (elcraig@microsoft.com)
+- `@lage-run/config`
+  - Fix output to be importable from ESM in Node (elcraig@microsoft.com)
+- `@lage-run/hasher`
+  - Fix output to be importable from ESM in Node (elcraig@microsoft.com)
+- `@lage-run/logger`
+  - Fix output to be importable from ESM in Node (elcraig@microsoft.com)
+- `@lage-run/reporters`
+  - Fix output to be importable from ESM in Node (elcraig@microsoft.com)
+- `@lage-run/rpc`
+  - Fix output to be importable from ESM in Node (elcraig@microsoft.com)
+- `@lage-run/runners`
+  - Fix output to be importable from ESM in Node (elcraig@microsoft.com)
+- `@lage-run/scheduler`
+  - Fix output to be importable from ESM in Node (elcraig@microsoft.com)
+- `@lage-run/scheduler-types`
+  - Fix output to be importable from ESM in Node (elcraig@microsoft.com)
+- `@lage-run/target-graph`
+  - Fix output to be importable from ESM in Node (elcraig@microsoft.com)
+- `@lage-run/worker-threads-pool`
+  - Fix output to be importable from ESM in Node (elcraig@microsoft.com)
+- `workspace-tools`
+  - Fix output to be importable from ESM in Node (elcraig@microsoft.com)
 
 ## 2.15.6
 
