@@ -2,6 +2,35 @@
   "name": "lage",
   "entries": [
     {
+      "date": "Fri, 10 Apr 2026 04:04:59 GMT",
+      "version": "2.15.8",
+      "tag": "lage_v2.15.8",
+      "comments": {
+        "patch": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/cli",
+            "commit": "56f718d23f300624711312c4d2e200afad3696c7",
+            "comment": "Respect `reporter` option from config file"
+          },
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/config",
+            "commit": "56f718d23f300624711312c4d2e200afad3696c7",
+            "comment": "Add `reporter` option to config file"
+          }
+        ],
+        "minor": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "normalized-tmpdir",
+            "commit": "56f718d23f300624711312c4d2e200afad3696c7",
+            "comment": "Convert package to TS and publish from lage repo"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 08 Apr 2026 03:39:42 GMT",
       "version": "2.15.7",
       "tag": "lage_v2.15.7",

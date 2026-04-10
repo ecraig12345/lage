@@ -1,8 +1,16 @@
 # Change Log - @lage-run/config
 
-<!-- This log was last generated on Wed, 08 Apr 2026 03:39:42 GMT and should not be manually modified. -->
+<!-- This log was last generated on Fri, 10 Apr 2026 04:04:59 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.9.6
+
+Fri, 10 Apr 2026 04:04:59 GMT
+
+### Patches
+
+- Add `reporter` option to config file (elcraig@microsoft.com)
 
 ## 0.9.5
 

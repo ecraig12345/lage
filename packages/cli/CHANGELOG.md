@@ -1,8 +1,16 @@
 # Change Log - @lage-run/cli
 
-<!-- This log was last generated on Wed, 08 Apr 2026 03:39:42 GMT and should not be manually modified. -->
+<!-- This log was last generated on Fri, 10 Apr 2026 04:04:59 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.36.3
+
+Fri, 10 Apr 2026 04:04:59 GMT
+
+### Patches
+
+- Respect `reporter` option from config file (elcraig@microsoft.com)
 
 ## 0.36.2
 

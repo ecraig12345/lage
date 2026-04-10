@@ -1,8 +1,17 @@
 # Change Log - backfill
 
-<!-- This log was last generated on Wed, 08 Apr 2026 03:39:42 GMT and should not be manually modified. -->
+<!-- This log was last generated on Fri, 10 Apr 2026 04:04:59 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 6.4.10
+
+Fri, 10 Apr 2026 04:04:59 GMT
+
+### Patches
+
+- `backfill`
+  - Merge backfill-utils-dotenv into backfill (elcraig@microsoft.com)
 
 ## 6.4.9
 

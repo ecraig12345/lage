@@ -2,6 +2,21 @@
   "name": "@lage-run/config",
   "entries": [
     {
+      "date": "Fri, 10 Apr 2026 04:04:59 GMT",
+      "version": "0.9.6",
+      "tag": "@lage-run/config_v0.9.6",
+      "comments": {
+        "patch": [
+          {
+            "author": "elcraig@microsoft.com",
+            "package": "@lage-run/config",
+            "commit": "56f718d23f300624711312c4d2e200afad3696c7",
+            "comment": "Add `reporter` option to config file"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 08 Apr 2026 03:39:42 GMT",
       "version": "0.9.5",
       "tag": "@lage-run/config_v0.9.5",

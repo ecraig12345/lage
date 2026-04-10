@@ -1,4 +1,16 @@
-# normalized-tmpdir
+# Change Log - normalized-tmpdir
+
+<!-- This log was last generated on Fri, 10 Apr 2026 04:04:59 GMT and should not be manually modified. -->
+
+<!-- Start content -->
+
+## 1.1.0
+
+Fri, 10 Apr 2026 04:04:59 GMT
+
+### Minor changes
+
+- Convert package to TS and publish from lage repo (elcraig@microsoft.com)
 
 ## 1.0.1
 
