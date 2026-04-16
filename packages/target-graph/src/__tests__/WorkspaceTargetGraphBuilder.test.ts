@@ -463,4 +463,193 @@ describe("workspace target graph builder", () => {
       ["__start", "dep#customTask"],
     ]);
   });
+
+  it("should not include phantom entry targets and their deps when enablePhantomTargetOptimization is true", async () => {
+    // Scenario: an npmScript task (e.g. a specialized e2e test) that only "tool-app" defines,
+    // with a same-package dependency on "bundle". Without the optimization, "big-app#bundle" (an
+    // expensive task) gets pulled into the subgraph because "big-app#test:special" is added as an
+    // entry target even though big-app doesn't have the "test:special" script.
+    const packageInfos = createPackageInfoWithScripts({
+      "big-app": { deps: ["core-lib"], scripts: ["transpile", "bundle"] },
+      "tool-app": { deps: ["core-lib"], scripts: ["transpile", "bundle", "test:special"] },
+      "core-lib": { deps: [], scripts: ["transpile"] },
+    });
+
+    const builder = new WorkspaceTargetGraphBuilder({
+      root,
+      packageInfos,
+      enableTargetConfigMerging: false,
+      enablePhantomTargetOptimization: true,
+    });
+    builder.addTargetConfig("transpile");
+    builder.addTargetConfig("bundle", {
+      dependsOn: ["transpile", "^^transpile"],
+    });
+    builder.addTargetConfig("test:special", {
+      dependsOn: ["bundle"],
+    });
+
+    const targetGraph = await builder.build(["test:special"]);
+    const graph = getGraphFromTargets(targetGraph);
+
+    expect(graph).toEqual([
+      ["__start", "tool-app#test:special"],
+      ["tool-app#bundle", "tool-app#test:special"],
+      ["__start", "tool-app#bundle"],
+      ["tool-app#transpile", "tool-app#bundle"],
+      ["core-lib#transpile", "tool-app#bundle"],
+      ["__start", "tool-app#transpile"],
+      ["__start", "core-lib#transpile"],
+    ]);
+  });
+
+  it("includes phantom entry targets when enablePhantomTargetOptimization is false (default)", async () => {
+    // Same scenario as above, but with the flag off — big-app#test:special and big-app#bundle
+    // should be included in the subgraph (the current default behavior).
+    const packageInfos = createPackageInfoWithScripts({
+      "big-app": { deps: ["core-lib"], scripts: ["transpile", "bundle"] },
+      "tool-app": { deps: ["core-lib"], scripts: ["transpile", "bundle", "test:special"] },
+      "core-lib": { deps: [], scripts: ["transpile"] },
+    });
+
+    const builder = new WorkspaceTargetGraphBuilder({
+      root,
+      packageInfos,
+      enableTargetConfigMerging: false,
+      enablePhantomTargetOptimization: false,
+    });
+    builder.addTargetConfig("transpile");
+    builder.addTargetConfig("bundle", {
+      dependsOn: ["transpile", "^^transpile"],
+    });
+    builder.addTargetConfig("test:special", {
+      dependsOn: ["bundle"],
+    });
+
+    const targetGraph = await builder.build(["test:special"]);
+    const graph = getGraphFromTargets(targetGraph);
+
+    expect(graph).toEqual([
+      ["__start", "big-app#test:special"],
+      ["big-app#bundle", "big-app#test:special"],
+      ["__start", "tool-app#test:special"],
+      ["tool-app#bundle", "tool-app#test:special"],
+      ["__start", "core-lib#test:special"],
+      ["core-lib#bundle", "core-lib#test:special"],
+      ["__start", "big-app#bundle"],
+      ["big-app#transpile", "big-app#bundle"],
+      ["core-lib#transpile", "big-app#bundle"],
+      ["__start", "tool-app#bundle"],
+      ["tool-app#transpile", "tool-app#bundle"],
+      ["core-lib#transpile", "tool-app#bundle"],
+      ["__start", "core-lib#bundle"],
+      ["core-lib#transpile", "core-lib#bundle"],
+      ["__start", "big-app#transpile"],
+      ["__start", "core-lib#transpile"],
+      ["__start", "tool-app#transpile"],
+    ]);
+  });
+
+  it("should not treat worker-typed targets as phantoms even when the package lacks the script", async () => {
+    // Scenario: "app" and "dep" both get a "generate" task configured as type: "worker".
+    // "dep" does NOT have "generate" in its package.json scripts. With the bug, the entry-target
+    // skip would treat dep#generate as a phantom (because the script is missing) and exclude it.
+    // The fix ensures only npmScript-typed targets are considered phantom.
+    const packageInfos = createPackageInfoWithScripts({
+      app: { deps: ["dep"], scripts: ["build", "generate"] },
+      dep: { deps: [], scripts: ["build"] },
+    });
+
+    const builder = new WorkspaceTargetGraphBuilder({
+      root,
+      packageInfos,
+      enableTargetConfigMerging: false,
+      enablePhantomTargetOptimization: true,
+    });
+    builder.addTargetConfig("generate", {
+      type: "worker",
+      dependsOn: ["build"],
+    });
+    builder.addTargetConfig("build");
+
+    const targetGraph = await builder.build(["generate"]);
+    const graph = getGraphFromTargets(targetGraph);
+
+    expect(graph).toEqual([
+      ["__start", "app#generate"],
+      ["app#build", "app#generate"],
+      ["__start", "dep#generate"],
+      ["dep#build", "dep#generate"],
+      ["__start", "app#build"],
+      ["__start", "dep#build"],
+    ]);
+  });
+
+  it("skips worker entry targets when shouldRun resolves to false", async () => {
+    const packageInfos = createPackageInfoWithScripts({
+      "big-app": { deps: ["core-lib"], scripts: ["transpile", "bundle"] },
+      "tool-app": { deps: ["core-lib"], scripts: ["transpile", "bundle", "test:special"] },
+      "core-lib": { deps: [], scripts: ["transpile"] },
+    });
+
+    const builder = new WorkspaceTargetGraphBuilder({
+      root,
+      packageInfos,
+      enableTargetConfigMerging: false,
+      enablePhantomTargetOptimization: true,
+    });
+    builder.addTargetConfig("transpile");
+    builder.addTargetConfig("bundle", {
+      dependsOn: ["transpile", "^^transpile"],
+    });
+    builder.addTargetConfig("test:special", {
+      type: "worker",
+      dependsOn: ["bundle"],
+      shouldRun: async (target) => Promise.resolve(target.packageName === "tool-app"),
+    });
+
+    const targetGraph = await builder.build(["test:special"]);
+    const graph = getGraphFromTargets(targetGraph);
+
+    expect(graph).toEqual([
+      ["__start", "tool-app#test:special"],
+      ["tool-app#bundle", "tool-app#test:special"],
+      ["__start", "tool-app#bundle"],
+      ["tool-app#transpile", "tool-app#bundle"],
+      ["core-lib#transpile", "tool-app#bundle"],
+      ["__start", "tool-app#transpile"],
+      ["__start", "core-lib#transpile"],
+    ]);
+  });
+
+  it("keeps worker entry targets when shouldRun is not set", async () => {
+    const packageInfos = createPackageInfoWithScripts({
+      app: { deps: ["dep"], scripts: ["build", "generate"] },
+      dep: { deps: [], scripts: ["build"] },
+    });
+
+    const builder = new WorkspaceTargetGraphBuilder({
+      root,
+      packageInfos,
+      enableTargetConfigMerging: false,
+      enablePhantomTargetOptimization: true,
+    });
+    builder.addTargetConfig("generate", {
+      type: "worker",
+      dependsOn: ["build"],
+    });
+    builder.addTargetConfig("build");
+
+    const targetGraph = await builder.build(["generate"]);
+    const graph = getGraphFromTargets(targetGraph);
+
+    expect(graph).toEqual([
+      ["__start", "app#generate"],
+      ["app#build", "app#generate"],
+      ["__start", "dep#generate"],
+      ["dep#build", "dep#generate"],
+      ["__start", "app#build"],
+      ["__start", "dep#build"],
+    ]);
+  });
 });
