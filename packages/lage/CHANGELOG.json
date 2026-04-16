@@ -2,6 +2,21 @@
   "name": "lage",
   "entries": [
     {
+      "date": "Thu, 16 Apr 2026 01:52:11 GMT",
+      "version": "2.15.9",
+      "tag": "lage_v2.15.9",
+      "comments": {
+        "patch": [
+          {
+            "author": "1581488+christiango@users.noreply.github.com",
+            "package": "@lage-run/target-graph",
+            "commit": "31ad3cc44d94dd14f0f2dbf48955c0b355052ed7",
+            "comment": "Add another test case and fix for the enablePhantomTargetOptimization feature"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 10 Apr 2026 04:04:59 GMT",
       "version": "2.15.8",
       "tag": "lage_v2.15.8",

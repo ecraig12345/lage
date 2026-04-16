@@ -1,8 +1,17 @@
 # Change Log - lage
 
-<!-- This log was last generated on Fri, 10 Apr 2026 04:04:59 GMT and should not be manually modified. -->
+<!-- This log was last generated on Thu, 16 Apr 2026 01:52:11 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 2.15.9
+
+Thu, 16 Apr 2026 01:52:11 GMT
+
+### Patches
+
+- `@lage-run/target-graph`
+  - Add another test case and fix for the enablePhantomTargetOptimization feature (1581488+christiango@users.noreply.github.com)
 
 ## 2.15.8
 
