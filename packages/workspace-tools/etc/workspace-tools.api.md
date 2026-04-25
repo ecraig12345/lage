@@ -29,6 +29,13 @@ export interface Catalog {
     [packageName: string]: string;
 }
 
+// @public (undocumented)
+interface CatalogFilePathResult {
+    // (undocumented)
+    filePath: string;
+    manager: "yarn" | "pnpm";
+}
+
 // @public
 export interface Catalogs {
     default?: Catalog;
@@ -112,6 +119,11 @@ export function getBranchName(options: GitCommonOptions): string | null;
 
 // @public @deprecated (undocumented)
 export function getBranchName(cwd: string): string | null;
+
+// Warning: (ae-forgotten-export) The symbol "CatalogFilePathResult" needs to be exported by the entry point index.d.ts
+//
+// @public
+export function getCatalogFilePath(cwd: string, managerOverride?: WorkspaceManager): CatalogFilePathResult | undefined;
 
 // @public
 export function getCatalogs(cwd: string, managerOverride?: WorkspaceManager): Catalogs | undefined;
@@ -219,6 +231,12 @@ export function getFileAddedHash(options: {
 
 // @public @deprecated (undocumented)
 export function getFileAddedHash(filename: string, cwd: string): string | undefined;
+
+// @public
+export function getFileFromVersion(params: {
+    filePath: string;
+    ref: string;
+} & GitCommonOptions): string | undefined;
 
 // @public
 export function getFullBranchRef(options: GitBranchOptions): string | null;
@@ -594,6 +612,9 @@ export interface PackageInfos {
     // (undocumented)
     [pkgName: string]: PackageInfo;
 }
+
+// @public
+export function parseCatalogContent(fileContent: string, manager: "yarn" | "pnpm"): Catalogs | undefined;
 
 // @public (undocumented)
 export type ParsedLock = {
