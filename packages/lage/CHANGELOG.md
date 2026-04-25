@@ -1,8 +1,17 @@
 # Change Log - lage
 
-<!-- This log was last generated on Sat, 25 Apr 2026 03:32:41 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sat, 25 Apr 2026 08:04:39 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 2.15.11
+
+Sat, 25 Apr 2026 08:04:39 GMT
+
+### Patches
+
+- `workspace-tools`
+  - Rename `getFileFromVersion` to `getFileFromRef`. Also add `getCatalogVersion` option `allowNotFound`. (elcraig@microsoft.com)
 
 ## 2.15.10
 
