@@ -591,9 +591,9 @@ export function listAllTrackedFiles(
  * Get the content of a file at a specific git ref (commit, branch, tag, etc).
  * Returns undefined if the file doesn't exist at that ref or the command fails.
  */
-export function getFileFromVersion(
+export function getFileFromRef(
   params: {
-    /** Repo-relative path to the file with *forward* slashes */
+    /** cwd-relative path to the file with *forward* slashes */
     filePath: string;
     /** git ref (branch, tag, commit SHA, etc) to get the file content from */
     ref: string;

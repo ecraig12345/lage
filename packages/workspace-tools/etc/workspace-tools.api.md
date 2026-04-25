@@ -133,6 +133,7 @@ export function getCatalogVersion(params: {
     name: string;
     version: string;
     catalogs: Catalogs | undefined;
+    allowNotFound?: boolean;
 }): string | undefined;
 
 // Warning: (ae-forgotten-export) The symbol "GetChangedPackagesOptions" needs to be exported by the entry point index.d.ts
@@ -233,7 +234,7 @@ export function getFileAddedHash(options: {
 export function getFileAddedHash(filename: string, cwd: string): string | undefined;
 
 // @public
-export function getFileFromVersion(params: {
+export function getFileFromRef(params: {
     filePath: string;
     ref: string;
 } & GitCommonOptions): string | undefined;
