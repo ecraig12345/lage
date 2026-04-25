@@ -2,6 +2,21 @@
   "name": "workspace-tools",
   "entries": [
     {
+      "date": "Sat, 25 Apr 2026 03:32:41 GMT",
+      "version": "0.41.5",
+      "tag": "workspace-tools_v0.41.5",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "workspace-tools",
+            "commit": "4e3d6c6a252b7d00135e915e7669697a5c2eb4a0",
+            "comment": "Add getFileFromVersion, getCatalogFilePath, and parseCatalogContent utilities"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 08 Apr 2026 03:39:42 GMT",
       "version": "0.41.3",
       "tag": "workspace-tools_v0.41.3",

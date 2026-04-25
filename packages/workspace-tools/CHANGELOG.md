@@ -1,8 +1,16 @@
 # Change Log - workspace-tools
 
-<!-- This log was last generated on Wed, 08 Apr 2026 03:39:42 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sat, 25 Apr 2026 03:32:41 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.41.5
+
+Sat, 25 Apr 2026 03:32:41 GMT
+
+### Patches
+
+- Add getFileFromVersion, getCatalogFilePath, and parseCatalogContent utilities (email not defined)
 
 ## 0.41.3
 

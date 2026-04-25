@@ -1,8 +1,17 @@
 # Change Log - lage
 
-<!-- This log was last generated on Thu, 16 Apr 2026 01:52:11 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sat, 25 Apr 2026 03:32:41 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 2.15.10
+
+Sat, 25 Apr 2026 03:32:41 GMT
+
+### Patches
+
+- `workspace-tools`
+  - Add getFileFromVersion, getCatalogFilePath, and parseCatalogContent utilities (email not defined)
 
 ## 2.15.9
 
