@@ -21,7 +21,7 @@ export type GetDefaultRemoteOptions = {
 
 /**
  * Get the name of the default remote: the one matching the `repository` field in package.json.
- * Throws if `options.cwd` is not in a git repo or there's no package.json at the repo root.
+ * Throws if `options.cwd` is not in a git repo or there's no package.json in either `cwd` or the repo root.
  *
  * The order of preference for returned remotes is:
  * 1. If `repository` is defined in package.json, the remote with a matching URL (if `options.strict`
@@ -50,25 +50,36 @@ export function getDefaultRemote(cwdOrOptions: string | GetDefaultRemoteOptions)
 
   // Try package.json from `cwd` first, since cwd is often the project root in actual usage,
   // and the repository URL should be the same throughout the repo.
-  let urlResult = getRepositoryUrlFromPackageJson(cwd, logOrThrow);
-  if (!urlResult.repositoryUrl) {
-    // If not found in cwd, try the git root (which may be a parent directory)
-    const gitRoot = findGitRoot(cwd);
-    if (gitRoot !== cwd) {
-      urlResult = getRepositoryUrlFromPackageJson(gitRoot, logOrThrow);
-    }
+  const cwdPackageJsonPath = path.join(cwd, "package.json");
+  const hasCwdPackageJson = fs.existsSync(cwdPackageJsonPath);
 
-    if (!urlResult.repositoryUrl) {
-      // This is always logged because it's strongly recommended to fix
-      console.log(
-        `Valid "repository" key not found in package.json at "${urlResult.packageJsonPath}". ` +
-          `Consider adding this info for more accurate git remote detection.`
-      );
+  let repositoryUrl: string | undefined;
+  if (hasCwdPackageJson) {
+    // Only try to read this if it exists (will fall back to git root)
+    repositoryUrl = getRepositoryUrlFromPackageJson(cwdPackageJsonPath, logOrThrow);
+  }
+
+  let rootPackageJsonPath: string | undefined;
+  if (!repositoryUrl) {
+    // If not found in cwd, try the git root (if a different directory or no package.json in cwd).
+    // This time allow it to throw if not found in strict mode.
+    const gitRoot = findGitRoot(cwd);
+    rootPackageJsonPath = path.join(gitRoot, "package.json");
+    if (!hasCwdPackageJson || gitRoot !== cwd) {
+      repositoryUrl = getRepositoryUrlFromPackageJson(rootPackageJsonPath, logOrThrow);
     }
   }
 
-  /** Repository full name (owner and repo name) specified in package.json */
-  const repositoryName = urlResult.repositoryUrl && getRepositoryName(urlResult.repositoryUrl);
+  if (!repositoryUrl) {
+    // This is always logged because it's strongly recommended to fix.
+    // Recommend putting it in package.json at cwd if it exists.
+    // (if there is no {cwd}/package.json, rootPackageJsonPath is always defined)
+    const jsonPath = hasCwdPackageJson ? cwdPackageJsonPath : rootPackageJsonPath!;
+    console.log(
+      `Valid "repository" key not found in package.json at "${jsonPath}". ` +
+        `Consider adding this info for more accurate git remote detection.`
+    );
+  }
 
   // Get remote names and URLs
   const remotes = options.remotes || getRemotes({ cwd });
@@ -80,6 +91,31 @@ export function getDefaultRemote(cwdOrOptions: string | GetDefaultRemoteOptions)
     log(`Assuming default remote "origin".`);
     return "origin";
   }
+
+  if (repositoryUrl) {
+    // Try to match the given remote
+    const remoteName = _matchRepositoryUrlToRemote(repositoryUrl, remotes, logOrThrow);
+    if (remoteName) {
+      return remoteName;
+    }
+  }
+
+  // Default to upstream or origin if available, or the first remote otherwise
+  const fallback = ["upstream", "origin"].find((name) => !!remotes[name]) || Object.keys(remotes)[0];
+  log(`Default to remote "${fallback}"`);
+  return fallback;
+}
+
+/** Match repository URL from package.json to a git remote. Exported for testing. */
+export function _matchRepositoryUrlToRemote(
+  /** repository.url from package.json */
+  repositoryUrl: string,
+  /** Mapping from remote name to remote URL */
+  remotes: Record<string, string>,
+  logOrThrow: (message: string) => void = () => {}
+): string | undefined {
+  // Repository full name (owner and repo name) specified in package.json
+  const repositoryName = getRepositoryName(repositoryUrl);
 
   for (const [remoteName, remoteUrl] of Object.entries(remotes)) {
     // There are many possible remote URL formats, so normalize before comparison
@@ -93,29 +129,21 @@ export function getDefaultRemote(cwdOrOptions: string | GetDefaultRemoteOptions)
     // If `strict` is true, and repositoryName is found, there MUST be a matching remote
     logOrThrow(`Could not find remote pointing to repository "${repositoryName}".`);
   }
-
-  // Default to upstream or origin if available, or the first remote otherwise
-  const fallback = ["upstream", "origin"].find((name) => !!remotes[name]) || Object.keys(remotes)[0];
-  log(`Default to remote "${fallback}"`);
-  return fallback;
 }
 
 function getRepositoryUrlFromPackageJson(
-  dir: string,
+  packageJsonPath: string,
   logOrThrow: (message: string) => void
-): { packageJsonPath: string; repositoryUrl: string | undefined } {
-  const packageJsonPath = path.join(dir, "package.json");
+): string | undefined {
   let repositoryUrl: string | undefined;
 
   try {
-    if (fs.existsSync(packageJsonPath)) {
-      const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf8")) as PackageInfo;
-      const { repository } = packageJson;
-      repositoryUrl = typeof repository === "string" ? repository : repository?.url;
-    }
+    const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf8")) as PackageInfo;
+    const { repository } = packageJson;
+    repositoryUrl = typeof repository === "string" ? repository : repository?.url;
   } catch {
     logOrThrow(`Could not read "${packageJsonPath}"`);
   }
 
-  return { packageJsonPath, repositoryUrl };
+  return repositoryUrl;
 }

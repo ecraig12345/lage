@@ -15,19 +15,10 @@ function getGitCalls() {
   return gitObserver.mock.calls.map(([args]) => args.join(" "));
 }
 
-/** Expect `getRemotes` to have been called exactly once */
-function expectGetRemotesCalled() {
-  const gitCalls = getGitCalls();
-  expect(gitCalls).toContain("config --get-regexp remote\\..*\\.url");
-  expect(gitCalls.filter((call) => call === "config --get-regexp remote\\..*\\.url")).toHaveLength(1);
-}
-
-/** Expect `getDefaultRemoteBranch` to have fetched default branch info from the remote or not */
-function expectQueriedRemote(options?: { not?: boolean; remote?: string }) {
-  const { not, remote = "origin" } = options || {};
-  const gitCalls = getGitCalls();
-  (not ? expect(gitCalls).not : expect(gitCalls)).toContain(`ls-remote --symref ${remote} HEAD`);
-}
+const gitGetRemotesConfig = "config --get-regexp remote\\..*\\.url";
+const gitGetOriginDefaultBranch = "ls-remote --symref origin HEAD";
+const gitGetFooDefaultBranch = "ls-remote --symref foo HEAD";
+const gitGetRoot = "rev-parse --show-toplevel";
 
 beforeAll(() => {
   consoleMock = jest.spyOn(console, "log").mockImplementation(() => undefined);
@@ -55,10 +46,14 @@ describe("getDefaultRemoteBranch", () => {
     gitObserver.mockClear();
 
     expect(getDefaultRemoteBranch({ cwd, branch: "main" })).toBe("origin/main");
-    expectGetRemotesCalled();
-    expectQueriedRemote({ not: true });
+
     expect(consoleMock).toHaveBeenCalledTimes(1);
     expect(consoleMock).toHaveBeenCalledWith(expect.stringContaining('Valid "repository" key not found'));
+
+    // For each test, verify the specific git commands that were invoked.
+    // This increases visibility into internal behavior of specific cases, as well as if
+    // more operations are added later.
+    expect(getGitCalls()).toEqual([gitGetRoot, gitGetRemotesConfig]);
   });
 
   it("with branch name that includes a slash, returns <defaultRemote>/<branch> without querying remote", () => {
@@ -69,19 +64,21 @@ describe("getDefaultRemoteBranch", () => {
     gitObserver.mockClear();
 
     expect(getDefaultRemoteBranch({ cwd, branch: "feature/foo" })).toBe("upstream/feature/foo");
-    expectGetRemotesCalled();
-    expectQueriedRemote({ not: true });
     expect(consoleMock).not.toHaveBeenCalled(); // no warning since repository field is valid
+
+    expect(getGitCalls()).toEqual([gitGetRemotesConfig]);
   });
 
   it("gets default branch from remote via ls-remote", () => {
     cwd = setupFixture(undefined, { git: true });
     setupLocalRemote({ cwd, remoteName: "foo" });
+    gitObserver.mockClear();
 
     expect(getDefaultRemoteBranch({ cwd })).toBe("foo/main");
-    expectQueriedRemote({ remote: "foo" });
+
     // setupLocalRemote updates package.json so we don't get the warning
     expect(consoleMock).not.toHaveBeenCalled();
+    expect(getGitCalls()).toEqual([gitGetRemotesConfig, gitGetFooDefaultBranch]);
   });
 
   // No remotes configured: getDefaultRemote falls back to "origin",
@@ -95,9 +92,12 @@ describe("getDefaultRemoteBranch", () => {
 
     expect(getDefaultRemoteBranch({ cwd })).toBe("origin/foo");
 
-    const gitCalls = getGitCalls();
-    expectQueriedRemote();
-    expect(gitCalls).toContain("config init.defaultBranch");
+    expect(getGitCalls()).toEqual([
+      gitGetRoot,
+      gitGetRemotesConfig,
+      gitGetOriginDefaultBranch,
+      "config init.defaultBranch",
+    ]);
   });
 });
 
@@ -116,7 +116,8 @@ describe("resolveRemoteBranch", () => {
     gitObserver.mockClear();
 
     expect(resolveRemoteBranch({ branch: "main", cwd })).toBe("origin/main");
-    expectGetRemotesCalled();
+
+    expect(getGitCalls()).toEqual([gitGetRoot, gitGetRemotesConfig]);
   });
 
   it("recognizes a non-default remote prefix in branch name", () => {
@@ -127,17 +128,20 @@ describe("resolveRemoteBranch", () => {
     gitObserver.mockClear();
 
     expect(resolveRemoteBranch({ branch: "myremote/feature", cwd })).toBe("myremote/feature");
-    expectGetRemotesCalled();
+
+    expect(getGitCalls()).toEqual([gitGetRemotesConfig]);
   });
 
   it("prepends default remote when slash-containing branch prefix is not a real remote", () => {
     cwd = setupFixture(undefined, { git: true });
     setupPackageJson(cwd);
     gitRemote("add", "origin", "https://github.com/microsoft/lage.git");
+    gitObserver.mockClear();
 
     // "feature" is not a remote, so the whole string is treated as the branch name
     expect(resolveRemoteBranch({ branch: "feature/foo", cwd })).toBe("origin/feature/foo");
-    expectGetRemotesCalled();
+
+    expect(getGitCalls()).toEqual([gitGetRemotesConfig, gitGetRoot]);
   });
 
   it("queries remote for default branch when no branch is given", () => {
@@ -146,7 +150,7 @@ describe("resolveRemoteBranch", () => {
     jest.clearAllMocks();
 
     expect(resolveRemoteBranch({ branch: undefined, cwd })).toBe("origin/main");
-    expectQueriedRemote();
-    expectGetRemotesCalled();
+
+    expect(getGitCalls()).toEqual([gitGetRemotesConfig, gitGetOriginDefaultBranch]);
   });
 });

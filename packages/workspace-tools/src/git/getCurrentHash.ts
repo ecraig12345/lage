@@ -5,7 +5,6 @@ import type { GitCommonOptions } from "./types.js";
  * Gets the current commit hash (SHA).
  * @returns The hash if successful, null otherwise
  */
-
 export function getCurrentHash(options: GitCommonOptions): string | null;
 /** @deprecated Use object params version */
 export function getCurrentHash(cwd: string): string | null;
