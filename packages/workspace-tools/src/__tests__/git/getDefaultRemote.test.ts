@@ -1,5 +1,6 @@
 import { afterAll, afterEach, beforeAll, describe, expect, it, jest } from "@jest/globals";
 import os from "os";
+import path from "path";
 import { cleanupFixtures, setupFixture, setupPackageJson } from "../setupFixture.js";
 import { gitFailFast } from "../../git/git.js";
 import { getDefaultRemote } from "../../git/getDefaultRemote.js";
@@ -39,9 +40,9 @@ describe("getDefaultRemote", () => {
   it("handles no package.json at git root", () => {
     cwd = setupFixture(undefined, { git: true });
     expect(getDefaultRemote({ cwd, verbose: true })).toBe("origin");
-    expectConsole(1, /Could not read .*package\.json/);
+    expectConsole(1, `Valid "repository" key not found in package.json at "${path.join(cwd, "package.json")}"`);
 
-    expect(() => getDefaultRemote({ cwd, strict: true })).toThrow(/Could not read .*package\.json/);
+    expect(() => getDefaultRemote({ cwd, strict: true })).toThrow("Could not find any remotes in git repo");
   });
 
   it("handles no repository field or remotes", () => {
@@ -56,6 +57,20 @@ describe("getDefaultRemote", () => {
 
     // strict: throws
     expect(() => getDefaultRemote({ cwd, strict: true })).toThrow("Could not find any remotes");
+  });
+
+  it("uses provided remotes instead of getting from repo", () => {
+    // no git here to verify it's not used
+    cwd = setupFixture();
+    setupPackageJson(cwd, { repository: "https://github.com/microsoft/lage.git" });
+
+    const remotes = {
+      origin: "https://github.com/ecraig12345/lage.git",
+      default: "https://github.com/microsoft/lage.git",
+      another: "https://github.com/otherfork/lage.git",
+    };
+    expect(getDefaultRemote({ cwd, remotes })).toBe("default");
+    expect(getDefaultRemote({ cwd, remotes, strict: true })).toBe("default");
   });
 
   it("defaults to upstream remote without repository field", () => {
@@ -139,12 +154,11 @@ describe("getDefaultRemote", () => {
 
     // permissive: default to origin
     expect(getDefaultRemote({ cwd, verbose: true })).toBe("origin");
-    expectConsole(1, "Could not find remote pointing to");
-    expectConsole(2, "Could not find any remotes in git repo");
-    expectConsole(3, 'Assuming default remote "origin".');
+    expectConsole(1, "Could not find any remotes in git repo");
+    expectConsole(2, 'Assuming default remote "origin".');
 
     // strict: throws
-    expect(() => getDefaultRemote({ cwd, strict: true })).toThrow("Could not find remote pointing to repository");
+    expect(() => getDefaultRemote({ cwd, strict: true })).toThrow("Could not find any remotes in git repo");
   });
 
   it("handles remotes set but none matching repository", () => {

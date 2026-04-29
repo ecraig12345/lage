@@ -11,7 +11,11 @@ export {
 } from "./getChanges.js";
 export { getCurrentHash } from "./getCurrentHash.js";
 export { getDefaultRemote, type GetDefaultRemoteOptions } from "./getDefaultRemote.js";
-export { getDefaultRemoteBranch, type GetDefaultRemoteBranchOptions } from "./getDefaultRemoteBranch.js";
+export {
+  getDefaultRemoteBranch,
+  type GetDefaultRemoteBranchOptions,
+  resolveRemoteBranch,
+} from "./getDefaultRemoteBranch.js";
 export { getFileAddedHash } from "./getFileAddedHash.js";
 export { getFileFromRef } from "./getFileFromRef.js";
 export { getRecentCommitMessages } from "./getRecentCommitMessages.js";
