@@ -14,6 +14,8 @@ export function getConfigValue(options: { key: string } & GitCommonOptions): str
 
 /**
  * Gets the user email from the git config.
+ * (Note: setting `throwOnError: true` will cause it to fail if the key is unset.)
+ *
  * @returns The email string if found, null otherwise
  */
 export function getUserEmail(options: GitCommonOptions): string | null;
@@ -26,6 +28,7 @@ export function getUserEmail(cwdOrOptions: string | GitCommonOptions): string | 
 
 /**
  * Gets the default branch based on `git config init.defaultBranch`, falling back to `master`.
+ * (Note: setting `throwOnError: true` will cause it to fail if the key is unset.)
  */
 export function getDefaultBranch(options: GitCommonOptions): string;
 /** @deprecated Use object params version */

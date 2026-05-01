@@ -220,6 +220,7 @@ export type GetDefaultRemoteOptions = {
     cwd: string;
     strict?: boolean;
     verbose?: boolean;
+    remotes?: Record<string, string>;
 };
 
 // @public @deprecated (undocumented)
@@ -659,6 +660,11 @@ export interface PnpmLockFile {
 
 // @public (undocumented)
 export function queryLockFile(name: string, versionRange: string, lock: ParsedLock): LockDependency;
+
+// @public
+export function resolveRemoteBranch(options: Omit<GetDefaultRemoteBranchOptions, "branch" | "remotes"> & {
+    branch: string | undefined;
+}): string;
 
 // @public
 export function revertLocalChanges(options: GitCommonOptions): boolean;
