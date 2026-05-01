@@ -1,4 +1,5 @@
 import { afterAll, afterEach, beforeAll, describe, expect, it, jest } from "@jest/globals";
+import fs from "fs";
 import path from "path";
 import { cleanupFixtures, setupFixture, setupPackageJson } from "../setupFixture.js";
 import { addGitObserver, clearGitObservers, gitFailFast, type GitObserver } from "../../git/git.js";
@@ -42,12 +43,12 @@ describe("_matchRepositoryUrlToRemote", () => {
   it("returns undefined if no remotes (permissive)", () => {
     const result = _matchRepositoryUrlToRemote(remoteUrls.microsoft, {}, permissiveLog);
     expect(result).toBeUndefined();
-    expect(permissiveLog).toHaveBeenCalledWith('Could not find remote pointing to repository "microsoft/lage".');
+    expect(permissiveLog).toHaveBeenCalledWith('Could not find remote pointing to repository "microsoft/lage"');
   });
 
   it("throws if no remotes (strict)", () => {
     expect(() => _matchRepositoryUrlToRemote(remoteUrls.microsoft, {}, strictLog)).toThrow(
-      'Could not find remote pointing to repository "microsoft/lage".'
+      'Could not find remote pointing to repository "microsoft/lage"'
     );
   });
 
@@ -134,12 +135,12 @@ describe("getDefaultRemote", () => {
   const gitObserver = jest.fn<GitObserver>();
 
   // git commands issued by getDefaultRemote
+  const gitGetRemotesConfig = "config --local --get-regexp remote\\..*\\.url";
   const gitGetRoot = "rev-parse --show-toplevel";
-  const gitGetRemotesConfig = "config --get-regexp remote\\..*\\.url";
 
   const logMissingRepositoryKey = (dir: string) =>
-    expect.stringContaining(`Valid "repository" key not found in package.json at "${path.join(dir, "package.json")}"`);
-  const logMissingRemotes = (dir: string) => `Could not find any remotes in git repo at "${dir}".`;
+    expect.stringContaining(`Valid "repository" key not found in package.json at ${path.join(dir, "package.json")}`);
+  const logMissingRemotes = (dir: string) => `No remotes defined in git repo at ${dir}`;
 
   function gitRemote(...args: string[]) {
     gitFailFast(["remote", ...args], { cwd, noExitCode: true });
@@ -169,61 +170,59 @@ describe("getDefaultRemote", () => {
     clearGitObservers();
   });
 
-  it("throws if not in a git repo", () => {
-    // Use a completely invalid path since the it falls under the same error handling case
-    // and definitely won't be a git repo by accident
-    gitObserver.mockClear();
-    expect(() => getDefaultRemote({ cwd: "/nonexistent/dir" })).toThrow("is not in a git repository");
-    expect(getGitCalls()).toEqual([gitGetRoot]);
+  it("throws if not in a git repo (permissive)", () => {
+    cwd = setupFixture();
+    // sanity check: if this fails, there's a git repo in the OS temp dir
+    expect(() => getDefaultRemote({ cwd })).toThrow(`Directory "${cwd}" is not in a git repository`);
 
     gitObserver.mockClear();
-    expect(() => getDefaultRemote({ cwd: "/nonexistent/dir", strict: true })).toThrow("is not in a git repository");
-    expect(getGitCalls()).toEqual([gitGetRoot]);
+    expect(() => getDefaultRemote({ cwd })).toThrow(`Directory "${cwd}" is not in a git repository`);
+    // getting remotes doesn't throw, but findGitRoot does
+    expect(getGitCalls()).toEqual([gitGetRemotesConfig, gitGetRoot]);
   });
 
-  it("returns 'origin' if no package.json and no remotes found (permissive)", () => {
+  it("throws if not in a git repo (strict)", () => {
+    cwd = setupFixture();
+    // sanity check: if this fails, there's a git repo in the OS temp dir
+    expect(() => getDefaultRemote({ cwd, strict: true })).toThrow(`${cwd} is not in a git repository`);
+
+    gitObserver.mockClear();
+    expect(() => getDefaultRemote({ cwd, strict: true })).toThrow(`${cwd} is not in a git repository`);
+    // getting remotes will throw in strict mode
+    expect(getGitCalls()).toEqual([gitGetRemotesConfig]);
+  });
+
+  it("returns 'origin' if no remotes found (permissive)", () => {
     expect(getDefaultRemote({ cwd: emptyRepoCwd, verbose: true })).toBe("origin");
 
-    expect(getLogs()).toEqual([
-      `Could not read "${path.join(emptyRepoCwd, "package.json")}"`,
-      logMissingRepositoryKey(emptyRepoCwd),
-      logMissingRemotes(emptyRepoCwd),
-      'Assuming default remote "origin".',
-    ]);
-    // No repository URL in package.json → findGitRoot called.
+    expect(getLogs()).toEqual([logMissingRemotes(emptyRepoCwd), 'Assuming default remote "origin"']);
     // No remotes configured → config command runs but finds nothing.
-    expect(getGitCalls()).toEqual([gitGetRoot, gitGetRemotesConfig]);
+    // findGitRoot called to verify it's a git repo.
+    expect(getGitCalls()).toEqual([gitGetRemotesConfig, gitGetRoot]);
   });
 
-  it("throws if no package.json (strict)", () => {
-    expect(() => getDefaultRemote({ cwd: emptyRepoCwd, strict: true })).toThrow(
-      `Could not read "${path.join(emptyRepoCwd, "package.json")}"`
-    );
-    // Throws after reading package.json fails — never reaches getRemotes.
-    expect(getGitCalls()).toEqual([gitGetRoot]);
-  });
-
-  it("returns 'origin' if no repository field and no remotes (permissive)", () => {
-    cwd = setupFixture(undefined, { git: true });
-    setupPackageJson(cwd);
-    gitObserver.mockClear();
-
-    expect(getDefaultRemote({ cwd, verbose: true })).toBe("origin");
-    expect(getLogs()).toEqual([
-      logMissingRepositoryKey(cwd),
-      logMissingRemotes(cwd),
-      'Assuming default remote "origin".',
-    ]);
-    expect(getGitCalls()).toEqual([gitGetRoot, gitGetRemotesConfig]);
-  });
-
-  it("throws if no repository field and no remotes (strict)", () => {
-    cwd = setupFixture(undefined, { git: true });
-    setupPackageJson(cwd);
+  it("throws if no remotes found (strict)", () => {
+    cwd = emptyRepoCwd;
     gitObserver.mockClear();
 
     expect(() => getDefaultRemote({ cwd, strict: true })).toThrow(logMissingRemotes(cwd));
-    expect(getGitCalls()).toEqual([gitGetRoot, gitGetRemotesConfig]);
+    expect(getGitCalls()).toEqual([gitGetRemotesConfig]);
+  });
+
+  it("throws if no package.json (strict)", () => {
+    cwd = setupFixture(undefined, { git: true });
+    gitRemote("add", "origin", remoteUrls.microsoft);
+    gitObserver.mockClear();
+
+    expect(() => getDefaultRemote({ cwd, strict: true })).toThrow(`Could not find package.json under ${cwd}`);
+    expect(getGitCalls()).toEqual([gitGetRemotesConfig, gitGetRoot]);
+
+    // variant message for subfolder
+    const subfolder = path.join(cwd, "subfolder");
+    fs.mkdirSync(subfolder);
+    expect(() => getDefaultRemote({ cwd: subfolder, strict: true })).toThrow(
+      `Could not find package.json under ${subfolder} or git root ${cwd}`
+    );
   });
 
   it("uses provided remotes instead of getting from repo", () => {
@@ -235,8 +234,7 @@ describe("getDefaultRemote", () => {
     const remotes = { origin: remoteUrls.ecraig12345, default: remoteUrls.microsoft, another: remoteUrls.kenotron };
     expect(getDefaultRemote({ cwd, remotes })).toBe("default");
     expect(getDefaultRemote({ cwd, remotes, strict: true })).toBe("default");
-    // repository URL found in package.json → no findGitRoot. options.remotes provided → no getRemotes.
-    expect(getGitCalls()).toEqual([]);
+    expect(gitObserver).not.toHaveBeenCalled();
   });
 
   it("defaults to existing upstream remote without repository field", () => {
@@ -249,7 +247,7 @@ describe("getDefaultRemote", () => {
 
     // permissive/strict have same behavior
     expect(getDefaultRemote({ cwd, strict: true, verbose: true })).toBe("upstream");
-    expect(getGitCalls()).toEqual([gitGetRoot, gitGetRemotesConfig]);
+    expect(getGitCalls()).toEqual([gitGetRemotesConfig, gitGetRoot]);
     expect(getLogs()).toEqual([logMissingRepositoryKey(cwd), 'Default to remote "upstream"']);
   });
 
@@ -262,7 +260,7 @@ describe("getDefaultRemote", () => {
 
     // permissive/strict have same behavior
     expect(getDefaultRemote({ cwd, strict: true, verbose: true })).toBe("origin");
-    expect(getGitCalls()).toEqual([gitGetRoot, gitGetRemotesConfig]);
+    expect(getGitCalls()).toEqual([gitGetRemotesConfig, gitGetRoot]);
     expect(getLogs()).toEqual([logMissingRepositoryKey(cwd), 'Default to remote "origin"']);
   });
 
@@ -275,7 +273,7 @@ describe("getDefaultRemote", () => {
 
     // permissive/strict have same behavior
     expect(getDefaultRemote({ cwd, strict: true, verbose: true })).toBe("first");
-    expect(getGitCalls()).toEqual([gitGetRoot, gitGetRemotesConfig]);
+    expect(getGitCalls()).toEqual([gitGetRemotesConfig, gitGetRoot]);
     expect(getLogs()).toEqual([logMissingRepositoryKey(cwd), 'Default to remote "first"']);
   });
 
@@ -287,11 +285,6 @@ describe("getDefaultRemote", () => {
     gitRemote("add", "second", remoteUrls.microsoft);
     gitObserver.mockClear();
 
-    expect(getDefaultRemote({ cwd })).toBe("second");
-    expect(getGitCalls()).toEqual([gitGetRemotesConfig]);
-
-    // repository URL found in package.json → findGitRoot is never called
-    gitObserver.mockClear();
     expect(getDefaultRemote({ cwd, strict: true })).toBe("second");
     expect(getGitCalls()).toEqual([gitGetRemotesConfig]);
   });
@@ -303,30 +296,7 @@ describe("getDefaultRemote", () => {
     gitRemote("add", "second", remoteUrls.microsoft);
     gitObserver.mockClear();
 
-    expect(getDefaultRemote({ cwd })).toBe("second");
-    expect(getGitCalls()).toEqual([gitGetRemotesConfig]);
-
-    gitObserver.mockClear();
     expect(getDefaultRemote({ cwd, strict: true })).toBe("second");
-    expect(getGitCalls()).toEqual([gitGetRemotesConfig]);
-  });
-
-  it("returns 'origin' if no remotes and repository specified (permissive)", () => {
-    cwd = setupFixture(undefined, { git: true });
-    setupPackageJson(cwd, { repository: { url: remoteUrls.microsoft, type: "git" } });
-    gitObserver.mockClear();
-
-    expect(getDefaultRemote({ cwd, verbose: true })).toBe("origin");
-    expect(getLogs()).toEqual([logMissingRemotes(cwd), 'Assuming default remote "origin".']);
-    expect(getGitCalls()).toEqual([gitGetRemotesConfig]);
-  });
-
-  it("throws if no remotes and repository specified (strict)", () => {
-    cwd = setupFixture(undefined, { git: true });
-    setupPackageJson(cwd, { repository: { url: remoteUrls.microsoft, type: "git" } });
-    gitObserver.mockClear();
-
-    expect(() => getDefaultRemote({ cwd, strict: true })).toThrow(logMissingRemotes(cwd));
     expect(getGitCalls()).toEqual([gitGetRemotesConfig]);
   });
 
@@ -340,7 +310,7 @@ describe("getDefaultRemote", () => {
     expect(getDefaultRemote({ cwd, verbose: true })).toBe("first");
     expect(getGitCalls()).toEqual([gitGetRemotesConfig]);
     expect(getLogs()).toEqual([
-      'Could not find remote pointing to repository "ecraig12345/lage".',
+      'Could not find remote pointing to repository "ecraig12345/lage"',
       'Default to remote "first"',
     ]);
   });
@@ -353,6 +323,19 @@ describe("getDefaultRemote", () => {
     gitObserver.mockClear();
 
     expect(() => getDefaultRemote({ cwd, strict: true })).toThrow("Could not find remote pointing to repository");
+    expect(getGitCalls()).toEqual([gitGetRemotesConfig]);
+  });
+
+  it("respects repository field in non-git-root cwd package.json", () => {
+    cwd = setupFixture(undefined, { git: true });
+    const subfolder = path.join(cwd, "sub/folder");
+    fs.mkdirSync(subfolder, { recursive: true });
+    setupPackageJson(subfolder, { repository: remoteUrls.microsoft });
+    gitRemote("add", "first", remoteUrls.kenotron);
+    gitRemote("add", "second", remoteUrls.microsoft);
+    gitObserver.mockClear();
+
+    expect(getDefaultRemote({ cwd: subfolder, strict: true })).toBe("second");
     expect(getGitCalls()).toEqual([gitGetRemotesConfig]);
   });
 });

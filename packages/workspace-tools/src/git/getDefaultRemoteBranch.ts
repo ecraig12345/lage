@@ -1,7 +1,13 @@
 import { getDefaultRemote, type GetDefaultRemoteOptions } from "./getDefaultRemote.js";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars -- referenced by docs
+import type { getRemotes } from "./getRemotes.js";
 import { git } from "./git.js";
 import { getDefaultBranch } from "./gitUtilities.js";
-import { parseRemoteBranchPlusRemotes } from "./parseRemoteBranch.js";
+import {
+  parseRemoteBranchPlusRemotes,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  type parseRemoteBranch,
+} from "./parseRemoteBranch.js";
 
 export type GetDefaultRemoteBranchOptions = GetDefaultRemoteOptions & {
   /**
@@ -16,9 +22,13 @@ export type GetDefaultRemoteBranchOptions = GetDefaultRemoteOptions & {
 /**
  * Gets a reference to `options.branch` or the default branch relative to the default remote.
  * (See {@link getDefaultRemote} for how the default remote is determined.)
+ * Throws if `options.cwd` is not in a git repo.
  *
  * If you want to resolve a branch that may already include a remote prefix, use
  * {@link resolveRemoteBranch} instead.
+ *
+ * If `options.strict` is true, throws in the same cases as {@link getDefaultRemote}, {@link getRemotes},
+ * or if querying the default branch from the remote fails.
  *
  * @returns A branch reference like `upstream/master` or `origin/master`.
  */
@@ -48,11 +58,22 @@ export function getDefaultRemoteBranch(...args: (string | GetDefaultRemoteBranch
   // Get the default branch name from the default remote.
   // ls-remote is a plumbing command with stable, locale-independent output.
   // Output format: "ref: refs/heads/main\tHEAD\n<hash>\tHEAD"
-  const lsRemote = git(["ls-remote", "--symref", defaultRemote, "HEAD"], { cwd });
+  const lsRemoteCmd = ["ls-remote", "--symref", defaultRemote, "HEAD"];
+  const lsRemote = git(lsRemoteCmd, {
+    cwd,
+    throwOnError: options.strict,
+    description: `Fetching default branch info from remote "${defaultRemote}"`,
+  });
   if (lsRemote.success) {
     const refRegex = /^ref: refs\/heads\/(.*?)\t/;
     const symRefLine = lsRemote.stdout.split("\n").find((line) => refRegex.test(line));
     remoteDefaultBranch = symRefLine && symRefLine.match(refRegex)?.[1];
+
+    if (!remoteDefaultBranch && options.strict) {
+      throw new Error(
+        `Could not parse default branch from \`git ${lsRemoteCmd.join(" ")}\` output:\n${lsRemote.stdout}`
+      );
+    }
   }
 
   // If no default branch found from the remote, fall back to the local git config or "master"
@@ -64,8 +85,12 @@ export function getDefaultRemoteBranch(...args: (string | GetDefaultRemoteBranch
 
 /**
  * Resolve a user-provided branch (possibly with a remote) to a fully-qualified remote branch.
- * First tries the less-expensive {@link parseRemoteBranchPlusRemotes} (`git remote`) to see if
- * there's an explicit remote in the branch name, then tries {@link getDefaultRemoteBranch}.
+ * First tries the less-expensive {@link parseRemoteBranchPlusRemotes} (compares with remote names
+ * read from `git config`) to see if there's an explicit remote in the branch name, then tries
+ * {@link getDefaultRemoteBranch}.
+ *
+ * If `options.strict` is true, throws in the same cases as {@link parseRemoteBranch},
+ * {@link getDefaultRemoteBranch}, {@link getDefaultRemote}, or {@link getRemotes}.
  *
  * @returns A fully-qualified target remote branch reference (e.g. `origin/main`)
  */

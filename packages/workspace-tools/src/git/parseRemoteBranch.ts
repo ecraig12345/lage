@@ -4,7 +4,11 @@ import type { ParsedRemoteBranch, ParseRemoteBranchOptions } from "./types.js";
 /**
  * Get the remote and branch name from a full branch name that may include a remote prefix.
  * If the path doesn't start with one of `options.knownRemotes` (but has multiple segments),
- * the actual list of remotes will be fetched to see if one of those matches.
+ * the actual list of remotes will be read via `git config` to see if one of those matches.
+ *
+ * With `throwOnError: true`, currently it will NOT throw if the branch prefix matches `knownRemotes`
+ * regardless of the actual state of remotes in the repo. If it has to get the actual list of
+ * remotes, it will throw in the same cases as {@link getRemotes}.
  *
  * NOTE: The additional verification is new in the object params version; the original version
  * incorrectly assumes the first segment before a slash is always a remote.
@@ -31,12 +35,8 @@ export function parseRemoteBranch(branchOrOptions: string | ParseRemoteBranchOpt
 }
 
 /**
- * Get the remote and branch name from a full branch name that may include a remote prefix.
- * If the path doesn't start with one of `options.knownRemotes` (but has multiple segments),
- * the actual list of remotes will be fetched to see if one of those matches.
- *
- * This version also returns the remotes in the result if they were fetched from git,
- * for reuse by other operations.
+ * See {@link parseRemoteBranch}. This version also returns the remotes in the result if they were
+ * read from git, for reuse by other operations.
  */
 export function parseRemoteBranchPlusRemotes(
   options: ParseRemoteBranchOptions

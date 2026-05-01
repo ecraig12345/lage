@@ -2,6 +2,7 @@ import { afterAll, describe, expect, it } from "@jest/globals";
 import { cleanupFixtures, setupFixture } from "../setupFixture.js";
 import { gitFailFast } from "../../git/git.js";
 import { getRemotes } from "../../git/getRemotes.js";
+import { findGitRoot } from "../../paths.js";
 
 describe("getRemotes", () => {
   function gitRemote(cwd: string, ...args: string[]) {
@@ -12,14 +13,30 @@ describe("getRemotes", () => {
     cleanupFixtures();
   });
 
-  it("returns undefined when not in a git repo", () => {
-    // here, a nonexistent path behaves the same as not in a git repo
-    expect(getRemotes({ cwd: "/fake/path" })).toBeUndefined();
+  it("returns empty object by default when not in a git repo", () => {
+    const cwd = setupFixture();
+    // sanity check: if this fails, there's a git repo in the OS temp dir
+    expect(() => findGitRoot(cwd)).toThrow();
+
+    expect(getRemotes({ cwd })).toEqual({});
   });
 
-  it("returns undefined when no remotes are configured", () => {
+  it("throws when not in a git repo with throwOnError: true", () => {
+    const cwd = setupFixture();
+    // sanity check: if this fails, there's a git repo in the OS temp dir
+    expect(() => findGitRoot(cwd)).toThrow();
+
+    expect(() => getRemotes({ cwd, throwOnError: true })).toThrow(`${cwd} is not in a git repository`);
+  });
+
+  it("returns empty object by default when no remotes are configured", () => {
     const cwd = setupFixture(undefined, { git: true });
-    expect(getRemotes({ cwd })).toBeUndefined();
+    expect(getRemotes({ cwd })).toEqual({});
+  });
+
+  it("throws when no remotes are configured with throwOnError: true", () => {
+    const cwd = setupFixture(undefined, { git: true });
+    expect(() => getRemotes({ cwd, throwOnError: true })).toThrow(`No remotes defined in git repo at ${cwd}`);
   });
 
   it("returns a single remote", () => {
