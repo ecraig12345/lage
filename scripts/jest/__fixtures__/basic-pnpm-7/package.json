@@ -1,0 +1,15 @@
+{
+  "name": "basic-pnpm",
+  "description": "Fixture using the pnpm <= 7 lock file format",
+  "version": "0.1.0",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "engines": {
+    "pnpm": "^7.0.0"
+  }
+}

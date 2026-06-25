@@ -14,6 +14,7 @@ export type ParsedLock = {
 
 /** pnpm `pnpm-lock.yaml` format */
 export interface PnpmLockFile {
+  lockfileVersion: string;
   packages: { [name: string]: any };
 }
 
